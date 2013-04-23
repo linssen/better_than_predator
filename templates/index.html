@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Better than {{ comparator.title }}</title>
+</head>
+
+<body>
+    <h1>{{ comparator.title }}</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success">
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{% autoescape false %}{{ message }}{% endautoescape %}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="" method="post">
+        <input name="versus" type="text">
+        <button type="submit" name="submit">Go</button>
+    </form>
+</body>
+</html>

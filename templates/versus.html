@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Better than {{ comparator.title }}</title>
+</head>
+
+<body>
+    <h1>{{ comparator.title }} vs. {{ versus.title }}</h1>
+
+    <p>{{ comparator.rating }} - {{ versus.rating }}</p>
+    <p>
+        {% if comparator.rating > versus.rating %}
+            No. Obviously {{ comparator.title }} is better.
+        {% else %}
+            Yes, {{ versus.title }} is better than {{ comparator.title }}.
+        {% endif %}
+    </p>
+</body>
+</html>
