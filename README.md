@@ -21,3 +21,5 @@ Add a legitimately secret key to a new `local_settings.py`
 Run the app
 
     python app.py
+
+![predator](https://f.cloud.github.com/assets/67624/415163/75afa1ae-ac2c-11e2-8a16-cab25bf1a58e.png)
