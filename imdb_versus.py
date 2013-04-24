@@ -1,4 +1,5 @@
 import urllib
+import re
 
 from flask import Flask
 from flask import render_template, url_for, redirect, request, flash
@@ -15,7 +16,9 @@ app.secret_key = settings.SECRET_KEY
 def home():
     """Give me a film."""
     if request.method == 'POST' and request.form['versus']:
-        title = urllib.quote(request.form['versus'].replace(' ', '-'))
+        title = re.sub('[^A-Za-z0-9\s]+', '', request.form['versus']).\
+            lower().\
+            replace(' ', '-')
         return redirect(url_for('compare', title=title))
 
     comparator = Film(settings.COMPARATOR)
