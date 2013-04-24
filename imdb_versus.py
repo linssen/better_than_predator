@@ -14,12 +14,12 @@ app.secret_key = settings.SECRET_KEY
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """Give me a film."""
-    comparator = Film(settings.COMPARATOR)
-    comparator.lookup()
-
     if request.method == 'POST' and request.form['versus']:
         title = urllib.quote(request.form['versus'].replace(' ', '-'))
         return redirect(url_for('compare', title=title))
+
+    comparator = Film(settings.COMPARATOR)
+    comparator.lookup()
 
     return render_template('index.html', comparator=comparator)
 
