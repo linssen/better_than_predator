@@ -7,7 +7,7 @@ import settings
 from models import Film
 
 app = Flask(__name__)
-app.debug = True
+app.debug = settings.DEBUG
 app.secret_key = settings.SECRET_KEY
 
 
