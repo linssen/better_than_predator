@@ -4,15 +4,16 @@
 </head>
 
 <body>
-    <h1>{{ comparator.title }} vs. {{ versus.title }}</h1>
+    <h1>{{ comparator.title|safe }} vs. {{ versus.title|safe }}</h1>
 
     <p>{{ comparator.rating }} - {{ versus.rating }}</p>
     <p>
         {% if comparator.rating > versus.rating %}
-            No. Obviously {{ comparator.title }} is better.
+            No. Obviously {{ comparator.title|safe }} is better.
         {% else %}
-            Yes, {{ versus.title }} is better than {{ comparator.title }}.
+            Yes, {{ versus.title|safe }} is better than {{ comparator.title|safe }}.
         {% endif %}
     </p>
+    <p>Link to this page: <a href="{{ url }}">{{ url }}</a></p>
 </body>
 </html>
