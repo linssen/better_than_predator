@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from flask import Flask
 from flask import render_template, url_for, redirect, request, flash
@@ -11,6 +12,10 @@ app = Flask(__name__)
 app.debug = settings.DEBUG
 app.secret_key = settings.SECRET_KEY
 
+
+@app.context_processor
+def now():
+    return dict(now=datetime.now())
 
 @app.route('/', methods=['GET'])
 def home():
