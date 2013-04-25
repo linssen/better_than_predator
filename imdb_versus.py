@@ -5,6 +5,7 @@ from flask import render_template, url_for, redirect, request, flash
 
 import settings
 from models import Film
+import jinja_filters
 
 app = Flask(__name__)
 app.debug = settings.DEBUG
