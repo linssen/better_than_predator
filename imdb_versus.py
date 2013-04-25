@@ -24,11 +24,15 @@ def home():
 @app.route('/versus/<title>', methods=['GET'])
 def versus(title=None):
     """Give me a film."""
-    comparator = Film(settings.COMPARATOR)
-    comparator.lookup()
-
     if request.method == 'POST' and request.form['versus']:
         title = request.form['versus']
+
+    if not title:
+        flash('I need a film to compare')
+        return redirect(url_for('home'))
+
+    comparator = Film(settings.COMPARATOR)
+    comparator.lookup()
 
     versus = Film(title)
 
