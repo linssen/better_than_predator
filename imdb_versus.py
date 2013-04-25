@@ -16,9 +16,11 @@ app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 API_BASE = 'http://imdbapi.org'
 
+
 @app.context_processor
 def now():
     return dict(now=datetime.now())
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -26,6 +28,7 @@ def home():
     comparator = Film('Predator')
 
     return render_template('index.html', comparator=comparator)
+
 
 @app.route('/_versus')
 def _versus():
@@ -50,6 +53,7 @@ def _versus():
         return jsonify(films=[f['title'] for f in r.json()])
 
     abort(404)
+
 
 @app.route('/versus', methods=['POST'])
 @app.route('/versus/<title>', methods=['GET'])
