@@ -2,7 +2,8 @@ import re
 from datetime import datetime
 
 from flask import Flask
-from flask import render_template, url_for, redirect, request, flash
+from flask import render_template, url_for, redirect, request, flash, abort, Response, jsonify
+import requests
 
 import settings
 from models import Film
@@ -13,6 +14,7 @@ app.debug = settings.DEBUG
 app.secret_key = settings.SECRET_KEY
 app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
+API_BASE = 'http://imdbapi.org'
 
 @app.context_processor
 def now():
@@ -25,6 +27,29 @@ def home():
 
     return render_template('index.html', comparator=comparator)
 
+@app.route('/_versus')
+def _versus():
+    title = request.args.get('versus', None, type=str)
+    if not title:
+        return Response(status=204)
+
+    payload = {
+        'q': title,
+        'type': 'json',
+        'plot': 'none',
+        'episode': 0,
+        'lang': 'en-US',
+        'aka': 'simple',
+        'release': 'simple',
+        'business': 0,
+        'tech': 0,
+        'limit': 10,
+    }
+    r = requests.get(API_BASE, params=payload)
+    if r.status_code == requests.codes.ok:
+        return jsonify(films=[f['title'] for f in r.json()])
+
+    abort(404)
 
 @app.route('/versus', methods=['POST'])
 @app.route('/versus/<title>', methods=['GET'])
