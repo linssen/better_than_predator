@@ -1,9 +1,7 @@
-<html>
-<head>
-    <title>Better than {{ comparator.title }}</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block content %}
+
     <h1>{{ comparator.title|safe }} vs. {{ versus.title|safe }}</h1>
 
     <p>{{ comparator.rating }} - {{ versus.rating }}</p>
@@ -15,5 +13,5 @@
         {% endif %}
     </p>
     <p>Link to this page: <a href="{{ url }}">{{ url }}</a></p>
-</body>
-</html>
+
+{% endblock %}

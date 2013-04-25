@@ -11,6 +11,7 @@ import jinja_filters
 app = Flask(__name__)
 app.debug = settings.DEBUG
 app.secret_key = settings.SECRET_KEY
+app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 
 @app.context_processor

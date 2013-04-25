@@ -1,10 +1,9 @@
-<html>
-<head>
-    <title>Better than {{ comparator.title|safe }}</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-    <h1>Better than {{ comparator.title|safe }}?</h1>
+{% block page_heading %}<h1>Better than Predator</h1>{% endblock %}
+
+{% block content %}
+
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="alert alert-success">
@@ -21,5 +20,5 @@
         <input name="versus" type="text">
         <button type="submit" name="submit">Go</button>
     </form>
-</body>
-</html>
+
+{% endblock %}
