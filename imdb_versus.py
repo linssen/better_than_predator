@@ -14,8 +14,7 @@ app.secret_key = settings.SECRET_KEY
 @app.route('/', methods=['GET'])
 def home():
     """Give me a film."""
-    comparator = Film(settings.COMPARATOR)
-    comparator.lookup()
+    comparator = Film('Predator')
 
     return render_template('index.html', comparator=comparator)
 
