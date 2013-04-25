@@ -2,3 +2,7 @@
 /env
 /local_settings.py
 /fabfile.py
+
+/node_modules
+/static/*/build
+/static/*/dist

@@ -12,7 +12,7 @@
         {# <link rel="shortcut icon" href="/static/images/site/favicon.ico" /> #}
 
         <!-- MODERNIZR -->
-        {# <script type="text/javascript" src="/static/scripts/lib/modernizr/modernizr.js"></script> #}
+        <script type="text/javascript" src="/static/scripts/lib/modernizr/modernizr.js"></script>
 
         <!-- ANALYTICS -->
         <script>
@@ -26,7 +26,9 @@
 
         </script>
 
-        {# <link rel="stylesheet" href="styles/dist/screen.css"> #}
+        <!-- STYLES -->
+        <link rel="stylesheet" href="/static/styles/dist/screen.css">
+
     </head>
     <body class="{% block body_class %}{% endblock %}">
 
@@ -47,6 +49,6 @@
         </div><!-- //#wrapper -->
 
         {% block extra_scripts %}{% endblock %}
-        {# <script src="/static/scripts/dist/linssen.js"></script> #}
+        <script src="/static/scripts/dist/better_than_predator.js"></script>
     </body>
 </html>
