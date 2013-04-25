@@ -11,13 +11,15 @@
     CONTENTS ----------
 
         - BODY
+        - FORM
 
     -------------------
 
 */
 
 
-// @start BODY -------------------- //
+/* BODY
+--------------------------------------------------------- */
 
 html {
     overflow-y:scroll;
@@ -26,4 +28,25 @@ html {
 body {
     background-color:white;
     color:black;
+}
+
+/* FORM
+--------------------------------------------------------- */
+
+.ui-autocomplete-loading {
+    background: url("/static/images/ajax-loader.gif") no-repeat 98% 50%;
+}
+.ui-menu {
+    background: white;
+    display: block;
+
+    a {
+        background: lighten(black, 80%);
+
+        &.ui-state-focus,
+        &.ui-state-active {
+            background: lighten(black, 30%);
+            color: white;
+        }
+    }
 }
