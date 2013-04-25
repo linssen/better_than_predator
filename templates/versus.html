@@ -8,6 +8,8 @@
     <p>
         {% if comparator.rating > versus.rating %}
             No. Obviously {{ comparator.title|safe }} is better.
+        {% elif comparator.rating == versus.rating %}
+            {{ versus.title|safe }} is equally as awesome as {{ comparator.title|safe }}
         {% else %}
             Yes, {{ versus.title|safe }} is better than {{ comparator.title|safe }}.
         {% endif %}
