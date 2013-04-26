@@ -47,7 +47,11 @@ class IMDB(object):
                     media_url, img_id, anchor, source_point, thumb_w, thumb_h
                 )
                 poster = '%s/%s.jpg' % (media_url, img_id)
-            year = re.search(re_year, str(result_text)).group(1)
+            match = re.search(re_year, str(result_text))
+            if match:
+                year = match.group(1)
+            else:
+                year = 'Not yet released'
             # Sometimes the year is a string like 'in development'
             try:
                 year = int(year)
