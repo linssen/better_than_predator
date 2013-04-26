@@ -12,14 +12,27 @@ $(->
                     limit: 10
                 success: (data) ->
                     response($.map(data.films, (item) ->
+                        if item.thumb
+                            thumb = "<img src='#{item.thumb}' width='145' height='200' alt='#{item.title} poster'>"
+                        else
+                            thumb = ""
                         return {
-                            label: "#{item.title} (#{item.year})"
+                            label: "#{thumb} #{item.title} (#{item.year})"
                             value: item.imdb_id
+                            thumb: item.thumb
+                            title: item.title
                         }
                     ))
             )
-        select: (event, ui) ->
+        focus: (event, ui) ->
+            $("input[name='versus']").val(ui.item.title)
             $("input[name='imdb_id']").val(ui.item.value)
+            return false
+
+        select: (event, ui) ->
             $("form").trigger("submit")
+            return false
+
+        html: true
     )
 )

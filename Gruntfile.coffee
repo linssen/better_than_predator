@@ -11,6 +11,7 @@ module.exports = (grunt) ->
             scripts:
                 src: [
                     "<%= paths.static %>scripts/lib/jquery/jquery.js"
+                    "<%= paths.static %>scripts/lib/jquery/jquery-ui.js"
                     "<%= paths.static %>scripts/lib/**/*.js"
                     "<%= paths.static %>scripts/*.js"
                     "<%= paths.static %>scripts/build/*.js"

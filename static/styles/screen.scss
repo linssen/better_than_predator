@@ -36,6 +36,9 @@ body {
 .ui-autocomplete-loading {
     background: url("/static/images/ajax-loader.gif") no-repeat 98% 50%;
 }
+.ui-helper-hidden-accessible {
+    display: none;
+}
 .ui-menu {
     background: white;
     display: block;
