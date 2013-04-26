@@ -35,10 +35,11 @@ def home():
 @app.route('/_versus')
 def _versus():
     title = request.args.get('versus', None, type=str)
+    limit = request.args.get('limit', 0, type=int)
     if not title:
         return Response(status=204)
 
-    films = imdb.search_title(title, 10)
+    films = imdb.search_title(title, limit)
     if films:
         return jsonify(films=films)
 
