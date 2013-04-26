@@ -30,7 +30,9 @@ $(->
             return false
 
         select: (event, ui) ->
-            $("form").trigger("submit")
+            $("button[type='submit']")
+                .trigger("click")
+                .prop("disabled", "disabled")
             return false
 
         html: true
