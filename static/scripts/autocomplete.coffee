@@ -1,23 +1,25 @@
 $(->
-    split = (val) ->
-        return val.split(/,\s*/)
-
-    extractLast = (term) ->
-        return split(term).pop()
-
-    $("input[name='versus']").autocomplete(
+    $("input[name='versus']").bind("keydown", (event) ->
+        if (event.keyCode is $.ui.keyCode.TAB and $(this).data("ui-autocomplete").menu.active)
+            event.preventDefault()
+    ).autocomplete(
         source: (request, response) ->
             $.ajax(
-                url: '/_versus'
+                dataType: "json"
+                url: "/_versus"
                 data:
                     versus: request.term
+                    limit: 10
                 success: (data) ->
                     response($.map(data.films, (item) ->
-                        return {label: item, value: item}
+                        return {
+                            label: "#{item.title} (#{item.year})"
+                            value: item.imdb_id
+                        }
                     ))
             )
-        minLength: 2
         select: (event, ui) ->
+            $("input[name='imdb_id']").val(ui.item.value)
             $("form").trigger("submit")
     )
 )

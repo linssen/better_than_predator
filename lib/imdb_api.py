@@ -26,7 +26,7 @@ class IMDB(object):
         for result in results:
             result_text = result.find('td', class_='result_text')
             title = result_text.a.text
-            film_id = re.search(re_id, result.a['href']).group(1)
+            imdb_id = re.search(re_id, result.a['href']).group(1)
             image = result.img['src']
             if 'nopicture' in image:
                 thumb = None
@@ -66,7 +66,7 @@ class IMDB(object):
             films.append(dict(
                 title=title,
                 aka=aka,
-                id=film_id,
+                imdb_id=imdb_id,
                 year=year,
                 img_id=img_id,
                 thumb=thumb,
@@ -78,25 +78,27 @@ class IMDB(object):
 
         return films
 
-    def get_film(self, film_id):
+    def get_film(self, imdb_id):
         """Retrieves a specific film by ID."""
-        r = requests.get('%s/title/%s/' % (self.base_url, film_id))
+        r = requests.get('%s/title/%s/' % (self.base_url, imdb_id))
         if r.status_code != requests.codes.ok:
             return False
 
         soup = BeautifulSoup(r.text)
 
-        title = soup.h1.find('span', attrs={'itemprop': 'name'}).string
-        rating = soup.find('span', attrs={'itemprop': 'ratingValue'}).string
-        rating_count = soup.find('span', attrs={'itemprop': 'ratingCount'}).string
+        title = soup.h1.find('span', attrs={'itemprop': 'name'}).text
+        rating = float(soup.find('span', attrs={'itemprop': 'ratingValue'}).text)
+        rating_count = int(soup.find('span', attrs={'itemprop': 'ratingCount'}).text.replace(',', ''))
         release_date = soup.find('div', class_='infobar').find('meta', attrs={'itemprop': 'datePublished'})['content']
+        year = release_date[:4]
 
         film = dict(
-            id=film_id,
+            imdb_id=imdb_id,
             title=title,
             rating=rating,
             rating_count=rating_count,
             release_date=release_date,
+            year=year,
         )
 
         return film

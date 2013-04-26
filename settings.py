@@ -1,5 +1,5 @@
 SECRET_KEY = 'change this, you fool'
-COMPARATOR = 'Predator'
+COMPARATOR = 'tt0093773'
 DEBUG = False
 
 try:

@@ -3,10 +3,8 @@ from datetime import datetime
 
 from flask import Flask
 from flask import render_template, url_for, redirect, request, flash, abort, Response, jsonify
-import requests
 
 import settings
-from models import Film
 import jinja_filters
 from lib.imdb_api import IMDB
 
@@ -27,7 +25,7 @@ def now():
 @app.route('/', methods=['GET'])
 def home():
     """Give me a film."""
-    comparator = Film('Predator')
+    comparator = dict(title='Predator')
 
     return render_template('index.html', comparator=comparator)
 
@@ -47,31 +45,31 @@ def _versus():
 
 
 @app.route('/versus', methods=['POST'])
-@app.route('/versus/<title>', methods=['GET'])
-def versus(title=None):
+@app.route('/versus/<imdb_id>/<title>', methods=['GET'])
+def versus(imdb_id=None, title=None):
     """Give me a film."""
-    if request.method == 'POST' and request.form['versus']:
-        title = request.form['versus']
+    if request.method == 'POST':
+        imdb_id = request.form.get('imdb_id', None)
 
-    if not title:
+    if not imdb_id:
         flash('I need a film to compare')
         return redirect(url_for('home'))
 
-    comparator = Film(settings.COMPARATOR)
-    comparator.lookup()
+    comparator = imdb.get_film(settings.COMPARATOR)
 
-    versus = Film(title)
+    versus = imdb.get_film(imdb_id)
 
-    if not versus.lookup():
+    if not versus:
         flash('Sorry, I could&rsquo;t find &lsquo;%s&rsquo;' % title)
         return redirect(url_for('home'))
 
-    url_title = versus.title.\
+    url_title = versus['title'].\
         replace('&amp;', 'and').\
         replace(' ', '-').\
         lower()
     url = url_for(
         'versus',
+        imdb_id=imdb_id,
         title=re.sub('[^A-Za-z0-9-]+', '', url_title),
         _external=True,
         _method='GET',
