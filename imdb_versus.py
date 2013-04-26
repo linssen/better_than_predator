@@ -8,6 +8,7 @@ import requests
 import settings
 from models import Film
 import jinja_filters
+from lib.imdb_api import IMDB
 
 app = Flask(__name__)
 app.debug = settings.DEBUG
@@ -15,6 +16,7 @@ app.secret_key = settings.SECRET_KEY
 app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 API_BASE = 'http://imdbapi.org'
+imdb = IMDB()
 
 
 @app.context_processor
@@ -36,21 +38,9 @@ def _versus():
     if not title:
         return Response(status=204)
 
-    payload = {
-        'q': title,
-        'type': 'json',
-        'plot': 'none',
-        'episode': 0,
-        'lang': 'en-US',
-        'aka': 'simple',
-        'release': 'simple',
-        'business': 0,
-        'tech': 0,
-        'limit': 10,
-    }
-    r = requests.get(API_BASE, params=payload)
-    if r.status_code == requests.codes.ok:
-        return jsonify(films=[f['title'] for f in r.json()])
+    films = imdb.search_title(title, 10)
+    if films:
+        return jsonify(films=films)
 
     abort(404)
 
