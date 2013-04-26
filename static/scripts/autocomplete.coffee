@@ -17,7 +17,7 @@ $(->
                         else
                             thumb = ""
                         return {
-                            label: "#{thumb} #{item.title} (#{item.year})"
+                            label: "#{thumb} <span>#{item.title} (#{item.year})</span>"
                             value: item.imdb_id
                             thumb: item.thumb
                             title: item.title

@@ -33,23 +33,39 @@ body {
 /* FORM
 --------------------------------------------------------- */
 
+.ui-autocomplete-input {
+    background: url("/static/images/ajax-loader.gif") no-repeat -100% 50%;
+}
 .ui-autocomplete-loading {
-    background: url("/static/images/ajax-loader.gif") no-repeat 98% 50%;
+    background-position: 98% 50%;
 }
 .ui-helper-hidden-accessible {
     display: none;
 }
-.ui-menu {
-    background: white;
+.ui-menu-item {
+    background: lighten(black, 80%);
     display: block;
+    width: 300px;
+    text-overflow: ellipsis;
 
     a {
-        background: lighten(black, 80%);
+        display: block;
+        overflow: hidden;
+        height: 50px;
 
         &.ui-state-focus,
         &.ui-state-active {
             background: lighten(black, 30%);
             color: white;
         }
+    }
+    img {
+        float: left;
+        width: auto;
+        height: 100%;
+    }
+    span {
+        float: right;
+        width: 250px;
     }
 }
