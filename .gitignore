@@ -1,4 +1,5 @@
 *.pyc
+/.sass-cache
 /env
 /local_settings.py
 /fabfile.py
