@@ -11,22 +11,22 @@ $(->
                     versus: request.term
                     limit: 10
                 success: (data) ->
-                    response($.map(data.films, (item) ->
-                        if item.thumb
-                            thumb = "<img src='#{item.thumb}' width='145' height='200' alt='#{item.title} poster'>"
+                    response($.map(data.movies, (item) ->
+                        if not item.posters.thumbnail.match(/poster_default\.gif$/)
+                            thumb = "<img src='#{item.posters.thumbnail}' width='145' height='200' alt='#{item.title} poster'>"
                         else
                             thumb = ""
                         return {
                             label: "#{thumb} <span>#{item.title} (#{item.year})</span>"
-                            value: item.imdb_id
-                            thumb: item.thumb
+                            value: item.id
+                            thumb: thumb
                             title: item.title
                         }
                     ))
             )
         focus: (event, ui) ->
             $("input[name='versus']").val(ui.item.title)
-            $("input[name='imdb_id']").val(ui.item.value)
+            $("input[name='film_id']").val(ui.item.value)
             return false
 
         select: (event, ui) ->
