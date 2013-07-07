@@ -1,5 +1,5 @@
 SECRET_KEY = 'change this, you fool'
-COMPARATOR = 'tt0093773'
+COMPARATOR_ID = '16751'
 DEBUG = False
 
 try:

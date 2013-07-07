@@ -61,6 +61,7 @@ def versus(film_id=None, title=None):
         return redirect(url_for('home'))
 
     versus = api.get_film(film_id)
+    comparator = api.get_film(settings.COMPARATOR_ID)
 
     if not versus:
         flash('Sorry, I could&rsquo;t find &lsquo;%s&rsquo;' % title)

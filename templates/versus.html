@@ -4,11 +4,11 @@
 
     <h1>{{ comparator.title|safe }} vs. {{ versus.title|safe }}</h1>
 
-    <p>{{ comparator.rating }} - {{ versus.rating }}</p>
+    <p>{{ comparator.ratings.critics_score }}% - {{ versus.ratings.critics_score }}%</p>
     <p>
-        {% if comparator.rating > versus.rating %}
+        {% if comparator.ratings.critics_score > versus.ratings.critics_score %}
             No. Obviously {{ comparator.title|safe }} is better.
-        {% elif comparator.rating == versus.rating %}
+        {% elif comparator.ratings.critics_score == versus.ratings.critics_score %}
             {{ versus.title|safe }} is equally as awesome as {{ comparator.title|safe }}
         {% else %}
             Yes, {{ versus.title|safe }} is better than {{ comparator.title|safe }}.
