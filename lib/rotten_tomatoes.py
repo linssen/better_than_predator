@@ -9,8 +9,33 @@ class ROTTEN(object):
 
     def get_film(self, film_id):
         """Get a single film using it's ID."""
+        # Get ratings first
+        resource = 'movies/%s/reviews.json' % film_id
+        params = dict(
+            review_type='top_critic', page_limit=20,
+            page=1, country='uk'
+        )
+        ratings = []
+        for review in self.api_call(resource, params)['reviews']:
+            # They don't always have an original score
+            try:
+                ratings.append(review['original_score'])
+            except(KeyError):
+                pass
+
+        avg_score = sum([self.parse_score(r) for r in ratings]) / len(ratings)
+        avg_score = avg_score * 100
+
+        # Get film info second
         resource = 'movies/%s.json' % film_id
-        return self.api_call(resource)
+        film = self.api_call(resource)
+        film['avg_score'] = avg_score
+        return film
+
+    def parse_score(self, score_string):
+        """Accepts a score like 4/5 and converts to a float."""
+        score_parts = score_string.split('/', 1)
+        return float(score_parts[0]) / float(score_parts[1])
 
     def search_title(self, title, page, page_limit):
         """Get a list of films by searching the title."""
@@ -26,8 +51,6 @@ class ROTTEN(object):
 
         if r.status_code != requests.codes.ok:
             return None
-
-        # raise TypeError('lol')
 
         return json.loads(r.content)
 

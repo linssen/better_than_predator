@@ -18,7 +18,7 @@ app.secret_key = settings.SECRET_KEY
 app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 
-api = ROTTEN(settings.APIKEY)
+api = ROTTEN(settings.ROTTEN_TOMATOES_API_KEY)
 
 @app.context_processor
 def now():
