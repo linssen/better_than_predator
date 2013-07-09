@@ -10,6 +10,7 @@ import requests
 
 import settings
 from lib.rotten_tomatoes import ROTTEN
+from lib.imdb_api import IMDB
 import jinja_filters
 
 app = Flask(__name__)
@@ -19,6 +20,7 @@ app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 
 api = ROTTEN(settings.ROTTEN_TOMATOES_API_KEY)
+api = IMDB()
 
 @app.context_processor
 def now():
@@ -42,7 +44,8 @@ def _versus():
     if not title:
         return Response(status=204)
 
-    films = api.search_title(title, page, limit)
+    films = api.search_title(title, limit)
+    print films
     if not films:
         abort(404)
 
