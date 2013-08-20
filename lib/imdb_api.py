@@ -8,46 +8,24 @@ import html5lib
 class IMDB(object):
     def search_title(self, title, limit=0):
         """Searches for films by title."""
-        r = requests.get('%s/find?q=%s&s=tt&ttype=ft' % (self.base_url, title))
+        r = requests.get('%s/find?q=%s' % (self.base_url, title))
 
         if r.status_code != requests.codes.ok:
             return False
 
         soup = BeautifulSoup(r.text, 'html5lib')
-        results = soup.find_all('tr', 'findResult')
-        re_id = re.compile(r'\/(tt\d+)\/')
+        results = soup.find_all('div',  class_='poster')
+        re_id = re.compile(r'\/(\w{2}\d+)\/')
         re_year = re.compile(r'\((\d{4}|in development)\)')
-        re_img = re.compile(r'M\/(.*)S(X|Y)')
         films = []
 
         if len(results) == 0:
             return None
 
         for result in results:
-            result_text = result.find('td', class_='result_text')
-            title = result_text.a.text
+            title = result.a.text
             imdb_id = re.search(re_id, result.a['href']).group(1)
-            image = result.img['src']
-            if 'nopicture' in image:
-                thumb = None
-                poster = None
-                img_id = None
-            else:
-                match = re.search(re_img, image)
-                img_id = match.group(1)
-                anchor = match.group(2)
-                thumb_w = 145
-                thumb_h = 200
-                if anchor == 'X':
-                    source_point = thumb_w
-                else:
-                    source_point = thumb_h
-                media_url = 'http://ia.media-imdb.com/images/M'
-                thumb = '%s/%sS%s%d_CR0,0,%d,%d_.jpg' % (
-                    media_url, img_id, anchor, source_point, thumb_w, thumb_h
-                )
-                poster = '%s/%s.jpg' % (media_url, img_id)
-            match = re.search(re_year, str(result_text))
+            match = re.search(re_year, str(result))
             if match:
                 year = match.group(1)
             else:
@@ -68,9 +46,6 @@ class IMDB(object):
                 aka=aka,
                 imdb_id=imdb_id,
                 year=year,
-                img_id=img_id,
-                thumb=thumb,
-                poster=poster,
             ))
 
         if limit > 0:
@@ -104,4 +79,4 @@ class IMDB(object):
         return film
 
     def __init__(self):
-        self.base_url = 'http://www.imdb.com'
+        self.base_url = 'http://m.imdb.com'
