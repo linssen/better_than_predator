@@ -21,13 +21,13 @@
 /* BODY
 --------------------------------------------------------- */
 
-html {
-    overflow-y:scroll;
+body {
+    background: #33404C;
+    color:white;
 }
 
-body {
-    background-color:white;
-    color:black;
+section[role="main"] {
+    margin-bottom: 50px;
 }
 
 /* FORM
@@ -67,5 +67,89 @@ body {
     span {
         float: right;
         width: 250px;
+    }
+}
+
+/* Footer
+--------------------------------------------------------- */
+footer {
+    font-family: Helvetica;
+    font-size: 12px;
+    color: rgba(255,255,255,0.40);
+    line-height: 14px;
+    padding: 20px 0;
+    background: black;
+
+    p {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    a {
+        color: rgba(255,255,255,0.40);
+        text-decoration: underline;
+    }
+}
+
+/* VERSUS
+--------------------------------------------------------- */
+.films {
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto 20px auto;
+    padding: 20px 0 50px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.20);
+}
+.film {
+    float: left;
+
+    img {
+        width: 331px;
+    }
+
+    .score {
+        font-family: HelveticaNeue-CondensedBlack;
+        font-size: 64px;
+        color: #30363C;
+        line-height: 79px;
+        background: white;
+        display: block;
+        padding: 20px;
+        text-align: center;
+
+        span {
+            font-family: HelveticaNeue-CondensedBlack;
+            font-size: 26px;
+            color: rgba(47,54,59,0.50);
+            line-height: 32px;
+        }
+    }
+}
+video {
+    float: left;
+    margin: 0 -257px 0 -233px;
+    mask: url("/static/images/versus.svg#versus");
+    -webkit-mask-box-image: url("/static/images/versus.svg");
+}
+.outcome {
+    font-family: HelveticaNeue-CondensedBlack;
+    font-size: 47px;
+    color: #D8D8D8;
+    line-height: 58px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.canonical {
+    font-family: HelveticaNeue-Light;
+    font-size: 19px;
+    color: #D8D8D8;
+    line-height: 23px;
+    text-align: center;
+
+    a {
+        font-family: HelveticaNeue-UltraLight;
+        font-size: 19px;
+        color: #D8D8D8;
+        line-height: 23px;
+        text-decoration: none;
     }
 }

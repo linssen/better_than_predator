@@ -9,7 +9,7 @@ from flask import render_template, url_for, redirect,\
 import requests
 
 import settings
-from lib.rotten_tomatoes import ROTTEN
+from lib.mymovie_api import IMDB
 import jinja_filters
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ app.secret_key = settings.SECRET_KEY
 app.jinja_env.filters['datetimeformat'] = jinja_filters.datetimeformat
 
 
-api = ROTTEN(settings.ROTTEN_TOMATOES_API_KEY)
+api = IMDB()
 
 @app.context_processor
 def now():
@@ -78,6 +78,14 @@ def versus(film_id=None, title=None):
         _external=True,
         _method='GET',
     )
+
+
+    if versus['rating'] > comparator['rating']:
+        versus['winner'] = True
+        comparator['winner'] = False
+    else:
+        versus['winner'] = False
+        comparator['winner'] = True
 
     return render_template(
         'versus.html',

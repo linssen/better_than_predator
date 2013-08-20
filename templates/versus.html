@@ -1,19 +1,33 @@
 {% extends 'base.html' %}
 
+{% block page_heading %}{% endblock %}
+
 {% block content %}
 
-    <h1>{{ comparator.title|safe }} vs. {{ versus.title|safe }}</h1>
+    <div class="films">
+        {% for film in [comparator, versus] %}
+            <div class="film{% if film.winner %} winner{% endif %}">
+                <img src="{{ film.poster.cover }}" alt="{{ film.title }}'s poster">
+                <p class="score">{{ film.rating }} <span>/ 10</span></p>
+            </div>
 
-    <p>{{ comparator.avg_score }}% - {{ versus.avg_score }}%</p>
-    <p>
-        {% if comparator.avg_score > versus.avg_score %}
-            No. Obviously {{ comparator.title|safe }} is better.
-        {% elif comparator.avg_score == versus.avg_score %}
-            {{ versus.title|safe }} is equally as awesome as {{ comparator.title|safe }}
+            {% if loop.first %}
+                <video class="versus" height="450" width="800"  autoplay="autoplay" loop="true">
+                    <source src="/static/images/fire.mp4"  type="video/mp4">
+                </video>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <p class="outcome">
+        {% if comparator.winner %}
+            {{ comparator.title }} wins! (obviously)
         {% else %}
-            Yes, {{ versus.title|safe }} is better than {{ comparator.title|safe }}.
+            {{ versus.title }} wins!
         {% endif %}
     </p>
-    <p>Link to this page: <a href="{{ url }}">{{ url }}</a></p>
+
+    <p class="canonical">Link to this page: <a href="{{ url }}">{{ url }}</a></p>
 
 {% endblock %}

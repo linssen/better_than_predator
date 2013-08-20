@@ -11,15 +11,10 @@ $(->
                     versus: request.term
                     limit: 10
                 success: (data) ->
-                    response($.map(data.movies, (item) ->
-                        if not item.posters.thumbnail.match(/poster_default\.gif$/)
-                            thumb = "<img src='#{item.posters.thumbnail}' width='145' height='200' alt='#{item.title} poster'>"
-                        else
-                            thumb = ""
+                    response($.map(data.result, (item) ->
                         return {
-                            label: "#{thumb} <span>#{item.title} (#{item.year})</span>"
-                            value: item.id
-                            thumb: thumb
+                            label: "<span>#{item.title} (#{item.year})</span>"
+                            value: item.imdb_id
                             title: item.title
                         }
                     ))
