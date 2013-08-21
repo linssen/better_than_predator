@@ -7,7 +7,11 @@
     <div class="films">
         {% for film in [comparator, versus] %}
             <div class="film{% if film.winner %} winner{% endif %}">
-                <img src="{{ film.poster.cover }}" alt="{{ film.title }}'s poster">
+                {% if film.poster and film.poster.imdb %}
+                    <img src="{{ film.poster.imdb }}" alt="{{ film.title }}'s poster">
+                {% else %}
+                    <img src="/static/images/poster_missing.png" alt="Poster missing">
+                {% endif %}
                 <p class="score">{{ film.rating }} <span>/ 10</span></p>
             </div>
 
