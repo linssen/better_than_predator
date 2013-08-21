@@ -1,4 +1,5 @@
 *.pyc
+/cache.sqlite
 /.sass-cache
 /env
 /local_settings.py
