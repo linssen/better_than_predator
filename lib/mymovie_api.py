@@ -55,8 +55,9 @@ class IMDB(API_Base):
             return None
 
         content = json.loads(r.content)
-        poster = None
-        if content['poster']['cover']:
+        if 'poster' not in content:
+            poster = None
+        elif content['poster']['cover']:
             poster = content['poster']['cover']
         elif content['poster']['imdb']:
             poster = content['poster']['cover']

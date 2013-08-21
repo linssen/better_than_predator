@@ -28,11 +28,11 @@ class API_Base(object):
         if url is None:
             return None
 
-        image_name = film_id+'.jpg'
-        path = os.path.join(_here, '..', 'static', 'images', 'posters', image_name)
+        image_path = 'static/images/posters/%s.jpg' % film_id
+        path = os.path.join(_here, '..', image_path)
 
         if os.path.isfile(path):
-            return image_name
+            return image_path
 
         r = requests.get(url)
         if r.status_code != requests.codes.ok:
@@ -42,4 +42,4 @@ class API_Base(object):
             for chunk in r.iter_content(1024):
                 f.write(chunk)
 
-        return film_id+'.jpg'
+        return image_path
