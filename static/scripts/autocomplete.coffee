@@ -19,13 +19,15 @@ $(->
                         }
                     ))
             )
-        focus: (event, ui) ->
-            $("input[name='versus']").val(ui.item.title)
-            $("input[name='film_id']").val(ui.item.value)
-            return false
 
         select: (event, ui) ->
-            $("form").submit();
+            event.preventDefault()
+            film_id = ui.item.value
+            title = ui.item.title
+            title = title.replace('&amp;', 'and').replace(' ', '-').toLowerCase()
+            title = title.replace(/[^a-z0-9-]+/i, '', title)
+            encodeURIComponent(title)
+            window.location = "/versus/#{film_id}/#{title}"
 
         html: true
     )
