@@ -11,7 +11,7 @@ class IMDB(object):
     def __init__(self):
         self.base_url = 'http://mymovieapi.com'
 
-    def search_title(self, title, page=1, limit=10,):
+    def search_title(self, title, page=0, limit=10,):
         payload = dict(
             title=title,
             offset=page,
@@ -20,13 +20,14 @@ class IMDB(object):
             plot='simple',
             episode=1,
             yg=0,
-            mt='none',
+            mt='M',
             lang='en-US',
             aka='simple',
             release='simple',
             business=0,
             tech=0,
         )
+
         r = requests.get(self.base_url, params=payload)
 
         if r.status_code != requests.codes.ok:

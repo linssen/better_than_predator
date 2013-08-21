@@ -36,8 +36,8 @@ def home():
 @app.route('/_versus')
 def _versus():
     title = request.args.get('versus', None, type=str)
-    limit = request.args.get('limit', 50, type=int)
-    page = request.args.get('page', 1, type=int)
+    limit = request.args.get('limit', 10, type=int)
+    page = request.args.get('page', 0, type=int)
 
     if not title:
         return Response(status=204)
