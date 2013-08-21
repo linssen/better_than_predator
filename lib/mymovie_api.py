@@ -5,17 +5,13 @@ import json
 import requests
 import requests_cache
 
+from lib.api_base import API_Base
 
-class IMDB(object):
+
+class IMDB(API_Base):
 
     def __init__(self):
-        self.base_url = 'http://mymovieapi.com'
-        self.install_cache()
-
-    def install_cache(self):
-        _here = os.path.dirname(os.path.abspath(__file__))
-        cache_path = os.path.join(_here, '..', 'cache')
-        requests_cache.install_cache(cache_name=cache_path, expire_after=172800)
+        super(IMDB, self).__init__(base_url='http://mymovieapi.com')
 
     def search_title(self, title, page=0, limit=10,):
         payload = dict(
@@ -57,5 +53,14 @@ class IMDB(object):
 
         if r.status_code != requests.codes.ok:
             return None
+
+        content = json.loads(r.content)
+        poster = None
+        if content['poster']['cover']:
+            poster = content['poster']['cover']
+        elif content['poster']['imdb']:
+            poster = content['poster']['cover']
+
+        content['poster'] = self.get_poster(poster, film_id)
 
         return json.loads(r.content)

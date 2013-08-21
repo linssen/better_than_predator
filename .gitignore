@@ -8,3 +8,4 @@
 /node_modules
 /static/*/build
 /static/*/dist
+/static/images/posters/*.jpg
