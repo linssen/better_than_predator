@@ -1,15 +1,21 @@
+import os
 import re
 import json
 
 import requests
 import requests_cache
 
-requests_cache.install_cache()
 
 class IMDB(object):
 
     def __init__(self):
         self.base_url = 'http://mymovieapi.com'
+        self.install_cache()
+
+    def install_cache(self):
+        _here = os.path.dirname(os.path.abspath(__file__))
+        cache_path = os.path.join(_here, '..', 'cache')
+        requests_cache.install_cache(cache_name=cache_path, expire_after=172800)
 
     def search_title(self, title, page=0, limit=10,):
         payload = dict(
