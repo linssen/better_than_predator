@@ -63,5 +63,7 @@ class IMDB(API_Base):
             poster = content['poster']['cover']
 
         content['poster'] = self.get_poster(poster, film_id)
+        if content['poster'] is None:
+            content['poster'] = 'static/images/poster_missing.png'
 
-        return json.loads(r.content)
+        return content
