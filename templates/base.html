@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html id="top" class="no-js">
+<html id="top" ng-app="btpApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{% block page_title %}{% endblock %}</title>
+        <title>Better Than Predator</title>
         <meta name="description" content="">
 
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
         <!-- FAVICONS  -->
         <link rel="shortcut icon" href="/static/images/favicon.png" />
-
-        <!-- MODERNIZR -->
-        <script type="text/javascript" src="/static/scripts/lib/modernizr/modernizr.js"></script>
 
         <!-- ANALYTICS -->
         <script>
@@ -30,16 +27,16 @@
         <link rel="stylesheet" href="/static/styles/dist/screen.css">
 
     </head>
-    <body class="{% block body_class %}{% endblock %}">
+    <body>
 
         <div id="wrapper">
 
             <header role="banner">
-                {% block page_heading %}<p>Better than Predator</p>{% endblock %}
+                <p>Better than Predator</p>
             </header>
 
-            <section role="main">
-                {% block content %}{% endblock %}
+            <section role="main" ng-view>
+
             </section>
 
             <footer role="footer">
@@ -48,7 +45,6 @@
 
         </div><!-- //#wrapper -->
 
-        {% block extra_scripts %}{% endblock %}
         <script src="/static/scripts/dist/better_than_predator.js"></script>
     </body>
 </html>
