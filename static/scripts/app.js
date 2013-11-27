@@ -10,6 +10,7 @@ var btpApp = angular.module('btpApp', [
 ]);
 var btpControllers = angular.module('btpControllers', []);
 var btpServices = angular.module('btpServices', ['ngResource']);
+var PREDATOR = 'tt0093773';
 
 btpApp.config(['$routeProvider',
     function ($routeProvider) {
@@ -33,9 +34,11 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
         $scope.films = Film.query();
     }]);
 
-btpControllers.controller('VersusCtrl', ['$scope', 'Film',
-    function ($scope, Film) {
-        $scope.films = Film.query();
+btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', 'Film',
+    function ($scope, $routeParams, Film) {
+        $scope.films = Film.compare(
+            {ids: [PREDATOR, $routeParams.imdbID].join()}
+        );
     }]);
 
 
@@ -51,7 +54,15 @@ btpServices.factory('Film', ['$resource',
                 query: {
                     method: 'GET',
                     params: {
-                        ids: ['tt0093773', 'tt0100403'].join(',')
+                        q: 'Predator',
+                        limit: 10
+                    },
+                    isArray: true
+                },
+                compare: {
+                    method: 'GET',
+                    params: {
+                        ids: [PREDATOR, 'tt0100403'].join()
                     },
                     isArray: true
                 }
