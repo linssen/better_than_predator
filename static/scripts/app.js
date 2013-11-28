@@ -5,6 +5,8 @@ var btpApp = angular.module('btpApp', [
     'ngRoute',
     'ngResource',
 
+    'ui.select2',
+
     'btpControllers',
     'btpServices'
 ]);
@@ -31,7 +33,30 @@ btpApp.config(['$routeProvider',
 
 btpControllers.controller('SearchCtrl', ['$scope', 'Film',
     function ($scope, Film) {
-        $scope.films = Film.query();
+        $scope.select2 = {
+            minimumInputLength: 2,
+            ajax: {
+                url: "http://mymovieapi.com/",
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        q: term, // search term
+                        limit: 10,
+                        offset: (page - 1) * 10,
+                        type: 'json',
+                        plot: 'simple',
+                        lang: 'en-US'
+                    };
+                },
+                results: function (data, page) {
+                    return {results: data.result};
+                }
+            },
+            id: function (film) { return film.imdb_id; },
+            formatResult: function (film) { return film.title; },
+            formatSelection: function (film) { return film.title; }
+        };
     }]);
 
 btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', 'Film',
