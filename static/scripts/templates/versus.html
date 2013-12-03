@@ -1,21 +1,23 @@
-<ul class="films">
-    <li ng-repeat="film in films">
-        <h2>{{film.title}} {{film.year}}</h2>
+<div class="films">
+    <div ng-repeat="film in films" class="film">
+        <h2>{{film.title}}</h2>
+        <img class="backdrop" src="" width="300" height="165">
 
-        <p>Rating: {{film.rating}}</p>
-    </li>
+        <time>{{film.release_date}}</time>
 
-    <div ng-if="films[0].rating > films[1].rating">
-        Preadtor wins! (obviously)
+        <div class="rating">{{film.rating}}</div>
     </div>
+</div>
 
-    <div ng-if="films[0].rating < films[1].rating">
-        {{films[1].title}} wins!
-    </div>
+<div ng-if="films[0].rating > films[1].rating">
+    Preadtor wins! (obviously)
+</div>
 
-    <div ng-if="films[0].rating === films[1].rating">
-        {{films[1].title}} is just as good as Predator.
-    </div>
+<div ng-if="films[0].rating < films[1].rating">
+    {{films[1].title}} wins!
+</div>
 
-</ul>
+<div ng-if="films[0].rating === films[1].rating">
+    {{films[1].title}} is just as good as Predator.
+</div>
 

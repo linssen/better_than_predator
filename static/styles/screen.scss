@@ -6,38 +6,37 @@
     Better than Predator
 
     @version: 1.0
-    @author: Wil Linssen & Greg Wood
+    @author: Wil Linssen
 
     CONTENTS ----------
 
         - BODY
-        - FORM
+        - FOOTER
+        - SEARCH
+        - RESULTS
 
     -------------------
 
 */
 
 
-/* BODYx
+/* BODY
 --------------------------------------------------------- */
 
 body {
-    background: #33404C;
-    color:white;
+    background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: sans-serif;
 }
 
 section[role="main"] {
     margin-bottom: 50px;
 }
 
-/* FORM
---------------------------------------------------------- */
-
-.query {
-    width: 250px;
-}
-
-/* Footer
+/* FOOTER
 --------------------------------------------------------- */
 footer {
     font-family: Helvetica;
@@ -57,66 +56,47 @@ footer {
     }
 }
 
-/* VERSUS
+/* SEARCH
+--------------------------------------------------------- */
+.query {
+    width: 650px;
+}
+
+/* RESULTS
 --------------------------------------------------------- */
 .films {
     overflow: hidden;
-    width: 1000px;
-    margin: 0 auto 20px auto;
-    padding: 20px 0 50px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.20);
+    clear: both;
+    width: 780px;
+    margin: 0 auto;
 }
 .film {
+    width: 230px;
+    height: 393px;
+    background: url('/static/images/ticket.png') no-repeat 0 0;
     float: left;
+    margin-right: 90px;
+    padding: 35px;
+    position: relative;
 
-    img {
-        width: 331px;
+    h2 {
+        font-size: 40px;
+        line-height: 1.2em;
+        width: 100%;
+        height: 1.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    .score {
-        font-family: HelveticaNeue-CondensedBlack;
-        font-size: 64px;
-        color: #30363C;
-        line-height: 79px;
-        background: white;
-        display: block;
-        padding: 20px;
-        text-align: center;
-
-        span {
-            font-family: HelveticaNeue-CondensedBlack;
-            font-size: 26px;
-            color: rgba(47,54,59,0.50);
-            line-height: 32px;
-        }
+    .backdrop {
+        margin-left: -35px;
     }
-}
-video {
-    float: left;
-    margin: 0 -257px 0 -233px;
-    mask: url("/static/images/versus.svg#versus");
-    -webkit-mask-box-image: url("/static/images/versus.svg");
-}
-.outcome {
-    font-family: HelveticaNeue-CondensedBlack;
-    font-size: 47px;
-    color: #D8D8D8;
-    line-height: 58px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-.canonical {
-    font-family: HelveticaNeue-Light;
-    font-size: 19px;
-    color: #D8D8D8;
-    line-height: 23px;
-    text-align: center;
 
-    a {
-        font-family: HelveticaNeue-UltraLight;
-        font-size: 19px;
-        color: #D8D8D8;
-        line-height: 23px;
-        text-decoration: none;
+    .rating {
+        height: 102px;
+        width: 230px;
+        position: absolute;
+        bottom: 35px;
+        font-size: 87px;
     }
 }

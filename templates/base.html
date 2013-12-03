@@ -31,16 +31,12 @@
 
         <div id="wrapper">
 
-            <header role="banner">
-                <p>Better than Predator</p>
-            </header>
-
-            <section role="main" ng-view>
-
-            </section>
+            <section role="main" ng-view></section>
 
             <footer role="footer">
-                <p>Copyright © {{ now|datetimeformat("%Y") }} Wil Linssen. Idea from the pub with Greg, and Glen.</p>
+                <p>
+                    Copyright © {{ now|datetimeformat("%Y") }} Wil Linssen.
+                    Idea from the pub with <a href="http://gregorywood.co.uk">Greg</a>, and <a href="http://glenswinfield.co.uk">Glen</a>.</p>
             </footer>
 
         </div><!-- //#wrapper -->
