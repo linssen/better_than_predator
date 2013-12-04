@@ -104,14 +104,15 @@ btpServices.factory('Film', ['$resource',
                     transformResponse: function (data) {
                         data = angular.fromJson(data);
                         data = data.map(function (d) {
-                            var dateString, oDate;
-                            oDate = '' + d.release_date;
-                            dateString = [
-                                parseInt(oDate.slice(0, 4), 10),
-                                parseInt(oDate.slice(4, 6), 10),
-                                parseInt(oDate.slice(6, 8), 10)
+                            var dateParts, dateString;
+                            dateString = '';
+                            dateString += d.release_date;
+                            dateParts = [
+                                parseInt(dateString.slice(0, 4), 10),
+                                parseInt(dateString.slice(4, 6), 10),
+                                parseInt(dateString.slice(6, 8), 10)
                             ];
-                            d.release_date = new Date(dateString);
+                            d.release_date = new Date(dateParts);
                             return d;
                         });
                         return data;
