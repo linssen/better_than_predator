@@ -66,13 +66,53 @@ a.btn {
     color: #fff;
     text-decoration: none;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
 }
 
 /* SEARCH
 --------------------------------------------------------- */
-.query {
+.search {
     width: 650px;
+    margin: 0 auto;
+
+    .go {
+        width: 100%;
+        padding: 20px 0;
+        font-size: 40px;
+    }
+}
+.query {
+    width: 100%;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.select2-container .select2-choice {
+    height: 80px;
+    border: none;
+    line-height: 2;
+    border-radius: 0;
+    background: #fff;
+}
+.select2-container.select2-drop-above .select2-choice {
+    border-radius: 0;
+}
+.select2-drop {
+    border: none;
+    border-radius: 0;
+}
+.select2-results .select2-highlighted {
+    background: #343739;
+}
+.select2-search input {
+    font-size: 40px;
+    font-family: 'Pathway Gothic One', sans-serif;
+    background: none;
+}
+.select2-container .select2-choice .select2-arrow {
+    display: none;
+}
+.select2-results {
+    font-size: 20px;
 }
 
 /* RESULTS
