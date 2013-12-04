@@ -75,6 +75,7 @@ btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', 'Film',
         $scope.films = Film.compare(
             {ids: [PREDATOR, $routeParams.imdbID].join()}
         );
+        $scope.now = new Date();
     }]);
 
 
