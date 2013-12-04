@@ -96,10 +96,10 @@ a.btn {
 .select2-results .select2-highlighted {
     background: #343739;
 }
-.select2-search input {
+.select2-drop .select2-search input {
     font-size: em(40);
     font-family: 'Pathway Gothic One', sans-serif;
-    background: none;
+    background: none !important;
 }
 .select2-container .select2-choice .select2-arrow {
     display: none;
