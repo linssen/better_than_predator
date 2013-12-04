@@ -2,11 +2,9 @@
     <div ng-repeat="film in films" class="film">
         <h2>{{film.title}}</h2>
 
-        <div class="poster">
-            <img src="{{film.poster.cover}}" width="300">
-        </div>
+        <img src="{{film.poster.cover}}" class="poster" width="300">
 
-        <time>{{film.release_date | date:'EEE, d MMMM yyyy'}}</time>
+        <!-- <time>{{film.release_date | date:'EEE, d MMMM yyyy'}}</time> -->
 
         <div class="rating">{{film.rating}}</div>
     </div>
@@ -14,9 +12,29 @@
 
 <div class="result">
 
-    <span ng-if="films[0].rating > films[1].rating">Preadtor wins! (obviously)</span>
-    <span ng-if="films[0].rating < films[1].rating">{{films[1].title}} wins!</span>
-    <span ng-if="films[0].rating === films[1].rating">{{films[1].title}} is just as good as Predator.</span>
+    <h1>
+        <span ng-if="films[0].rating > films[1].rating">Predator wins! (obviously)</span>
+        <span ng-if="films[0].rating < films[1].rating">{{films[1].title}} wins!</span>
+        <span ng-if="films[0].rating === films[1].rating">{{films[1].title}} is just as good as Predator.</span>
+    </h1>
+
+    <a class="btn share" href="https://twitter.com/share">Share this showdown</a>
+
+    <hr>
+
+    <h3>Why does this even exist?</h3>
+
+    <p>Because <a href="http://linssen.me/">Wil</a>, <a href="http://gregorywood.co.uk/">Greg</a>,
+        and <a href="http://glenswinfield.co.uk">Glen</a> were in a pub once
+        and they thought you should be able to compare films to Predator. It is
+        after all the ultimate benchmark.</p>
+
+    <p>Because if a film is better than predator, you should immediately
+        watch it without question.</p>
+
+    <p><a class="btn again" href="/">Do another one!</a></p>
+
+    <p class="credit">Copyright &copy; {{now | date:'yyyy'}} <a href="http://linssen.me/">Wil Linssen</a>.</p>
 
 </div>
 

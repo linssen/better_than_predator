@@ -12,6 +12,7 @@
 
         - BODY
         - FOOTER
+        - GLOBAL STYLES
         - SEARCH
         - RESULTS
 
@@ -29,11 +30,12 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: sans-serif;
+    font-family: 'Pathway Gothic One', sans-serif;
 }
 
 section[role="main"] {
-    margin-bottom: 50px;
+    padding: 35px 0;
+    overflow: hidden;
 }
 
 /* FOOTER
@@ -56,6 +58,17 @@ footer {
     }
 }
 
+/* GLOBAL
+--------------------------------------------------------- */
+a.btn {
+    background: #343739;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px;
+}
+
 /* SEARCH
 --------------------------------------------------------- */
 .query {
@@ -64,58 +77,94 @@ footer {
 
 /* RESULTS
 --------------------------------------------------------- */
-.films,
-.result {
-    width: 690px;
-    margin: 0 auto;
-}
 .films {
-    overflow: hidden;
-    clear: both;
-    height: 662px;
-    margin-bottom: 35px;
+    // height: 662px;
+    margin-left: 70px;
+    float: left;
 }
 .film {
-    width: 230px;
-    height: 592px;
-    background: url('/static/images/ticket.png') no-repeat 0 0;
+    width: 290px;
+    height: 649px;
+    background: url('/static/images/ticket.svg') no-repeat 0 0;
     float: left;
-    margin-right: 90px;
-    padding: 35px;
+    margin-right: 70px;
+    padding: 20px 5px 5px 5px;
     position: relative;
 
-    &:last-child {
-        margin-right: 0;
-    }
     h2 {
         font-size: 40px;
-        line-height: 1.2em;
+        line-height: 1em;
         width: 100%;
-        height: 1.2em;
+        height: 1em;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-transform: uppercase;
     }
 
     .poster {
-        margin-left: -35px;
+        margin: 0 -5px 34px -5px;
         width: 300px;
         height: 444px;
-        overflow: hidden;
     }
 
     .rating {
-        height: 102px;
-        width: 230px;
-        position: absolute;
-        bottom: 35px;
-        font-size: 87px;
+        padding: 0 25px;
+        font-size: 100px;
+        color: #506666;
     }
 }
 
 .result {
-    border-top: 1px dashed white;
+    width: 400px;
+    float: left;
     padding-top: 35px;
-    font-size: 36px;
+    font-size: 20px;
     color: white;
-    text-align: center;
+    line-height: 1.2;
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+    .share {
+        width: 50%;
+        display: block;
+        padding-left: 40px;
+        background: #343739 url('/static/images/twitter.svg') no-repeat 20px 50%;
+        margin: 0 auto 35px auto;
+
+    }
+    .again {
+        background: #343739 url('/static/images/arrow-left.svg') no-repeat 10px 50%;
+        padding-left: 45px;
+    }
+    hr {
+        border: 0;
+        border-bottom: 1px dashed #fff;
+        background: none;
+        margin-bottom: 35px;
+    }
+    h1 {
+        font-size: 40px;
+        line-height: 1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    h3 {
+        font-size: 30px;
+        line-height: 1;
+        margin-bottom: #{(20/30)}em;
+    }
+    p {
+        margin-bottom: 1em;
+    }
+    .credit {
+        font-size: 0.85em;
+    }
 }
