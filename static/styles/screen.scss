@@ -27,10 +27,7 @@ $base_font: 16;
 
 body {
     background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    @include prefixer(background-size, cover);
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 100%;
 }
