@@ -1,4 +1,4 @@
-@import "reset", "select2";
+@import "helpers", "reset", "select2";
 
 
 /*
@@ -20,6 +20,7 @@
 
 */
 
+$base_font: 16;
 
 /* BODY
 --------------------------------------------------------- */
@@ -31,63 +32,58 @@ body {
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 100%;
 }
 
 section[role="main"] {
-    padding: 35px 0;
+    padding: em(35) 0;
     overflow: hidden;
-}
-
-/* FOOTER
---------------------------------------------------------- */
-footer {
-    font-family: Helvetica;
-    font-size: 12px;
-    color: rgba(255,255,255,0.40);
-    line-height: 14px;
-    padding: 20px 0;
-    background: black;
-
-    p {
-        width: 1000px;
-        margin: 0 auto;
-    }
-    a {
-        color: rgba(255,255,255,0.40);
-        text-decoration: underline;
-    }
 }
 
 /* GLOBAL
 --------------------------------------------------------- */
+a {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
 a.btn {
     background: #343739;
     display: inline-block;
     color: #fff;
     text-decoration: none;
     text-align: center;
-    padding: 10px;
+    padding: em(10);
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+        background-color: lighten(#343739, 5);
+    }
 }
 
 /* SEARCH
 --------------------------------------------------------- */
 .search {
-    width: 650px;
+    width: 70%;
     margin: 0 auto;
 
     .go {
         width: 100%;
-        padding: 20px 0;
-        font-size: 40px;
+        padding: em(20, 40) 0;
+        font-size: em(40);
     }
 }
 .query {
     width: 100%;
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-size: em(40);
+    margin-bottom: em(10, 40);
 }
 .select2-container .select2-choice {
-    height: 80px;
+    height: em(80, 40);
     border: none;
     line-height: 2;
     border-radius: 0;
@@ -104,7 +100,7 @@ a.btn {
     background: #343739;
 }
 .select2-search input {
-    font-size: 40px;
+    font-size: em(40);
     font-family: 'Pathway Gothic One', sans-serif;
     background: none;
 }
@@ -112,14 +108,13 @@ a.btn {
     display: none;
 }
 .select2-results {
-    font-size: 20px;
+    font-size: em(20);
 }
 
 /* RESULTS
 --------------------------------------------------------- */
 .films {
-    // height: 662px;
-    margin-left: 70px;
+    margin-left: 4.8%;
     float: left;
 }
 .film {
@@ -128,11 +123,11 @@ a.btn {
     background: url('/static/images/ticket.svg') no-repeat 0 0;
     float: left;
     margin-right: 70px;
-    padding: 20px 5px 5px 5px;
+    padding: em(20) em(5) em(5) em(5);
     position: relative;
 
     h2 {
-        font-size: 40px;
+        font-size: em(40);
         line-height: 1em;
         width: 100%;
         height: 1em;
@@ -141,16 +136,14 @@ a.btn {
         text-overflow: ellipsis;
         text-transform: uppercase;
     }
-
     .poster {
-        margin: 0 -5px 34px -5px;
+        margin: 0 em(-5) em(34) em(-5);
         width: 300px;
         height: 444px;
     }
-
     .rating {
-        padding: 0 25px;
-        font-size: 100px;
+        padding: 0 em(25, 100);
+        font-size: em(100);
         color: #506666;
     }
 }
@@ -158,49 +151,43 @@ a.btn {
 .result {
     width: 400px;
     float: left;
-    padding-top: 35px;
-    font-size: 20px;
+    padding-top: em(10, 20);
+    font-size: em(20);
     color: white;
     line-height: 1.2;
 
     a {
         color: #fff;
-        text-decoration: underline;
-
-        &:hover,
-        &:focus {
-            text-decoration: none;
-        }
     }
     .share {
         width: 50%;
         display: block;
-        padding-left: 40px;
-        background: #343739 url('/static/images/twitter.svg') no-repeat 20px 50%;
-        margin: 0 auto 35px auto;
+        padding-left: em(40);
+        background: #343739 url('/static/images/twitter.svg') no-repeat em(20) 50%;
+        margin: 0 auto em(35) auto;
 
     }
     .again {
-        background: #343739 url('/static/images/arrow-left.svg') no-repeat 10px 50%;
-        padding-left: 45px;
+        background: #343739 url('/static/images/arrow-left.svg') no-repeat em(10) 50%;
+        padding-left: em(45);
     }
     hr {
         border: 0;
         border-bottom: 1px dashed #fff;
         background: none;
-        margin-bottom: 35px;
+        margin-bottom: em(35);
     }
     h1 {
-        font-size: 40px;
+        font-size: em(40);
         line-height: 1;
         width: 100%;
         text-align: center;
-        margin-bottom: 35px;
+        margin-bottom: em(35, 40);
     }
     h3 {
-        font-size: 30px;
+        font-size: em(30);
         line-height: 1;
-        margin-bottom: #{(20/30)}em;
+        margin-bottom: em(20, 30);
     }
     p {
         margin-bottom: 1em;

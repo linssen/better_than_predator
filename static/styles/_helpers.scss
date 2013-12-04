@@ -1,0 +1,167 @@
+/*
+    Wil Linssen's SCSS helpers
+    V1
+
+    CONTENTS
+    ---------------
+
+    - CLEARFIX
+    - PREFIXER
+    - HIDE TEXT
+    - TRIANGLE
+
+    ---------------
+*/
+
+
+/* CLEARFIX
+
+    Contains floats without additional markup
+
+    Credit:
+        - [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/))
+    Usage:
+
+        .wrapper {
+            @include clearfix;
+
+            .content,
+            .sidebar {
+                float:left;
+            }
+        }
+
+---------------------------------------------------------------------------- */
+@mixin clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+
+/* PREFIXER
+
+    Adds vendor prefixes to a property
+
+    Usage:
+
+        .box_sized {
+            border-left: 10px;
+            width: 100px;
+            @include prefixer(box-sizing, border-box);
+        }
+---------------------------------------------------------------------------- */
+@mixin prefixer($property, $value) {
+    @each $prefix in webkit moz ms o {
+        -#{$prefix}-#{$property}: $value;
+    }
+    #{$property}: $value;
+}
+
+
+/* HIDE TEXT
+
+    Hides text...
+
+    Credit:
+        - [Bourbon](https://github.com/thoughtbot/bourbon)
+
+    Usage:
+
+        .logo {
+            background:url("url.png");
+            @include hide_text;
+        }
+---------------------------------------------------------------------------- */
+@mixin hide_text {
+  color: transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
+
+
+/* PX TO EM
+
+    Converts pixels to ems based on a relative start
+
+    Credit:
+        - [Garrett Winder](http://erskinedesign.com/blog/calculating-ems-scss/)
+
+    Usage:
+
+        $base_font: 1.3em;
+        .logo {
+            font-size: em(21, $base_font);
+        }
+---------------------------------------------------------------------------- */
+@function em($target, $context: $base_font) {
+    @return ($target / $context) * 1em;
+}
+
+
+/* TRIANGLE
+
+    Uses borders to create a CSS only triangle
+
+    Credit:
+        - [Bourbon](https://github.com/thoughtbot/bourbon)
+
+    Usage:
+
+        .tooltip_triangle {
+            @include triangle(10px, black, down);
+        }
+---------------------------------------------------------------------------- */
+@mixin triangle ($size, $color, $direction) {
+  height: 0;
+  width: 0;
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+    border-color: transparent;
+    border-style: solid;
+    border-width: $size / 2;
+
+    @if $direction == up {
+      border-bottom-color: $color;
+
+    } @else if $direction == right {
+      border-left-color:   $color;
+
+    } @else if $direction == down {
+      border-top-color:    $color;
+
+    } @else if $direction == left {
+      border-right-color:  $color;
+    }
+  }
+
+  @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $size solid $color;
+
+    @if $direction == up-right {
+      border-left:  $size solid transparent;
+
+    } @else if $direction == up-left {
+      border-right: $size solid transparent;
+    }
+  }
+
+  @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $size solid $color;
+
+    @if $direction == down-right {
+      border-left:  $size solid transparent;
+
+    } @else if $direction == down-left {
+      border-right: $size solid transparent;
+    }
+  }
+}
