@@ -1,24 +1,43 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html id="top" ng-app="btpApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Better Than Predator</title>
+        <meta name="description" content="">
 
-{% block page_heading %}<h1>Better than Predator</h1>{% endblock %}
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-{% block content %}
+        <!-- FAVICONS  -->
+        <link rel="shortcut icon" href="/static/images/favicon.png" />
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="alert alert-success">
-                <ul class=flashes>
-                    {% for message in messages %}
-                        <li>{% autoescape false %}{{ message }}{% endautoescape %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-    {% endwith %}
+        <link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
 
-    <form action="{{ url_for('versus') }}" method="post">
-        <input name="versus" type="text">
-        <input name="film_id" type="hidden">
-    </form>
+        <!-- ANALYTICS -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-{% endblock %}
+          ga('create', 'UA-40422250-1', 'betterthanpredator.com');
+          ga('send', 'pageview');
+
+        </script>
+
+        <!-- STYLES -->
+        <link rel="stylesheet" href="/static/styles/dist/better_than_predator.css">
+
+    </head>
+    <body>
+
+        <div id="wrapper">
+
+            <section role="main" ng-view></section>
+
+
+        </div><!-- //#wrapper -->
+
+        <script src="/static/scripts/dist/better_than_predator.js"></script>
+    </body>
+</html>
