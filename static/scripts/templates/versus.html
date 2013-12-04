@@ -3,7 +3,7 @@
         <h2>{{film.title}}</h2>
         <img class="backdrop" src="" width="300" height="165">
 
-        <time>{{film.release_date}}</time>
+        <time>{{film.release_date | date:'EEE, d MMMM yyyy'}}</time>
 
         <div class="rating">{{film.rating}}</div>
     </div>
@@ -20,4 +20,3 @@
 <div ng-if="films[0].rating === films[1].rating">
     {{films[1].title}} is just as good as Predator.
 </div>
-
