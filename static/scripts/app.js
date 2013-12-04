@@ -89,7 +89,22 @@ btpServices.factory('Film', ['$resource',
                     params: {
                         ids: [PREDATOR, 'tt0100403']
                     },
-                    isArray: true
+                    isArray: true,
+                    transformResponse: function (data) {
+                        data = angular.fromJson(data);
+                        data = data.map(function (d) {
+                            var dateString, oDate;
+                            oDate = '' + d.release_date;
+                            dateString = [
+                                parseInt(oDate.slice(0, 4), 10),
+                                parseInt(oDate.slice(4, 6), 10),
+                                parseInt(oDate.slice(6, 8), 10)
+                            ];
+                            d.release_date = new Date(dateString);
+                            return d;
+                        });
+                        return data;
+                    }
                 }
             });
     }]);
