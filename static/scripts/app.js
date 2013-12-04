@@ -62,7 +62,7 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
 btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', 'Film',
     function ($scope, $routeParams, Film) {
         $scope.films = Film.compare(
-            {ids: [PREDATOR, $routeParams.imdbID].join()}
+            {ids: [PREDATOR, $routeParams.imdbID]}
         );
     }]);
 
@@ -87,7 +87,7 @@ btpServices.factory('Film', ['$resource',
                 compare: {
                     method: 'GET',
                     params: {
-                        ids: [PREDATOR, 'tt0100403'].join()
+                        ids: [PREDATOR, 'tt0100403']
                     },
                     isArray: true
                 }
