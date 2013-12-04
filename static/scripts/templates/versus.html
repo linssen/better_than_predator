@@ -9,14 +9,12 @@
     </div>
 </div>
 
-<div ng-if="films[0].rating > films[1].rating">
-    Preadtor wins! (obviously)
-</div>
+<div class="result">
 
-<div ng-if="films[0].rating < films[1].rating">
-    {{films[1].title}} wins!
-</div>
+    <span ng-if="films[0].rating > films[1].rating">Preadtor wins! (obviously)</span>
+    <span ng-if="films[0].rating < films[1].rating">{{films[1].title}} wins!</span>
+    <span ng-if="films[0].rating === films[1].rating">{{films[1].title}} is just as good as Predator.</span>
 
-<div ng-if="films[0].rating === films[1].rating">
-    {{films[1].title}} is just as good as Predator.
+    <a href="http://twitter.com/">Tweet the showdown</a>
+
 </div>
