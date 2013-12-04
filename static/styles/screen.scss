@@ -67,7 +67,8 @@ footer {
 .films {
     overflow: hidden;
     clear: both;
-    width: 780px;
+    width: 690px;
+    height: 463px;
     margin: 0 auto;
 }
 .film {
@@ -79,6 +80,9 @@ footer {
     padding: 35px;
     position: relative;
 
+    &:last-child {
+        margin-right: 0;
+    }
     h2 {
         font-size: 40px;
         line-height: 1.2em;
