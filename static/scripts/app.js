@@ -17,7 +17,7 @@ var PREDATOR = 'tt0093773';
 btpApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            .when('/versus/:imdbID', {
+            .when('/versus/:imdbID/:title', {
                 templateUrl: 'static/scripts/templates/versus.html',
                 controller: 'VersusCtrl'
             })

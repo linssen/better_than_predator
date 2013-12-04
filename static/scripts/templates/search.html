@@ -4,4 +4,4 @@
     ng-model="film"
     data-placeholder="Find a film"
 >
-<a ng-if="film" href="#/versus/{{film.imdb_id}}">Compare {{film.title}}</a>
+<a ng-if="film" href="#/versus/{{film.imdb_id}}/{{film.title | urlize}}">Compare {{film.title}}</a>
