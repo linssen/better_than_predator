@@ -60,9 +60,17 @@ module.exports = function (grunt) {
             }
         },
         sass: {
-            dist: {
+            dev: {
                 options: {
                     style: 'expanded'
+                },
+                files: {
+                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
+                }
+            },
+            dist: {
+                options: {
+                    style: 'compressed'
                 },
                 files: {
                     'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
@@ -79,7 +87,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('default', ['uglify', 'test']);
+    grunt.registerTask('default', ['uglify', 'sass:dist', 'test']);
     grunt.registerTask('test', ['connect', 'qunit']);
 
 };
