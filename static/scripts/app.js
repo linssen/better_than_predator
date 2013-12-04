@@ -80,6 +80,10 @@ btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', 
             {ids: [PREDATOR, $routeParams.imdbID].join()}
         );
         $scope.now = new Date();
+        $scope.shareUrl = window.encodeURIComponent(
+            'http://betterthanpredator.com/#' + $location.path()
+        );
+
         $scope.$on('$routeChangeSuccess', function () {
             $window._gaq.push(['_trackPageview', $location.path()]);
             $window._gaq.push([
