@@ -74,14 +74,23 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
         };
     }]);
 
-btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', 'Film',
-    function ($scope, $routeParams, Film) {
+btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$window', 'Film',
+    function ($scope, $routeParams, $location, $window, Film) {
         $scope.films = Film.compare(
             {ids: [PREDATOR, $routeParams.imdbID].join()}
         );
         $scope.now = new Date();
-    }]);
+        $scope.$on('$routeChangeSuccess', function () {
+            $window._gaq.push(['_trackPageview', $location.path()]);
+            $window._gaq.push([
+                '_trackEvent',
+                'Film',
+                'Compare',
+                $routeParams.imdbID + ' - ' + $routeParams.title
+            ]);
 
+        });
+    }]);
 
 btpServices.factory('Film', ['$resource',
     function ($resource) {
