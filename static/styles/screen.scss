@@ -64,16 +64,20 @@ footer {
 
 /* RESULTS
 --------------------------------------------------------- */
+.films,
+.result {
+    width: 690px;
+    margin: 0 auto;
+}
 .films {
     overflow: hidden;
     clear: both;
-    width: 690px;
-    height: 463px;
-    margin: 0 auto;
+    height: 662px;
+    margin-bottom: 35px;
 }
 .film {
     width: 230px;
-    height: 393px;
+    height: 592px;
     background: url('/static/images/ticket.png') no-repeat 0 0;
     float: left;
     margin-right: 90px;
@@ -92,8 +96,11 @@ footer {
         text-overflow: ellipsis;
     }
 
-    .backdrop {
+    .poster {
         margin-left: -35px;
+        width: 300px;
+        height: 444px;
+        overflow: hidden;
     }
 
     .rating {
@@ -103,4 +110,12 @@ footer {
         bottom: 35px;
         font-size: 87px;
     }
+}
+
+.result {
+    border-top: 1px dashed white;
+    padding-top: 35px;
+    font-size: 36px;
+    color: white;
+    text-align: center;
 }

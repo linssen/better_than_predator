@@ -1,7 +1,10 @@
 <div class="films">
     <div ng-repeat="film in films" class="film">
         <h2>{{film.title}}</h2>
-        <img class="backdrop" src="" width="300" height="165">
+
+        <div class="poster">
+            <img src="{{film.poster.cover}}" width="300">
+        </div>
 
         <time>{{film.release_date | date:'EEE, d MMMM yyyy'}}</time>
 
