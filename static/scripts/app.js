@@ -65,7 +65,11 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
                 }
             },
             id: function (film) { return film.imdb_id; },
-            formatResult: function (film) { return film.title; },
+            formatResult: function (film) {
+                return ':title (:year)'
+                    .replace(':title', film.title)
+                    .replace(':year', film.year);
+            },
             formatSelection: function (film) { return film.title; }
         };
     }]);
