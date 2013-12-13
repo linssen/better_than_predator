@@ -106,15 +106,43 @@ btpServices.factory('Film', ['$resource',
                 },
                 compare: {
                     method: 'JSONP',
-                    isArray: false,
+                    isArray: true,
                     id: '@id',
                     transformResponse: function (data) {
-                        var dateParts;
-                        data = angular.fromJson(data);
-                        console.log(data);
-                        dateParts = data.release_dates.theater.split('-');
-                        data.release_date = new Date(dateParts.reverse());
-                        return data;
+                        var films;
+                        data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
+                        films = [
+                            {
+                                id: "16751",
+                                title: "Predator",
+                                year: 1987,
+                                release_dates: {
+                                    theater: "1987-06-12",
+                                    dvd: "2000-12-26"
+                                },
+                                ratings: {
+                                    critics_rating: "Certified Fresh",
+                                    critics_score: 78,
+                                    audience_rating: "Upright",
+                                    audience_score: 87,
+                                    combined: (78 + 87) / 2
+                                },
+                                posters: {
+                                    thumbnail: "http://content7.flixster.com/movie/11/16/49/11164941_mob.jpg",
+                                    profile: "http://content7.flixster.com/movie/11/16/49/11164941_pro.jpg",
+                                    detailed: "http://content7.flixster.com/movie/11/16/49/11164941_det.jpg",
+                                    original: "http://content7.flixster.com/movie/11/16/49/11164941_ori.jpg"
+                                },
+                                alternate_ids: {
+                                    imdb: "0093773"
+                                }
+                            },
+                            data
+                        ];
+                        // data = angular.fromJson(data);
+                        // dateParts = data.release_dates.theater.split('-');
+                        // data.release_date = new Date(dateParts.reverse());
+                        return films;
                     }
                 }
             });
