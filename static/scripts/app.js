@@ -64,9 +64,10 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
             },
             id: function (film) { return film.id; },
             formatResult: function (film) {
-                return ':title (:year)'
-                    .replace(':title', film.title)
-                    .replace(':year', film.year);
+                return '<img src=":thumb" height="40" alt=":title"> :title (:year)'
+                    .replace(/\:title/g, film.title)
+                    .replace(/\:thumb/g, film.posters.thumbnail)
+                    .replace(/\:year/g, film.year);
             },
             formatSelection: function (film) { return film.title; }
         };

@@ -107,6 +107,14 @@ a.btn {
 .select2-results {
     font-size: em(20);
 }
+.select2-result-label {
+    overflow: hidden;
+    padding: em(5);
+}
+.select2-result-label img {
+    float: left;
+    margin-right: em(5);
+}
 
 /* RESULTS
 --------------------------------------------------------- */
