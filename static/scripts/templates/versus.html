@@ -2,23 +2,23 @@
     <div ng-repeat="film in films" class="film">
         <h2>{{film.title}}</h2>
 
-        <img ng-src="{{film.poster.cover}}" class="poster" width="300">
+        <img ng-src="{{film.posters.original}}" class="poster" width="300">
 
         <!-- <time>{{film.release_date | date:'EEE, d MMMM yyyy'}}</time> -->
 
-        <div class="rating">{{film.rating}}</div>
+        <div class="rating">{{film.ratings.combined}}%</div>
     </div>
 </div>
 
 <div class="result">
 
     <h1>
-        <span ng-if="films[0].rating > films[1].rating">Predator wins! (obviously)</span>
-        <span ng-if="films[0].rating < films[1].rating">{{films[1].title}} wins!</span>
-        <span ng-if="films[0].rating === films[1].rating">{{films[1].title}} is just as good as Predator.</span>
+        <span ng-if="films[0].ratings.combined > films[1].ratings.combined">Predator wins! (obviously)</span>
+        <span ng-if="films[0].ratings.combined < films[1].ratings.combined">{{films[1].title}} wins!</span>
+        <span ng-if="films[0].ratings.combined === films[1].ratings.combined">{{films[1].title}} is just as good as Predator.</span>
     </h1>
 
-    <a class="btn share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_date | date:'yyyy'}})%20is{{films[0].rating > films[1].rating && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_date | date:'yyyy'}}).">Share this showdown</a>
+    <a class="btn share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_date | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_date | date:'yyyy'}}).">Share this showdown</a>
 
     <hr>
 
