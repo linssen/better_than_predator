@@ -12,7 +12,7 @@ var btpApp = angular.module('btpApp', [
 ]);
 var btpControllers = angular.module('btpControllers', []);
 var btpServices = angular.module('btpServices', ['ngResource']);
-var PREDATOR = 'tt0093773';
+var PREDATOR = '16751';
 
 btpApp.config(['$routeProvider',
     function ($routeProvider) {
@@ -47,24 +47,22 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
         $scope.select2 = {
             minimumInputLength: 2,
             ajax: {
-                url: "http://mymovieapi.com/",
-                dataType: 'json',
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: 'jsonp',
                 quietMillis: 100,
                 data: function (term, page) {
                     return {
                         q: term, // search term
-                        limit: 10,
-                        offset: (page - 1) * 10,
-                        type: 'json',
-                        plot: 'simple',
-                        lang: 'en-US'
+                        page_limit: 10,
+                        page: page * 10,
+                        apikey: ''
                     };
                 },
                 results: function (data, page) {
-                    return {results: data.result};
+                    return {results: data.movies};
                 }
             },
-            id: function (film) { return film.imdb_id; },
+            id: function (film) { return film.id; },
             formatResult: function (film) {
                 return ':title (:year)'
                     .replace(':title', film.title)
@@ -77,7 +75,7 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
 btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$window', 'Film',
     function ($scope, $routeParams, $location, $window, Film) {
         $scope.films = Film.compare(
-            {ids: [PREDATOR, $routeParams.imdbID].join()}
+            {ids: [PREDATOR, $routeParams.id].join()}
         );
         $scope.now = new Date();
         $scope.shareUrl = window.encodeURIComponent(
@@ -90,7 +88,7 @@ btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', 
                 '_trackEvent',
                 'Film',
                 'Compare',
-                $routeParams.imdbID + ' - ' + $routeParams.title
+                $routeParams.id + ' - ' + $routeParams.title
             ]);
 
         });
@@ -98,39 +96,24 @@ btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', 
 
 btpServices.factory('Film', ['$resource',
     function ($resource) {
-        return $resource('http://mymovieapi.com/',
+        return $resource('http://api.rottentomatoes.com/api/public/v1.0/movies/:id.json',
             {
-                type: 'json',
-                plot: 'simple',
-                lang: 'en-US'
+                type: 'jsonp'
             },
             {
                 query: {
                     method: 'GET',
-                    params: {
-                        q: 'Predator',
-                        limit: 10
-                    },
                     isArray: true
                 },
                 compare: {
                     method: 'GET',
-                    params: {
-                        ids: [PREDATOR, 'tt0100403'].join()
-                    },
-                    isArray: true,
+                    isArray: false,
                     transformResponse: function (data) {
                         data = angular.fromJson(data);
                         data = data.map(function (d) {
-                            var dateParts, dateString;
-                            dateString = '';
-                            dateString += d.release_date;
-                            dateParts = [
-                                parseInt(dateString.slice(0, 4), 10),
-                                parseInt(dateString.slice(4, 6), 10),
-                                parseInt(dateString.slice(6, 8), 10)
-                            ];
-                            d.release_date = new Date(dateParts);
+                            var dateParts;
+                            dateParts = d.release_dates.theater.split('-');
+                            d.release_date = new Date(dateParts.reverse());
                             return d;
                         });
                         return data;
