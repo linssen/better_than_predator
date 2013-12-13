@@ -114,8 +114,10 @@ btpServices.factory('Film', ['$resource',
                     isArray: true,
                     id: '@id',
                     transformResponse: function (data) {
-                        var films;
+                        var films, date;
                         data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
+                        date = data.release_dates.theater || data.release_dates.dvd;
+                        data.release_dates.computed = new Date(date.split('-').reverse());
                         films = [
                             {
                                 id: "16751",
@@ -123,7 +125,8 @@ btpServices.factory('Film', ['$resource',
                                 year: 1987,
                                 release_dates: {
                                     theater: "1987-06-12",
-                                    dvd: "2000-12-26"
+                                    dvd: "2000-12-26",
+                                    computed: new Date(1987, 6, 12)
                                 },
                                 ratings: {
                                     critics_rating: "Certified Fresh",
@@ -144,9 +147,6 @@ btpServices.factory('Film', ['$resource',
                             },
                             data
                         ];
-                        // data = angular.fromJson(data);
-                        // dateParts = data.release_dates.theater.split('-');
-                        // data.release_date = new Date(dateParts.reverse());
                         return films;
                     }
                 }

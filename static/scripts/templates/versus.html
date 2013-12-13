@@ -18,7 +18,7 @@
         <span ng-if="films[0].ratings.combined === films[1].ratings.combined">{{films[1].title}} is just as good as Predator.</span>
     </h1>
 
-    <a class="btn share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_date | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_date | date:'yyyy'}}).">Share this showdown</a>
+    <a class="btn share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">Share this showdown</a>
 
     <hr>
 
