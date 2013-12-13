@@ -50,15 +50,15 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
                 url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
                 dataType: 'jsonp',
                 quietMillis: 100,
-                data: function (term, page) {
+                data: function (term) {
                     return {
                         q: term,
                         page_limit: 10,
-                        apikey: ''
                         page: 1,
+                        apikey: '6ynntf95p6h4pb8df3v73r7q'
                     };
                 },
-                results: function (data, page) {
+                results: function (data) {
                     return {results: data.movies};
                 }
             },
@@ -97,13 +97,17 @@ btpServices.factory('Film', ['$resource',
     function ($resource) {
         return $resource('http://api.rottentomatoes.com/api/public/v1.0/movies/:id.json',
             {
+                apikey: '6ynntf95p6h4pb8df3v73r7q',
                 callback: 'JSON_CALLBACK'
             },
             {
                 query: {
                     method: 'JSONP',
                     isArray: true,
-                    id: ''
+                    id: '',
+                    transformResponse: function (data) {
+                        return data.movies;
+                    }
                 },
                 compare: {
                     method: 'JSONP',
