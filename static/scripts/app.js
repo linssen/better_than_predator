@@ -17,7 +17,7 @@ var PREDATOR = '16751';
 btpApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            .when('/versus/:imdbID/:title', {
+            .when('/versus/:id/:title', {
                 templateUrl: 'static/scripts/templates/versus.html',
                 controller: 'VersusCtrl'
             })
@@ -52,10 +52,10 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
                 quietMillis: 100,
                 data: function (term, page) {
                     return {
-                        q: term, // search term
+                        q: term,
                         page_limit: 10,
-                        page: page * 10,
                         apikey: ''
+                        page: 1,
                     };
                 },
                 results: function (data, page) {
@@ -74,9 +74,7 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
 
 btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$window', 'Film',
     function ($scope, $routeParams, $location, $window, Film) {
-        $scope.films = Film.compare(
-            {ids: [PREDATOR, $routeParams.id].join()}
-        );
+        $scope.films = Film.compare({id: $routeParams.id});
         $scope.now = new Date();
         $scope.shareUrl = window.encodeURIComponent(
             'http://betterthanpredator.com/#' + $location.path()
@@ -98,24 +96,24 @@ btpServices.factory('Film', ['$resource',
     function ($resource) {
         return $resource('http://api.rottentomatoes.com/api/public/v1.0/movies/:id.json',
             {
-                type: 'jsonp'
+                callback: 'JSON_CALLBACK'
             },
             {
                 query: {
-                    method: 'GET',
-                    isArray: true
+                    method: 'JSONP',
+                    isArray: true,
+                    id: ''
                 },
                 compare: {
-                    method: 'GET',
+                    method: 'JSONP',
                     isArray: false,
+                    id: '@id',
                     transformResponse: function (data) {
+                        var dateParts;
                         data = angular.fromJson(data);
-                        data = data.map(function (d) {
-                            var dateParts;
-                            dateParts = d.release_dates.theater.split('-');
-                            d.release_date = new Date(dateParts.reverse());
-                            return d;
-                        });
+                        console.log(data);
+                        dateParts = data.release_dates.theater.split('-');
+                        data.release_date = new Date(dateParts.reverse());
                         return data;
                     }
                 }
