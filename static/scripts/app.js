@@ -73,9 +73,15 @@ btpControllers.controller('SearchCtrl', ['$scope', 'Film',
         };
     }]);
 
-btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$window', 'Film',
-    function ($scope, $routeParams, $location, $window, Film) {
-        $scope.films = Film.compare({id: $routeParams.id});
+btpControllers.controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$q', '$window', 'Film',
+    function ($scope, $routeParams, $location, $q, $window, Film) {
+        $q.all([
+            Film.get({id: PREDATOR}),
+            Film.get({id: $routeParams.id})
+        ]).then(function (result) {
+            $scope.films = [result[0], result[1]];
+        });
+
         $scope.now = new Date();
         $scope.shareUrl = window.encodeURIComponent(
             'http://betterthanpredator.com/#' + $location.path()
@@ -109,47 +115,19 @@ btpServices.factory('Film', ['$resource',
                         return data.movies;
                     }
                 },
-                compare: {
+                get: {
                     method: 'JSONP',
-                    isArray: true,
+                    isArray: false,
                     id: '@id',
                     transformResponse: function (data) {
-                        var films, date;
+                        var date;
                         data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
                         date = data.release_dates.theater || data.release_dates.dvd || null;
                         if (data.release_dates.computed) {
                             data.release_dates.computed = new Date(date.split('-').reverse());
                         }
-                        films = [
-                            {
-                                id: "16751",
-                                title: "Predator",
-                                year: 1987,
-                                release_dates: {
-                                    theater: "1987-06-12",
-                                    dvd: "2000-12-26",
-                                    computed: new Date(1987, 6, 12)
-                                },
-                                ratings: {
-                                    critics_rating: "Certified Fresh",
-                                    critics_score: 78,
-                                    audience_rating: "Upright",
-                                    audience_score: 87,
-                                    combined: (78 + 87) / 2
-                                },
-                                posters: {
-                                    thumbnail: "http://content7.flixster.com/movie/11/16/49/11164941_mob.jpg",
-                                    profile: "http://content7.flixster.com/movie/11/16/49/11164941_pro.jpg",
-                                    detailed: "http://content7.flixster.com/movie/11/16/49/11164941_det.jpg",
-                                    original: "http://content7.flixster.com/movie/11/16/49/11164941_ori.jpg"
-                                },
-                                alternate_ids: {
-                                    imdb: "0093773"
-                                }
-                            },
-                            data
-                        ];
-                        return films;
+
+                        return data;
                     }
                 }
             });
