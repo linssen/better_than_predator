@@ -28,16 +28,15 @@ module.exports = function (grunt) {
                     'static/scripts/lib/**/*.js',
                     'static/scripts/*.js',
 
-                    '!static/scripts/lib/qunit/qunit.js',
-                    '!static/scripts/tests/*.js'
+                    '!static/test/**/*.js'
                 ],
                 dest: 'static/scripts/dist/<%= pkg.name %>.js'
             }
         },
         watch: {
             scripts: {
-                files: ['static/scripts/**/*.js'],
-                tasks: ['concat', 'test']
+                files: ['static/scripts/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
+                tasks: ['concat']
             },
             styles: {
                 files: ['static/styles/screen.scss'],
@@ -49,13 +48,6 @@ module.exports = function (grunt) {
                 options: {
                     port: 9001,
                     base: '.'
-                }
-            }
-        },
-        qunit: {
-            all: {
-                options: {
-                    urls: ['http://127.0.0.1:9001/static/scripts/test/index.html']
                 }
             }
         },
@@ -80,14 +72,12 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('default', ['uglify', 'sass:dist', 'test']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('default', ['uglify', 'sass:dist']);
 
 };
