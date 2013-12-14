@@ -116,8 +116,10 @@ btpServices.factory('Film', ['$resource',
                     transformResponse: function (data) {
                         var films, date;
                         data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
-                        date = data.release_dates.theater || data.release_dates.dvd;
-                        data.release_dates.computed = new Date(date.split('-').reverse());
+                        date = data.release_dates.theater || data.release_dates.dvd || null;
+                        if (data.release_dates.computed) {
+                            data.release_dates.computed = new Date(date.split('-').reverse());
+                        }
                         films = [
                             {
                                 id: "16751",
