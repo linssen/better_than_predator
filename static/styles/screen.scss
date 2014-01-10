@@ -147,9 +147,15 @@ a.btn {
         height: 444px;
     }
     .rating {
-        padding: 0 em(25, 100);
+        padding: 0 0 0 em(14, 100);
         font-size: em(100);
         color: #506666;
+        letter-spacing: -3px;
+
+        small {
+            font-size: em(24, 100);
+            letter-spacing: 0;
+        }
     }
 }
 
