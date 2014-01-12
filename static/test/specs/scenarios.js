@@ -1,22 +1,33 @@
-describe('angularjs homepage', function() {
-  it('should greet the named user', function() {
-    // Load the AngularJS homepage.
-    browser.get('http://localhost:8020');
+describe('find film', function () {
+    'use strict';
+    var base, ptor;
 
-    // Find the element with ng-model matching 'yourName' - this will
-    // find the <input type="text" ng-model="yourName"/> element - and then
-    // type 'Julie' into it.
-    $('a.select2-choice').click();
-    $('input.select2-input').sendKeys('Honey, I');
+    base = 'http://betterthanpredator.com/#';
+    ptor = protractor.getInstance();
 
-    browser.sleep(1000);
+    it('should find Honey I Shrunk the Kids', function () {
 
-    // Find the element with binding matching 'yourName' - this will
-    // find the <h1>Hello {{yourName}}!</h1> element.
-    var film = $('.select2-highlighted .select2-result-label');
+        ptor.get(base);
+        ptor.findElement(protractor.By.className('select2-choice')).click();
+        ptor.findElement(protractor.By.className('select2-input')).sendKeys('Honey, I');
+        ptor.wait(function() {
+            return ptor.isElementPresent(protractor.By.className('select2-result-label'));
+        }).then(function () {
+            var expectedTitle, film;
+            expectedTitle = 'Honey, I Shrunk the Kids (1989)';
+            film = ptor.findElement(protractor.By.className('select2-result-label'));
+            expect(film.getText()).toEqual(expectedTitle);
+            film.click();
+        });
+        // Does the button get updated correctly
+        ptor.wait(function() {
+            return ptor.isElementPresent(protractor.By.className('go'));
+        }).then(function () {
+            var btn, expectedLink;
+            expectedLink = base + '/versus/10611/honey-i-shrunk-the-kids';
+            btn = ptor.findElement(protractor.By.className('go'));
+            expect(btn.getAttribute('href')).toEqual(expectedLink);
+        });
 
-    // Assert that the text element has the expected value.
-    // Protractor patches 'expect' to understand promises.
-    expect(film.getText()).toEqual('Honey, I Shrunk the Kids (1989)');
-  });
+    });
 });
