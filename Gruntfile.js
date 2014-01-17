@@ -43,14 +43,6 @@ module.exports = function (grunt) {
                 tasks: ['sass', 'concat']
             }
         },
-        connect: {
-            server: {
-                options: {
-                    port: 9001,
-                    base: '.'
-                }
-            }
-        },
         sass: {
             dev: {
                 options: {
@@ -68,16 +60,31 @@ module.exports = function (grunt) {
                     'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
                 }
             }
+        },
+        protractor: {
+            options: {
+                configFile: "node_modules/protractor/referenceConf.js", // Default config file
+                keepAlive: true,
+                noColor: false,
+                args: {
+                    // Arguments passed to the command
+                }
+            },
+            runner: {
+                options: {
+                    configFile: "static/test/conf/protractor.conf.js",
+                }
+            }
         }
-
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
+    grunt.registerTask('test', ['uglify', 'sass:dist', 'protractor']);
     grunt.registerTask('default', ['uglify', 'sass:dist']);
 
 };
