@@ -8,26 +8,12 @@ Clone the repo
 
     git clone https://github.com/linssen/better_than_predator
 
-Create a virtualenv and install required packages
-
-    virtualenv --distribute env
-    source env/bin/activate
-    pip install -r requirements.pip
-
 Install the Node packages
 
     git submodule add git://github.com/jquery/qunit.git static/scripts/test/qunit
     git submodule init
     git submodule update
     npm install
-
-Add a legitimately secret key to a new `local_settings.py`
-
-    echo "SECRET_KEY = 'write something here'" > local_settings.py
-
-Run the app
-
-    python imdb_versus.py
 
 Build the static files with Grunt
 

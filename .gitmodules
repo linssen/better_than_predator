@@ -1,3 +1,0 @@
-[submodule "static/scripts/test/qunit"]
-	path = static/scripts/test/qunit
-	url = git://github.com/jquery/qunit.git
