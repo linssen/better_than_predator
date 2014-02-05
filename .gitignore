@@ -1,11 +1,5 @@
-*.pyc
-/cache.sqlite
 /.sass-cache
-/env
-/local_settings.py
-/fabfile.py
-
 /node_modules
+/static/bower_components
 /static/*/build
 /static/*/dist
-/static/images/posters/*.jpg
