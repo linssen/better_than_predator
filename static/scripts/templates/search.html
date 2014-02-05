@@ -5,7 +5,7 @@
         class="search"
         placeholder="Search for a film...">
 
-    <ul ng-repeat="f in films">
-        <li>{{f.title}} ({{f.year}})</li>
+    <ul>
+        <li ng-repeat="f in films" id="{{f.id}}">{{f.title}} ({{f.year}})</li>
     </ul>
 </div>
