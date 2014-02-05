@@ -5,6 +5,7 @@
     "angular": "~1.2.11",
     "jquery": "~2.1.0",
     "angular-route": "~1.2.11",
-    "angular-resource": "~1.2.11"
+    "angular-resource": "~1.2.11",
+    "lodash": "~2.4.1"
   }
 }
