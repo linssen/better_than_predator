@@ -96,7 +96,6 @@ angular.module('btp.services', [])
                             page: 1
                         },
                         transformResponse: function (data) {
-                            console.log(data);
                             return data.movies;
                         }
                     },
