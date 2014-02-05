@@ -8,12 +8,11 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'static/scripts/dist/<%= pkg.name %>.js': [
-                        'static/scripts/lib/jquery/jquery.js',
-                        'static/scripts/lib/angular/angular.js',
-
+                        'static/bower_components/jquery/jquery.js',
+                        'static/bower_components/angular/angular.js',
+                        'static/bower_components/angular-route/angular-route.js',
+                        'static/bower_components/angular-resource/angular-resource.js',
                         'static/scripts/*.js',
-                        'static/scripts/lib/**/*.js',
-                        '!static/scripts/lib/qunit/qunit.js',
                         '!static/scripts/tests/*.js'
                     ]
                 }
@@ -22,12 +21,11 @@ module.exports = function (grunt) {
         concat: {
             scripts: {
                 src: [
-                    'static/scripts/lib/jquery/jquery.js',
-                    'static/scripts/lib/angular/angular.js',
-
-                    'static/scripts/lib/**/*.js',
+                    'static/bower_components/jquery/jquery.js',
+                    'static/bower_components/angular/angular.js',
+                    'static/bower_components/angular-route/angular-route.js',
+                    'static/bower_components/angular-resource/angular-resource.js',
                     'static/scripts/*.js',
-
                     '!static/test/**/*.js'
                 ],
                 dest: 'static/scripts/dist/<%= pkg.name %>.js'
