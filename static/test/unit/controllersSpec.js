@@ -34,7 +34,7 @@ describe('BTP controllers', function () {
             });
         });
 
-        it('should return films via xhr with a proper search term', inject(function () {
+        it('should return films via xhr with a proper search term', function () {
             var expectedURL;
             expectedURL = new RegExp(API_BASE + '/movies\\.json\\?.*q=honey$');
 
@@ -59,7 +59,7 @@ describe('BTP controllers', function () {
                 expect(scope.films[0].id).toEqual(10611);
                 expect(scope.films[1].id).toEqual(770882280);
             });
-        }));
+        });
     });
 
     describe('VersusCtrl', function () {
