@@ -31,23 +31,29 @@ describe('BTP controllers', function () {
 
         it('should return films via xhr with a proper search term', inject(function () {
             var expectedURL;
-            jasmine.Clock.useMock();
             expectedURL = new RegExp(API_BASE + '\/movies\.json\?.*q=honey$');
 
             // Expect search url to be called with term, respond with films
             $httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms);
             // Films should be empty to begin with
             expect(scope.films).toEqual([]);
+
             // Set the model `title` to string 'honey'
             scope.title = 'honey';
             // Fire off the digest for watch
             scope.$digest();
-            // Fire off the mock JSONP request
-            $httpBackend.flush();
 
-            expect(scope.films.length).toEqual(2);
-            expect(scope.films[0].id).toEqual(10611);
-            expect(scope.films[1].id).toEqual(770882280);
+            // Wait for our debounce to finish
+            waits(101);
+
+            runs(function () {
+                // Fire off the mock JSONP request
+                $httpBackend.flush();
+
+                expect(scope.films.length).toEqual(2);
+                expect(scope.films[0].id).toEqual(10611);
+                expect(scope.films[1].id).toEqual(770882280);
+            });
         }));
     });
 });
