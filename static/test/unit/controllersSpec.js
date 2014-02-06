@@ -47,6 +47,7 @@ describe('BTP controllers', function () {
 
             expect(scope.films.length).toEqual(2);
             expect(scope.films[0].id).toEqual(10611);
+            expect(scope.films[1].id).toEqual(770882280);
         }));
     });
 });
