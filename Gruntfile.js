@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['static/scripts/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
-                tasks: ['concat']
+                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
+                tasks: ['concat', 'karma:unit:run']
             },
             styles: {
                 files: ['static/styles/screen.scss'],
@@ -71,9 +71,20 @@ module.exports = function (grunt) {
             },
             runner: {
                 options: {
-                    configFile: "static/test/conf/protractor.conf.js",
+                    configFile: "static/test/conf/protractor.conf.js"
                 }
             }
+        },
+        karma: {
+            unit: {
+                configFile: "static/test/conf/karma.conf.js",
+                background: true
+            },
+            continuous: {
+                configFile: "static/test/conf/karma.conf.js",
+                singleRun: true,
+                browsers: ['PhantomJS']
+            },
         }
     });
 
@@ -82,8 +93,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('test', ['uglify', 'sass:dist', 'protractor']);
+    grunt.registerTask('test', ['uglify', 'sass:dist', 'karma:continuous', 'protractor']);
     grunt.registerTask('default', ['uglify', 'sass:dist']);
 
 };
