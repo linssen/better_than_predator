@@ -14,9 +14,7 @@ module.exports = function(config){
             'static/test/unit/**/*.js'
         ],
 
-        exclude : [
-
-        ],
+        exclude : [],
 
         autoWatch : true,
 
@@ -27,14 +25,7 @@ module.exports = function(config){
         plugins : [
             'karma-chrome-launcher',
             'karma-phantomjs-launcher',
-            // 'karma-firefox-launcher',
-            // 'karma-script-launcher',
             'karma-jasmine'
-        ]
-
-        // junitReporter : {
-        //     outputFile: 'test_out/unit.xml',
-        //     suite: 'unit'
-        // }
+        ],
     });
 };

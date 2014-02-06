@@ -91,7 +91,7 @@ angular.module('btp.services', [])
                         method: 'JSONP',
                         isArray: true,
                         params: {
-                            q: 'honey',
+                            q: '',
                             page_limit: 10,
                             page: 1
                         },

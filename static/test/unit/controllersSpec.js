@@ -1,35 +1,52 @@
 'use strict';
 
 describe('BTP controllers', function () {
+    var API_BASE;
+
     beforeEach(module('ngResource'));
+    beforeEach(module('ngMock'));
     beforeEach(module('btp.controllers'));
     beforeEach(module('btp.services'));
 
-    describe('SearchCtrl', function () {
-        var $httpBackend, film, scope;
+    API_BASE = 'http://api.rottentomatoes.com/api/public/v1.0';
 
-        beforeEach(inject(function (_$httpBackend_, $injector, $rootScope, $controller) {
-            $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
-                .respond([
-                    {id: 12233, title: 'Something'},
-                    {id: 48733, title: 'Else'}
-                ]);
+    describe('SearchCtrl', function () {
+        var $httpBackend, expectedFilms, filmResource, scope;
+
+        beforeEach(inject(function ($injector, $rootScope, $controller) {
+            expectedFilms = {
+                movies: [
+                    {id: 10611, title: 'Honey, I Shrunk The Kids'},
+                    {id: 770882280, title: 'Honey'}
+                ]
+            };
+            $httpBackend = $injector.get('$httpBackend');
             scope = $rootScope.$new();
-            film = $injector.get('Film');
+            filmResource = $injector.get('Film');
             $controller('SearchCtrl', {
                 $scope: scope,
-                Film: film
+                Film: filmResource
             });
         }));
 
-        it('should return 10 via xhr films with a proper search term', inject(function () {
+        it('should return films via xhr with a proper search term', inject(function () {
+            var expectedURL;
+            jasmine.Clock.useMock();
+            expectedURL = new RegExp(API_BASE + '\/movies\.json\?.*q=honey$');
+
+            // Expect search url to be called with term, respond with films
+            $httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms);
+            // Films should be empty to begin with
             expect(scope.films).toEqual([]);
-            // $httpBackend.flush();
-            // expect(scope.films).toEqual([
-            //     {id: 12233, title: 'Something'},
-            //     {id: 48733, title: 'Else'}
-            // ]);
+            // Set the model `title` to string 'honey'
+            scope.title = 'honey';
+            // Fire off the digest for watch
+            scope.$digest();
+            // Fire off the mock JSONP request
+            $httpBackend.flush();
+
+            expect(scope.films.length).toEqual(2);
+            expect(scope.films[0].id).toEqual(10611);
         }));
     });
 });
