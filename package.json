@@ -41,7 +41,8 @@
     "karma-coffee-preprocessor": "~0.1.2",
     "karma-phantomjs-launcher": "~0.1.2",
     "karma": "~0.10.9",
-    "karma-chrome-launcher": "~0.1.2"
+    "karma-chrome-launcher": "~0.1.2",
+    "grunt-html2js": "~0.2.4"
   },
   "scripts": {
     "test": "grunt test"

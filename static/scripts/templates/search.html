@@ -1,11 +1,4 @@
 <div class="search">
-    <input
-        ng-model="title"
-        type="text"
-        class="search"
-        placeholder="Search for a film...">
-
-    <ul>
-        <li ng-repeat="f in films" id="{{f.id}}">{{f.title}} ({{f.year}})</li>
-    </ul>
+    <p>Root: {{title}}</p>
+    <div ng-search></div>
 </div>

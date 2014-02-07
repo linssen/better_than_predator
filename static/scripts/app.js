@@ -7,7 +7,8 @@ angular.module('btpApp', [
     'ngRoute',
     'ngResource',
     'btp.controllers',
-    'btp.services'
+    'btp.services',
+    'btp.directives'
 ]).
 config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/versus/:id/:title', {

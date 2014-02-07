@@ -5,10 +5,6 @@ angular.module('btp.controllers', [])
             watching = true;
             $scope.films = [];
             $scope.title = '';
-            $scope.$watch('title', _.debounce(function (newValue, oldValue) {
-                if (newValue.length < 3) { return; }
-                $scope.films = Film.query({q: newValue});
-            }, 100));
         }]
     )
     .controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$q', '$window', 'Film',
