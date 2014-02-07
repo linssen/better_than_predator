@@ -7,6 +7,7 @@ describe('BTP controllers', function () {
     beforeEach(module('ngMock'));
     beforeEach(module('btp.services'));
     beforeEach(module('btp.directives'));
+    beforeEach(module('templates-main'));
 
     API_BASE = 'http://api\\.rottentomatoes\\.com/api/public/v1\\.0';
 
@@ -29,7 +30,6 @@ describe('BTP controllers', function () {
                 ]
             };
             httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms);
-
 
             // Set the model `title` to string 'honey'
             scope.title = 'honey';

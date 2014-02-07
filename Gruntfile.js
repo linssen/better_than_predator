@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                         'static/bower_components/angular-route/angular-route.js',
                         'static/bower_components/angular-resource/angular-resource.js',
                         'static/scripts/*.js',
+                        'static/scripts/build/*.js',
                         '!static/scripts/tests/*.js'
                     ]
                 }
@@ -27,6 +28,7 @@ module.exports = function (grunt) {
                     'static/bower_components/angular-route/angular-route.js',
                     'static/bower_components/angular-resource/angular-resource.js',
                     'static/scripts/*.js',
+                    'static/scripts/build/*.js',
                     '!static/test/**/*.js'
                 ],
                 dest: 'static/scripts/dist/<%= pkg.name %>.js'
@@ -40,6 +42,10 @@ module.exports = function (grunt) {
             styles: {
                 files: ['static/styles/screen.scss'],
                 tasks: ['sass', 'concat']
+            },
+            templates: {
+                files: ['static/scripts/templates/**/*.tpl.html'],
+                tasks: ['html2js']
             }
         },
         sass: {
@@ -60,9 +66,16 @@ module.exports = function (grunt) {
                 }
             }
         },
+        html2js: {
+            options: {},
+            main: {
+                src: ['static/scripts/templates/**/*.tpl.html'],
+                dest: 'static/scripts/build/templates.js'
+            }
+        },
         protractor: {
             options: {
-                configFile: "node_modules/protractor/referenceConf.js", // Default config file
+                configFile: 'node_modules/protractor/referenceConf.js', // Default config file
                 keepAlive: true,
                 noColor: false,
                 args: {
@@ -71,17 +84,17 @@ module.exports = function (grunt) {
             },
             runner: {
                 options: {
-                    configFile: "static/test/conf/protractor.conf.js"
+                    configFile: 'static/test/conf/protractor.conf.js'
                 }
             }
         },
         karma: {
             unit: {
-                configFile: "static/test/conf/karma.conf.js",
+                configFile: 'static/test/conf/karma.conf.js',
                 background: true
             },
             continuous: {
-                configFile: "static/test/conf/karma.conf.js",
+                configFile: 'static/test/conf/karma.conf.js',
                 singleRun: true,
                 browsers: ['PhantomJS']
             },
@@ -92,10 +105,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('test', ['uglify', 'sass:dist', 'karma:continuous', 'protractor']);
-    grunt.registerTask('default', ['uglify', 'sass:dist']);
+    grunt.registerTask('test', ['uglify', 'sass:dist', 'html2js', 'karma:continuous', 'protractor']);
+    grunt.registerTask('default', ['uglify', 'sass:dist', 'html2js']);
 
 };

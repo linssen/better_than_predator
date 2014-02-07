@@ -8,7 +8,8 @@ angular.module('btpApp', [
     'ngResource',
     'btp.controllers',
     'btp.services',
-    'btp.directives'
+    'btp.directives',
+    'templates-main'
 ]).
 config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/versus/:id/:title', {
