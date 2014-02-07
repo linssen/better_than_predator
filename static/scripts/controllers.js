@@ -1,6 +1,8 @@
+'use strict';
+
 angular.module('btp.controllers', [])
-    .controller('SearchCtrl', ['$scope', 'Film',
-        function ($scope, Film) {
+    .controller('SearchCtrl', ['$scope',
+        function ($scope) {
             var watching;
             watching = true;
             $scope.films = [];
@@ -17,7 +19,7 @@ angular.module('btp.controllers', [])
             });
 
             $scope.now = new Date();
-            $scope.shareUrl = window.encodeURIComponent(
+            $scope.shareUrl = $window.encodeURIComponent(
                 'http://betterthanpredator.com/#' + $location.path()
             );
 

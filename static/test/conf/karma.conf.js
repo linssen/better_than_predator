@@ -1,4 +1,6 @@
-module.exports = function(config){
+'use strict';
+
+module.exports = function (config) {
     config.set({
         basePath : '../../../',
 

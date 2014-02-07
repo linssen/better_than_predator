@@ -1,5 +1,6 @@
+'use strict';
+
 describe('find film', function () {
-    'use strict';
     var base, ptor;
 
     base = 'http://betterthanpredator.com/#';
@@ -10,7 +11,7 @@ describe('find film', function () {
         ptor.get(base);
         ptor.findElement(protractor.By.className('select2-choice')).click();
         ptor.findElement(protractor.By.className('select2-input')).sendKeys('Honey, I');
-        ptor.wait(function() {
+        ptor.wait(function () {
             return ptor.isElementPresent(protractor.By.className('select2-result-label'));
         }).then(function () {
             var expectedTitle, film;
@@ -20,7 +21,7 @@ describe('find film', function () {
             film.click();
         });
         // Does the button get updated correctly
-        ptor.wait(function() {
+        ptor.wait(function () {
             return ptor.isElementPresent(protractor.By.className('go'));
         }).then(function () {
             var btn, expectedLink;

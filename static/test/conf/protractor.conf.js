@@ -1,3 +1,5 @@
+'use strict';
+
 // An example configuration file.
 exports.config = {
     // The address of a running selenium server.

@@ -10,17 +10,17 @@ angular.module('btpApp', [
     'btp.services',
     'btp.directives',
     'templates-main'
-]).
-config(['$routeProvider', function ($routeProvider) {
+])
+.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/versus/:id/:title', {
-            templateUrl: 'static/scripts/templates/versus.tpl.html',
-            controller: 'VersusCtrl'
-        })
-        .when('/', {
-            templateUrl: 'static/scripts/templates/search.tpl.html',
-            controller: 'SearchCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
+        templateUrl: 'static/scripts/templates/versus.tpl.html',
+        controller: 'VersusCtrl'
+    })
+    .when('/', {
+        templateUrl: 'static/scripts/templates/search.tpl.html',
+        controller: 'SearchCtrl'
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
 }]);

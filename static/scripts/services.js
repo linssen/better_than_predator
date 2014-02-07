@@ -1,6 +1,9 @@
+'use strict';
+
 angular.module('btp.services', [])
     .factory('Film', ['$resource',
         function ($resource) {
+            /*jshint camelcase: false */
             var defaultParams;
             defaultParams = {
                 apikey: '6ynntf95p6h4pb8df3v73r7q',

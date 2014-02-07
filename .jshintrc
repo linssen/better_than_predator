@@ -33,6 +33,7 @@
       "it": false,
       "jasmine": false,
       "spyOn": false,
-      "_": false
+      "_": false,
+      "protractor": false
     }
 }
