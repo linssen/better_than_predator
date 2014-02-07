@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('btp.directives', [])
-    .directive('ngSearch', function (Film) {
+    .directive('ngFilmAutocomplete', function (Film) {
         return {
             restrict: 'A',
             // templateUrl: 'static/scripts/templates/_search.html',

@@ -14,10 +14,10 @@ describe('BTP controllers', function () {
         httpBackend = $injector.get('$httpBackend');
         scope = $rootScope.$new();
         filmResource = $injector.get('Film');
-        element = $compile('<div ng-search></div>')(scope);
+        element = $compile('<div ng-film-autocomplete></div>')(scope);
     }));
 
-    describe('ngSearch', function () {
+    describe('ngFilmAutocomplete', function () {
 
         it('should return films via xhr with a proper search term', function () {
             var expectedFilms, expectedURL;
