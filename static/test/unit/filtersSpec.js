@@ -7,7 +7,7 @@ describe('BTP filters', function () {
     describe('urlize', function() {
 
         it('should convert complex strings to safe urls', inject(function(urlizeFilter) {
-            expect(urlizeFilter('Honey, I Shrunk The Kids')).toEqual('honey-i-shrunk-the-kids');
+            expect(urlizeFilter('Big %&#! Zombie')).toEqual('big-zombie');
         }));
     });
 });
