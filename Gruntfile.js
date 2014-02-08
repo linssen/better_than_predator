@@ -110,6 +110,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('test', ['uglify', 'sass:dist', 'html2js', 'karma:continuous', 'protractor']);
-    grunt.registerTask('default', ['uglify', 'sass:dist', 'html2js']);
+    grunt.registerTask('default', ['html2js', 'uglify', 'sass:dist']);
 
 };
