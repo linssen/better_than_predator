@@ -35,6 +35,9 @@ module.exports = function (grunt) {
             }
         },
         watch: {
+            options: {
+                livereload: true
+            },
             scripts: {
                 files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
                 tasks: ['concat', 'karma:unit:run']
