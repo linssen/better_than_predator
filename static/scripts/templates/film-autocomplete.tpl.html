@@ -1,8 +1,9 @@
-<input class="search__query" type="search" ng-model="title" placeholder="Search for a film...">
+<div class="search__query">
+    <label class="search__query__label"for="search_query">Find a film</label>
+    <input class="search__query__input" type="search" ng-model="title" id="search_query">
+</div>
 <ul class="search__results">
-    <li
-        ng-repeat="f in films"
-        id="{{f.id}}">
+    <li ng-repeat="f in films" id="{{f.id}}">
         <a
             ng-href="#/versus/{{f.id}}/{{f.title | urlize}}"
             class="search__results__film"

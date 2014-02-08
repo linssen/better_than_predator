@@ -6,14 +6,19 @@ angular.module('btp.directives', ['btp.filters'])
             restrict: 'A',
             templateUrl: '../static/scripts/templates/film-autocomplete.tpl.html',
             link: function (scope, element) {
-                var autocomplete, choose, click, keys, keyup, nav;
+                var autocomplete, choose, click, keys, keyup, queryBox, nav;
 
                 keys = {up: 38, down: 40, enter: 13};
                 scope.activeIndex = 0;
+                queryBox = element.find('.search__query');
 
                 autocomplete = function (newValue) {
-                    if (newValue && newValue.length < 3) { return; }
+                    if (!newValue || newValue.length < 3) { return; }
+                    queryBox.addClass('search__query--loading');
                     scope.films = Film.query({q: newValue});
+                    scope.films.$promise.then(function () {
+                        queryBox.removeClass('search__query--loading');
+                    })
                 };
                 keyup = function (ev, element) {
                     switch (ev.which) {

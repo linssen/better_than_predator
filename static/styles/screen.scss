@@ -27,7 +27,7 @@ $base_font: 16;
 
 body {
     background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
-    @include prefixer(background-size, cover);
+    @include prefixer(background-size, cover, webkit moz o);
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 100%;
 }
@@ -67,18 +67,45 @@ a.btn {
 .search {
     width: 70%;
     margin: 0 auto;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: em(20);
 }
 .search__query {
-    width: 100%;
-    font-size: em(40);
-    margin-bottom: em(10, 40);
+    position: relative;
+}
+.search__query__label {
+    float: left;
+    width: 20%;
+    padding: em(10, 20);
+    @include box-sizing(border-box);
+    color: white;
+    background: #343739;
+}
+.search__query__input {
+    width: 80%;
+    float: left;
+    padding: em(10, 20);
+    @include box-sizing(border-box);
+    display: block;
+    border: none;
+}
+
+.search__query--loading:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 33px;
+    height: em(43, 20);
+    background: url('/static/images/dots.gif') no-repeat 50% 50%;
 }
 .search__results {
     background: transparentize(#343739, 0.6);
+    clear: both;
 }
 .search__results__film {
-    font-size: em(20);
-    padding: em(5, 20);
+    padding: em(10, 20);
     color: white;
     text-decoration: none;
     display: block;
