@@ -76,14 +76,14 @@ a.btn {
 }
 .search__query__label {
     float: left;
-    width: em(100, 20);
+    width: 20%;
     padding: em(10, 20);
     @include box-sizing(border-box);
     color: white;
     background: #343739;
 }
 .search__query__input {
-    width: 60%;
+    width: 80%;
     min-width: em(200, 20);
     padding: em(10, 20) em(43, 20) em(10, 20) em(10, 20);
     @include box-sizing(border-box);
