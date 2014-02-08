@@ -2,14 +2,14 @@
 
     HTML reset stylesheet
     Adapted from YUI, HTML5 Doctor & Normalize
-    
+
     @version: 1.1
     @author: Erskine Design
- 
+
 */
 
 
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,img,abbr,acronym,address,big,cite,code,del,dfn,em,font,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,hgroup,menu,nav,summary,time,mark,audio,video,header,footer { 
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,img,abbr,acronym,address,big,cite,code,del,dfn,em,font,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,hgroup,menu,nav,summary,time,mark,audio,video,header,footer {
     margin:0;
     padding:0;
     border:0;
@@ -161,9 +161,6 @@ input[type="radio"] {
 
 input[type="search"] {
    -webkit-appearance:textfield; /* 1 */
-   -moz-box-sizing:content-box;
-   -webkit-box-sizing:content-box; /* 2 */
-   box-sizing:content-box;
 }
 
 /*
