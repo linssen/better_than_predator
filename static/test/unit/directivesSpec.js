@@ -15,7 +15,7 @@ describe('BTP controllers', function () {
         /*jshint camelcase: false */
         return {
             movies: [
-                {id: 10611, title: 'Honey, I Shrunk The Kids', url: 'honey-i-shrunk-the-kids'},
+                {id: 10611, title: 'Honey, I Shrunk the Kids', url: 'honey-i-shrunk-the-kids'},
                 {id: 770882280, title: 'Honey', url: 'honey'}
             ]
         };
