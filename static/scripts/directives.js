@@ -6,7 +6,7 @@ angular.module('btp.directives', ['btp.filters'])
             restrict: 'A',
             templateUrl: '../static/scripts/templates/film-autocomplete.tpl.html',
             link: function (scope, element) {
-                var autocomplete, choose, keys, keyup, nav;
+                var autocomplete, choose, click, keys, keyup, nav;
 
                 keys = {up: 38, down: 40, enter: 13};
                 scope.activeIndex = 0;

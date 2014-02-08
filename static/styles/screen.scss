@@ -80,8 +80,12 @@ a.btn {
     font-size: em(20);
     padding: em(5, 20);
     color: white;
+    text-decoration: none;
+    display: block;
 }
-.search__results__film--active {
+.search__results__film--active,
+.search__results__film:hover,
+.search__results__film:focus {
     background: #343739;
 }
 

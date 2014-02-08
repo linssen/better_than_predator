@@ -2,10 +2,12 @@
 <ul class="search__results">
     <li
         ng-repeat="f in films"
-        id="{{f.id}}"
-        class="search__results__film"
-        ng-class="{'search__results__film--active': $index === activeIndex}"
-    >
-        {{f.title}} ({{f.year}})
+        id="{{f.id}}">
+        <a
+            ng-href="#/versus/{{f.id}}/{{f.title | urlize}}"
+            class="search__results__film"
+            ng-class="{'search__results__film--active': $index === activeIndex}">
+            {{f.title}} ({{f.year}})
+        </a>
     </li>
 </ul>
