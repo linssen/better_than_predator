@@ -1,9 +1,0 @@
-<div class="search">
-    <input
-        ui-select2="select2"
-        class="query"
-        ng-model="film"
-        data-placeholder="Find a film"
-    >
-    <a ng-if="film" class="btn go" href="#/versus/{{film.imdb_id}}/{{film.title | urlize}}">Compare {{film.title}}</a>
-</div>

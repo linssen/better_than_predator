@@ -8,12 +8,12 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'static/scripts/dist/<%= pkg.name %>.js': [
-                        'static/scripts/lib/jquery/jquery.js',
-                        'static/scripts/lib/angular/angular.js',
-
+                        'static/bower_components/jquery/jquery.js',
+                        'static/bower_components/angular/angular.js',
+                        'static/bower_components/angular-route/angular-route.js',
+                        'static/bower_components/angular-resource/angular-resource.js',
                         'static/scripts/*.js',
-                        'static/scripts/lib/**/*.js',
-                        '!static/scripts/lib/qunit/qunit.js',
+                        'static/scripts/build/*.js',
                         '!static/scripts/tests/*.js'
                     ]
                 }
@@ -22,41 +22,30 @@ module.exports = function (grunt) {
         concat: {
             scripts: {
                 src: [
-                    'static/scripts/lib/jquery/jquery.js',
-                    'static/scripts/lib/angular/angular.js',
-
-                    'static/scripts/lib/**/*.js',
+                    'static/bower_components/jquery/jquery.js',
+                    'static/bower_components/lodash/dist/lodash.js',
+                    'static/bower_components/angular/angular.js',
+                    'static/bower_components/angular-route/angular-route.js',
+                    'static/bower_components/angular-resource/angular-resource.js',
                     'static/scripts/*.js',
-
-                    '!static/scripts/lib/qunit/qunit.js',
-                    '!static/scripts/tests/*.js'
+                    'static/scripts/build/*.js',
+                    '!static/test/**/*.js'
                 ],
                 dest: 'static/scripts/dist/<%= pkg.name %>.js'
             }
         },
         watch: {
             scripts: {
-                files: ['static/scripts/**/*.js'],
-                tasks: ['concat', 'test']
+                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
+                tasks: ['concat', 'karma:unit:run']
             },
             styles: {
                 files: ['static/styles/screen.scss'],
                 tasks: ['sass', 'concat']
-            }
-        },
-        connect: {
-            server: {
-                options: {
-                    port: 9001,
-                    base: '.'
-                }
-            }
-        },
-        qunit: {
-            all: {
-                options: {
-                    urls: ['http://127.0.0.1:9001/static/scripts/test/index.html']
-                }
+            },
+            templates: {
+                files: ['static/scripts/templates/**/*.tpl.html'],
+                tasks: ['html2js']
             }
         },
         sass: {
@@ -76,18 +65,51 @@ module.exports = function (grunt) {
                     'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
                 }
             }
+        },
+        html2js: {
+            options: {},
+            main: {
+                src: ['static/scripts/templates/**/*.tpl.html'],
+                dest: 'static/scripts/build/templates.js'
+            }
+        },
+        protractor: {
+            options: {
+                configFile: 'node_modules/protractor/referenceConf.js', // Default config file
+                keepAlive: true,
+                noColor: false,
+                args: {
+                    // Arguments passed to the command
+                }
+            },
+            runner: {
+                options: {
+                    configFile: 'static/test/conf/protractor.conf.js'
+                }
+            }
+        },
+        karma: {
+            unit: {
+                configFile: 'static/test/conf/karma.conf.js',
+                background: true
+            },
+            continuous: {
+                configFile: 'static/test/conf/karma.conf.js',
+                singleRun: true,
+                browsers: ['PhantomJS']
+            },
         }
-
     });
 
-    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['uglify', 'sass:dist', 'test']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('test', ['uglify', 'sass:dist', 'html2js', 'karma:continuous', 'protractor']);
+    grunt.registerTask('default', ['uglify', 'sass:dist', 'html2js']);
 
 };
