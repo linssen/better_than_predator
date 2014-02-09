@@ -6,6 +6,10 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             dist: {
+                options: {
+                    report: 'min',
+                    mangle: false
+                },
                 files: {
                     'static/scripts/dist/<%= pkg.name %>.js': [
                         'static/bower_components/jquery/jquery.js',
