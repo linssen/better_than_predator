@@ -113,16 +113,20 @@ a.btn {
 --------------------------------------------------------- */
 .films {
     @include span-columns(6);
+
+    @include media($small) {
+        @include span-columns(2);
+    }
 }
 .film {
     @include span-columns(3 of 6);
 
+    @include media($small) {
+        @include span-columns(1 of 2);
+    }
+
     background: white;
     position: relative;
-
-    &:first-child {
-        margin-right: 4%;
-    }
 
     h2 {
         font-size: em(40);
@@ -133,15 +137,23 @@ a.btn {
         white-space: nowrap;
         text-overflow: ellipsis;
         text-transform: uppercase;
+
+        @include media($small) {
+            font-size: em(24);
+        }
     }
     .poster {
         width: 100%;
     }
     .rating {
-        font-size: em(96, 16);
+        font-size: em(96);
         line-height: 1;
         color: #506666;
         letter-spacing: -3px;
+
+        @include media($small) {
+            font-size: em(48);
+        }
 
         small {
             font-size: em(24, 96);
@@ -156,6 +168,12 @@ a.btn {
     font-size: em(24);
     color: white;
     line-height: 1.2;
+
+    @include media($small) {
+        @include span-columns(2);
+
+        font-size: em(16);
+    }
 
     a {
         color: #fff;
