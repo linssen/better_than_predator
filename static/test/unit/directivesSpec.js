@@ -37,8 +37,8 @@ describe('BTP controllers', function () {
 
             httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms());
 
-            // Set the model `title` to string 'honey'
-            scope.title = 'honey';
+            // Set the model `query` to string 'honey'
+            scope.query = 'honey';
 
             // Fire off the digest for watch
             element.scope().$apply();

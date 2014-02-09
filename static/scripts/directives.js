@@ -18,7 +18,7 @@ angular.module('btp.directives', ['btp.filters'])
                     scope.films = Film.query({q: newValue});
                     scope.films.$promise.then(function () {
                         queryBox.removeClass('search__query--loading');
-                    })
+                    });
                 };
                 keyup = function (ev, element) {
                     switch (ev.which) {
@@ -51,7 +51,7 @@ angular.module('btp.directives', ['btp.filters'])
                 };
 
                 // Bindings etc.
-                scope.$watch('title', _.debounce(autocomplete, 100));
+                scope.$watch('query', _.debounce(autocomplete, 100));
                 element.bind('keyup', keyup);
             }
         };
