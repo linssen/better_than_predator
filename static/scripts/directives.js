@@ -13,7 +13,7 @@ angular.module('btp.directives', ['btp.filters'])
                 queryBox = element.find('.search__query');
 
                 autocomplete = function (newValue) {
-                    if (!newValue || newValue.length < 3) { return; }
+                    if (!newValue || newValue.length < 2) { return; }
                     queryBox.addClass('search__query--loading');
                     scope.films = Film.query({q: newValue});
                     scope.films.$promise.then(function () {
