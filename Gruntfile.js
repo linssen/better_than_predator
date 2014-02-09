@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                 tasks: ['concat', 'karma:unit:run']
             },
             styles: {
-                files: ['static/styles/screen.scss'],
+                files: ['static/styles/main.scss'],
                 tasks: ['sass', 'concat']
             },
             templates: {
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
+                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/main.scss'
                 }
             },
             dist: {
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/screen.scss'
+                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/main.scss'
                 }
             }
         },

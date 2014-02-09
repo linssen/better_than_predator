@@ -1,5 +1,7 @@
 @import 'reset';
 @import './../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import 'grid-settings';
+@import './../bower_components/neat/app/assets/stylesheets/neat';
 
 /*
 
@@ -21,20 +23,24 @@
 */
 
 $base_font: 16;
+// $visual_grid: true;
 
 /* BODY
 --------------------------------------------------------- */
 
 body {
-    background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
     @include prefixer(background-size, cover, webkit moz o);
+
+    background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 100%;
+    line-height: em(16);
 }
 
-section[role="main"] {
-    padding: em(35) 0;
-    overflow: hidden;
+#main {
+    @include outer-container;
+
+    padding-top: em(24);
 }
 
 /* GLOBAL
@@ -52,9 +58,8 @@ a.btn {
     display: inline-block;
     color: #fff;
     text-decoration: none;
-    text-align: center;
-    padding: em(10);
-    line-height: 1;
+    padding: em(8);
+    line-height: 1em;
 
     &:hover,
     &:focus {
@@ -65,28 +70,15 @@ a.btn {
 /* SEARCH
 --------------------------------------------------------- */
 .search {
-    width: 70%;
-    margin: 0 auto;
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: em(20);
-}
-.search__query {
-    position: relative;
-    min-width: em(300, 20);
-}
-.search__query__label {
-    float: left;
-    width: 20%;
-    padding: em(10, 20);
-    @include box-sizing(border-box);
-    color: white;
-    background: #343739;
+    @include span-columns(8);
+    @include shift(2);
+
+    font-size: em(24);
 }
 .search__query__input {
-    width: 80%;
-    min-width: em(200, 20);
-    padding: em(10, 20) em(43, 20) em(10, 20) em(10, 20);
-    @include box-sizing(border-box);
+    @include fill-parent;
+
+    padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
     border: none;
 }
 
@@ -95,7 +87,7 @@ a.btn {
     display: block;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: em(16, 24);
     width: 33px;
     height: em(43, 20);
     background: url('/static/images/dots.gif') no-repeat 50% 50%;
@@ -105,7 +97,7 @@ a.btn {
     clear: both;
 }
 .search__results__film {
-    padding: em(10, 20);
+    padding: em(8, 20);
     color: white;
     text-decoration: none;
     display: block;
@@ -120,51 +112,48 @@ a.btn {
 /* RESULTS
 --------------------------------------------------------- */
 .films {
-    margin-left: 4.8%;
-    float: left;
+    @include span-columns(6);
 }
 .film {
-    width: 290px;
-    height: 649px;
-    background: url('/static/images/ticket.svg') no-repeat 0 0;
-    float: left;
-    margin-right: 70px;
-    padding: em(20) em(5) em(5) em(5);
+    @include span-columns(3 of 6);
+
+    background: white;
     position: relative;
+
+    &:first-child {
+        margin-right: 4%;
+    }
 
     h2 {
         font-size: em(40);
         line-height: 1em;
+        padding: 0 em(4, 40);
         width: 100%;
-        height: 1em;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         text-transform: uppercase;
     }
     .poster {
-        margin: 0 em(-5) em(34) em(-5);
-        width: 300px;
-        height: 444px;
+        width: 100%;
     }
     .rating {
-        padding: 0 0 0 em(14, 100);
-        font-size: em(100);
+        font-size: em(96, 16);
+        line-height: 1;
         color: #506666;
         letter-spacing: -3px;
 
         small {
-            font-size: em(24, 100);
+            font-size: em(24, 96);
             letter-spacing: 0;
         }
     }
 }
 
 .result {
-    width: 400px;
-    float: left;
-    padding-top: em(10, 20);
-    font-size: em(20);
+    @include span-columns(6);
+
+    font-size: em(24);
     color: white;
     line-height: 1.2;
 
@@ -172,39 +161,43 @@ a.btn {
         color: #fff;
     }
     .share {
-        width: 50%;
+        @include span-columns(4 of 6);
+        @include shift(1);
+
         display: block;
-        padding-left: em(40);
-        background: #343739 url('/static/images/twitter.svg') no-repeat em(20) 50%;
-        margin: 0 auto em(35) auto;
+        text-align: center;
+        background: #343739 url('/static/images/twitter.svg') no-repeat em(16, 24) 50%;
+        margin-bottom: em(24, 24);
+        padding: em(16, 24) em(16, 24) em(16, 24) em(61, 24);
 
     }
     .again {
-        background: #343739 url('/static/images/arrow-left.svg') no-repeat em(10) 50%;
-        padding-left: em(45);
+        background: #343739 url('/static/images/arrow-left.svg') no-repeat em(16, 24) 50%;
+        padding: em(16, 24) em(16, 24) em(16, 24) em(61, 24);
     }
     hr {
+        @include fill-parent;
+
         border: 0;
         border-bottom: 1px dashed #fff;
         background: none;
-        margin-bottom: em(35);
+        margin-bottom: em(24, 24);
     }
     h1 {
-        font-size: em(40);
+        font-size: em(56, 24);
         line-height: 1;
         width: 100%;
         text-align: center;
-        margin-bottom: em(35, 40);
+        margin-bottom: em(24, 56);
     }
     h3 {
-        font-size: em(30);
-        line-height: 1;
-        margin-bottom: em(20, 30);
+        font-size: em(40, 24);
+        margin-bottom: em(24, 40);
     }
     p {
         margin-bottom: 1em;
     }
     .credit {
-        font-size: 0.85em;
+        font-size: em(16, 24);
     }
 }

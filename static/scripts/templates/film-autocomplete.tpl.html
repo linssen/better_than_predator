@@ -1,7 +1,10 @@
-<div class="search__query">
-    <label class="search__query__label"for="search_query">Find a film</label>
-    <input class="search__query__input" type="search" ng-model="title" id="search_query">
-</div>
+<input
+    class="search__query__input"
+    type="search"
+    ng-model="title"
+    id="search_query"
+    placeholder="Find a film...">
+
 <ul class="search__results">
     <li ng-repeat="f in films" id="{{f.id}}">
         <a
