@@ -29,6 +29,10 @@ describe('BTP controllers', function () {
         element = $compile('<div ng-film-autocomplete></div>')(scope);
     }));
 
+    afterEach(function () {
+        httpBackend.verifyNoOutstandingRequest();
+    });
+
     describe('ngFilmAutocomplete', function () {
 
         it('should return films via xhr with a proper search term', function () {
@@ -48,7 +52,7 @@ describe('BTP controllers', function () {
 
             runs(function () {
                 // Fire off the mock JSONP request
-                httpBackend.flush();
+                httpBackend.flush(1);
 
                 expect(scope.films.length).toEqual(expectedFilms().movies.length);
                 expect(scope.films[0].id).toEqual(expectedFilms().movies[0].id);
