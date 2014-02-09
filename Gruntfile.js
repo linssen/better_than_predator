@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                     mangle: false
                 },
                 files: {
-                    'static/scripts/dist/<%= pkg.name %>.js': [
+                    'static/dist/scripts/<%= pkg.name %>.js': [
                         'static/bower_components/jquery/jquery.js',
                         'static/bower_components/lodash/dist/lodash.js',
                         'static/bower_components/angular/angular.js',
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                     'static/scripts/build/*.js',
                     '!static/test/**/*.js'
                 ],
-                dest: 'static/scripts/dist/<%= pkg.name %>.js'
+                dest: 'static/dist/scripts/<%= pkg.name %>.js'
             }
         },
         watch: {
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/main.scss'
+                    'static/dist/styles/<%= pkg.name %>.css': 'static/styles/main.scss'
                 }
             },
             dist: {
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'static/styles/dist/<%= pkg.name %>.css': 'static/styles/main.scss'
+                    'static/dist/styles/<%= pkg.name %>.css': 'static/styles/main.scss'
                 }
             }
         },

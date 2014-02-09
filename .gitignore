@@ -2,4 +2,4 @@
 /node_modules
 /static/bower_components
 /static/*/build
-/static/*/dist
+/static/dist
