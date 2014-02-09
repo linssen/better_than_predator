@@ -29,9 +29,8 @@ $base_font: 16;
 --------------------------------------------------------- */
 
 body {
-    @include prefixer(background-size, cover, webkit moz o);
-
     background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
+    @include prefixer(background-size, cover, webkit moz o);
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 100%;
     line-height: em(16);
