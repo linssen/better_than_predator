@@ -12,7 +12,7 @@ module.exports = function (config) {
             'static/bower_components/angular-resource/angular-resource.js',
             'static/bower_components/angular-route/angular-route.js',
             'static/bower_components/angular-mocks/angular-mocks.js',
-            'static/scripts/dist/better_than_predator.js',
+            'static/dist/scripts/better_than_predator.js',
             'static/test/unit/**/*.js'
         ],
 
