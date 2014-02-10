@@ -6,7 +6,7 @@ angular.module('btp.directives', ['btp.filters'])
             restrict: 'A',
             templateUrl: '../static/scripts/templates/film-autocomplete.tpl.html',
             link: function (scope, element) {
-                var autocomplete, choose, click, keys, keyup, queryBox, nav;
+                var autocomplete, choose, keys, keyup, queryBox, nav;
 
                 keys = {up: 38, down: 40, enter: 13};
                 scope.activeIndex = 0;
@@ -20,17 +20,17 @@ angular.module('btp.directives', ['btp.filters'])
                         queryBox.removeClass('search__query--loading');
                     });
                 };
-                keyup = function (ev, element) {
+                keyup = function (ev) {
                     switch (ev.which) {
                     case keys.up:
                     case keys.down:
                         ev.preventDefault();
                         nav(ev.which === keys.down ? 1 : -1);
-                        break
+                        break;
                     case keys.enter:
                         ev.preventDefault();
                         choose();
-                    };
+                    }
                 };
                 nav = function (direction) {
                     var numFilms;
