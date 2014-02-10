@@ -4,11 +4,18 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        ngmin: {
+            dist: {
+                src: ['static/scripts/*.js'],
+                dest: 'static/scripts/build/<%= pkg.name %>.js'
+            }
+        },
         uglify: {
             dist: {
                 options: {
                     report: 'min',
-                    mangle: false
+                    mangle: true,
+                    compress: true
                 },
                 files: {
                     'static/dist/scripts/<%= pkg.name %>.js': [
@@ -17,7 +24,6 @@ module.exports = function (grunt) {
                         'static/bower_components/angular/angular.js',
                         'static/bower_components/angular-route/angular-route.js',
                         'static/bower_components/angular-resource/angular-resource.js',
-                        'static/scripts/*.js',
                         'static/scripts/build/*.js',
                         '!static/scripts/tests/*.js'
                     ]
@@ -59,7 +65,8 @@ module.exports = function (grunt) {
         sass: {
             dev: {
                 options: {
-                    style: 'expanded'
+                    style: 'expanded',
+                    quiet: true
                 },
                 files: {
                     'static/dist/styles/<%= pkg.name %>.css': 'static/styles/main.scss'
@@ -67,7 +74,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 options: {
-                    style: 'compressed'
+                    style: 'compressed',
+                    quiet: true
                 },
                 files: {
                     'static/dist/styles/<%= pkg.name %>.css': 'static/styles/main.scss'
@@ -116,6 +124,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-ngmin');
 
     grunt.registerTask('test', ['uglify', 'sass:dist', 'html2js', 'karma:continuous', 'protractor']);
     grunt.registerTask('default', ['html2js', 'uglify', 'sass:dist']);
