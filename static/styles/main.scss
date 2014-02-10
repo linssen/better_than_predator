@@ -23,6 +23,7 @@
 */
 
 $base_font: 16;
+$font_stack: 'Pathway Gothic One', sans-serif;
 // $visual_grid: true;
 
 /* BODY
@@ -31,7 +32,7 @@ $base_font: 16;
 body {
     background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
     @include prefixer(background-size, cover, webkit moz o);
-    font-family: 'Pathway Gothic One', sans-serif;
+    font-family: $font_stack;
     font-size: 100%;
     line-height: em(16);
 }
@@ -77,6 +78,7 @@ a.btn {
 .search__query__input {
     @include fill-parent;
 
+    font-family: $font_stack;
     padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
     border: none;
 }
