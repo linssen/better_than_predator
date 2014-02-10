@@ -23,7 +23,7 @@ describe('BTP pages', function () {
         var films, query;
 
         ptor.get(base);
-        query = element(by.model('title'));
+        query = element(by.model('query'));
         films = protractor.By.repeater('f in films');
 
         query.sendKeys('honey')
