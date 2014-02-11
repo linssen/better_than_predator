@@ -41,6 +41,10 @@ body {
     @include outer-container;
 
     padding-top: em(24);
+
+    @include media($small) {
+        padding-top: em(8);
+    }
 }
 
 /* GLOBAL
@@ -115,19 +119,25 @@ a.btn {
 .films {
     @include span-columns(6);
 
+    margin-bottom: em(24);
+    position: absolute;
+    left: 0;
+
     @include media($small) {
-        @include span-columns(2);
+        @include fill-parent;
+
+        position: static;
     }
 }
 .film {
     @include span-columns(3 of 6);
 
-    @include media($small) {
-        @include span-columns(1 of 2);
-    }
-
     background: white;
     position: relative;
+
+    @include media($small) {
+        @include span-columns(2);
+    }
 
     h2 {
         font-size: em(40);
@@ -163,25 +173,47 @@ a.btn {
     }
 }
 
+h1 {
+    @include span-columns(6);
+    @include shift(6);
+
+    font-size: em(56);
+    line-height: 1em;
+    text-align: center;
+    margin-bottom: em(24, 56);
+    color: white;
+
+    @include media($small) {
+        @include fill-parent;
+        @include shift(0);
+
+        font-size: em(40);
+    }
+}
+
 .result {
     @include span-columns(6);
+    @include shift(6);
 
     font-size: em(24);
     color: white;
     line-height: 1.2;
+    position: static;
 
     @include media($small) {
         @include span-columns(2);
+        @include shift(0);
 
+        position: relative;
         font-size: em(16);
     }
 
     a {
         color: #fff;
     }
-    .share {
-        @include span-columns(4 of 6);
-        @include shift(1);
+    .share,
+    .again {
+        @include span-columns(3 of 6);
 
         display: block;
         text-align: center;
@@ -189,10 +221,26 @@ a.btn {
         margin-bottom: em(24, 24);
         padding: em(16, 24) em(16, 24) em(16, 24) em(61, 24);
 
+        @include media($small) {
+            @include fill-parent;
+            @include omega;
+            @include shift(2 of 2);
+
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    }
+    .share {
+        @include omega;
+
+        @include media($small) {
+            top: 3em;
+        }
     }
     .again {
-        background: #343739 url('/static/images/arrow-left.svg') no-repeat em(16, 24) 50%;
-        padding: em(16, 24) em(16, 24) em(16, 24) em(61, 24);
+        background-image: url('/static/images/arrow-left.svg');
     }
     hr {
         @include fill-parent;
@@ -201,13 +249,10 @@ a.btn {
         border-bottom: 1px dashed #fff;
         background: none;
         margin-bottom: em(24, 24);
-    }
-    h1 {
-        font-size: em(56, 24);
-        line-height: 1;
-        width: 100%;
-        text-align: center;
-        margin-bottom: em(24, 56);
+
+        @include media($small) {
+            display: none;
+        }
     }
     h3 {
         font-size: em(40, 24);
