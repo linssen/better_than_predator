@@ -126,7 +126,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-ngmin');
 
-    grunt.registerTask('test', ['ngmin', 'uglify', 'sass:dist', 'html2js', 'karma:continuous', 'protractor']);
+    grunt.registerTask('test', ['html2js', 'ngmin', 'uglify', 'sass:dist', 'karma:continuous', 'protractor']);
     grunt.registerTask('default', ['html2js',  'ngmin', 'uglify', 'sass:dist']);
 
 };
