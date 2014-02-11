@@ -3,7 +3,8 @@
 exports.config = {
 
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'phantomjs',
+        'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs'
     },
 
     specs: ['../integration/*.js'],
