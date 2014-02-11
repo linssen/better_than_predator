@@ -3,7 +3,7 @@
 describe('BTP pages', function () {
     var API_BASE, base, expectedFilms, expectedVersusURL, ptor;
 
-    base = 'http://betterthanpredator.com/#';
+    base = 'http://localhost:9001/#';
     ptor = protractor.getInstance();
     expectedFilms = function () {
         /*jshint camelcase: false */

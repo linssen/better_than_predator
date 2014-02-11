@@ -89,6 +89,14 @@ module.exports = function (grunt) {
                 dest: 'static/scripts/build/templates.js'
             }
         },
+        connect: {
+            server: {
+                options: {
+                    port: 9001,
+                    base: './'
+                }
+            }
+        },
         protractor: {
             options: {
                 configFile: 'node_modules/protractor/referenceConf.js', // Default config file
@@ -114,6 +122,17 @@ module.exports = function (grunt) {
                 singleRun: true,
                 browsers: ['PhantomJS']
             },
+        },
+        concurrent: {
+            angular: {
+                tasks: ['html2js', 'ngmin']
+            },
+            dist: {
+                tasks: ['uglify', 'sass:dist']
+            },
+            test: {
+                tasks: ['karma:continuous', 'protractor']
+            }
         }
     });
 
@@ -125,8 +144,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-ngmin');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('test', ['html2js', 'ngmin', 'uglify', 'sass:dist', 'karma:continuous', 'protractor']);
-    grunt.registerTask('default', ['html2js',  'ngmin', 'uglify', 'sass:dist']);
+    grunt.registerTask('test', ['concurrent:angular', 'concurrent:dist', 'connect', 'concurrent:test']);
+    grunt.registerTask('default', ['concurrent:angular', 'concurrent:dist']);
 
 };

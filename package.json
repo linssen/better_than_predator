@@ -23,9 +23,9 @@
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-sass": "~0.5.1",
-    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-connect": "~0.6.0",
     "protractor": "~0.14.0",
-    "grunt-protractor-runner": "~0.2.1",
+    "grunt-protractor-runner": "~0.2.3",
     "karma-jasmine": "~0.1.5",
     "grunt-karma": "~0.6.2",
     "karma-script-launcher": "~0.1.0",
@@ -38,7 +38,8 @@
     "karma": "~0.10.9",
     "karma-chrome-launcher": "~0.1.2",
     "grunt-html2js": "~0.2.4",
-    "grunt-ngmin": "0.0.3"
+    "grunt-ngmin": "0.0.3",
+    "grunt-concurrent": "~0.4.3"
   },
   "scripts": {
     "test": "grunt test"

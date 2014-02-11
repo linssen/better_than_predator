@@ -1,6 +1,8 @@
 Better than Predator
 ===============================================================================
 
+[![Build Status](https://travis-ci.org/linssen/better_than_predator.png?branch=master)](https://travis-ci.org/linssen/better_than_predator)
+
 Installation
 -------------------------------------------------------------------------------
 
