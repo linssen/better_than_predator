@@ -36,7 +36,6 @@ body {
     font-size: 100%;
     line-height: em(16);
 }
-
 #main {
     @include outer-container;
 
@@ -51,25 +50,80 @@ body {
 --------------------------------------------------------- */
 a {
     text-decoration: underline;
+    color: #fff;
 
     &:hover,
     &:focus {
         text-decoration: none;
     }
 }
-a.btn {
-    background: #343739;
+%button {
     display: inline-block;
     color: #fff;
     text-decoration: none;
     padding: em(8);
     line-height: 1em;
+    text-align: center;
+    background: #343739 no-repeat em(16, 24) 50%;
+    margin-bottom: em(24, 24);
+    padding: em(16, 24) em(24, 24) em(16, 24) em(61, 24);
 
     &:hover,
     &:focus {
         background-color: lighten(#343739, 5);
     }
 }
+h1 {
+    @include span-columns(6);
+    @include shift(6);
+
+    font-size: em(56);
+    line-height: 1em;
+    text-align: center;
+    margin-bottom: em(24, 56);
+    color: white;
+
+    @include media($small) {
+        @include fill-parent;
+        @include shift(0);
+
+        font-size: em(40);
+    }
+}
+h2 {
+    font-size: em(40);
+    line-height: 1em;
+    padding: 0 em(4, 40);
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+
+    @include media($small) {
+        font-size: em(24);
+    }
+}
+h3 {
+    font-size: em(40, 24);
+    margin-bottom: em(24, 40);
+}
+p {
+    margin-bottom: 1em;
+}
+hr {
+    @include fill-parent;
+
+    border: 0;
+    border-bottom: 1px dashed #fff;
+    background: none;
+    margin-bottom: em(24, 24);
+
+    @include media($small) {
+        display: none;
+    }
+}
+
 
 /* SEARCH
 --------------------------------------------------------- */
@@ -86,7 +140,6 @@ a.btn {
     padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
     border: none;
 }
-
 .search__query--loading:after {
     content: ' ';
     display: block;
@@ -117,7 +170,7 @@ a.btn {
 
 /* RESULTS
 --------------------------------------------------------- */
-.films {
+.versus__films {
     @include span-columns(6);
 
     margin-bottom: em(24);
@@ -130,7 +183,7 @@ a.btn {
         position: static;
     }
 }
-.film {
+.versus__films__film {
     @include span-columns(3 of 6);
 
     background: white;
@@ -139,60 +192,26 @@ a.btn {
     @include media($small) {
         @include span-columns(2);
     }
-
-    h2 {
-        font-size: em(40);
-        line-height: 1em;
-        padding: 0 em(4, 40);
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        text-transform: uppercase;
-
-        @include media($small) {
-            font-size: em(24);
-        }
-    }
-    .poster {
-        width: 100%;
-    }
-    .rating {
-        font-size: em(96);
-        line-height: 1;
-        color: #506666;
-        letter-spacing: -3px;
-
-        @include media($small) {
-            font-size: em(48);
-        }
-
-        small {
-            font-size: em(24, 96);
-            letter-spacing: 0;
-        }
-    }
 }
-
-h1 {
-    @include span-columns(6);
-    @include shift(6);
-
-    font-size: em(56);
-    line-height: 1em;
-    text-align: center;
-    margin-bottom: em(24, 56);
-    color: white;
+.versus__films__poster {
+    width: 100%;
+}
+.versus__films__rating {
+    font-size: em(96);
+    line-height: 1;
+    color: #506666;
+    letter-spacing: -3px;
 
     @include media($small) {
-        @include fill-parent;
-        @include shift(0);
+        font-size: em(48);
+    }
 
-        font-size: em(40);
+    small {
+        font-size: em(24, 96);
+        letter-spacing: 0;
     }
 }
-
-.result {
+.versus__info {
     @include span-columns(6);
     @include shift(6);
 
@@ -208,61 +227,35 @@ h1 {
         position: relative;
         font-size: em(16);
     }
+}
+.button__share,
+.button__again {
+    @include span-columns(3 of 6);
+    @extend %button;
 
-    a {
-        color: #fff;
-    }
-    .share,
-    .again {
-        @include span-columns(3 of 6);
-
-        display: block;
-        text-align: center;
-        background: #343739 url('/static/images/twitter.svg') no-repeat em(16, 24) 50%;
-        margin-bottom: em(24, 24);
-        padding: em(16, 24) em(16, 24) em(16, 24) em(61, 24);
-
-        @include media($small) {
-            @include fill-parent;
-            @include omega;
-            @include shift(2 of 2);
-
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-    }
-    .share {
-        @include omega;
-
-        @include media($small) {
-            top: 3em;
-        }
-    }
-    .again {
-        background-image: url('/static/images/arrow-left.svg');
-    }
-    hr {
+    @include media($small) {
         @include fill-parent;
+        @include omega;
+        @include shift(2 of 2);
 
-        border: 0;
-        border-bottom: 1px dashed #fff;
-        background: none;
-        margin-bottom: em(24, 24);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 
-        @include media($small) {
-            display: none;
-        }
+}
+.button__share {
+    @include omega;
+
+    background-image: url('/static/images/twitter.svg');
+
+    @include media($small) {
+        top: 3em;
     }
-    h3 {
-        font-size: em(40, 24);
-        margin-bottom: em(24, 40);
-    }
-    p {
-        margin-bottom: 1em;
-    }
-    .credit {
-        font-size: em(16, 24);
-    }
+}
+.button__again {
+    background-image: url('/static/images/arrow-left.svg');
+}
+.versus__info__credit {
+    font-size: em(16, 24);
 }

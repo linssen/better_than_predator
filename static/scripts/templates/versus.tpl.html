@@ -4,19 +4,17 @@
     <span ng-if="films[0].ratings.combined === films[1].ratings.combined">{{films[1].title}} is just as good as Predator.</span>
 </h1>
 
-<div class="films">
-    <div ng-repeat="film in films" class="film">
+<div class="versus__films">
+    <div ng-repeat="film in films" class="versus__films__film">
         <h2>{{film.title}}</h2>
 
-        <img ng-src="{{film.posters.original}}" class="poster" width="300">
+        <img ng-src="{{film.posters.original}}" class="versus__films__poster" width="300">
 
-        <div class="rating">{{film.ratings.combined}}<small>/ 10</small></div>
+        <div class="versus__films__rating">{{film.ratings.combined}}<small>/ 10</small></div>
     </div>
 </div>
 
-<div class="result">
-
-
+<div class="versus__info">
     <hr>
 
     <h3>Why does this even exist?</h3>
@@ -26,10 +24,10 @@
         and they thought you should be able to compare films to Predator. It is
         after all the ultimate benchmark.</p>
 
-    <a class="btn again" href="/">Again!</a>
-    <a class="btn share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">Tweet this</a>
+    <a class="button__again" href="/">Again!</a>
+    <a class="button__share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">Tweet this</a>
 
-    <p class="credit">Copyright &copy; {{now | date:'yyyy'}} <a href="http://linssen.me/">Wil Linssen</a>.</p>
+    <p class="versus__info__credit">Copyright &copy; {{now | date:'yyyy'}} <a href="http://linssen.me/">Wil Linssen</a>.</p>
 
 </div>
 
