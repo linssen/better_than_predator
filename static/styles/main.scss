@@ -140,15 +140,8 @@ hr {
     padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
     border: none;
 }
-.search__query--loading:after {
-    content: ' ';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: em(16, 24);
-    width: 33px;
-    height: em(43, 20);
-    background: url('/static/images/dots.gif') no-repeat 50% 50%;
+.search__query__input--loading {
+    background: #fff url('/static/images/dots.gif') no-repeat 97% 50%;
 }
 .search__results {
     background: transparentize(#343739, 0.6);
