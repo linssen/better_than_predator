@@ -50,16 +50,12 @@ module.exports = function (grunt) {
                 livereload: true
             },
             scripts: {
-                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js', '!static/scripts/dist/<%= pkg.name %>.js'],
-                tasks: ['concat', 'karma:unit:run']
+                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js','static/scripts/templates/**/*.tpl.html'],
+                tasks: ['concurrent:angular', 'concat', 'karma:unit:run']
             },
             styles: {
                 files: ['static/styles/main.scss'],
                 tasks: ['sass', 'concat']
-            },
-            templates: {
-                files: ['static/scripts/templates/**/*.tpl.html'],
-                tasks: ['html2js']
             }
         },
         sass: {
