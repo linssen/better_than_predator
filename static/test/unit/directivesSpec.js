@@ -53,10 +53,8 @@ describe('BTP controllers', function () {
             runs(function () {
                 // Fire off the mock JSONP request
                 httpBackend.flush(1);
-
+                // Are the films in the scope now?
                 expect(scope.films.length).toEqual(expectedFilms().movies.length);
-                expect(scope.films[0].id).toEqual(expectedFilms().movies[0].id);
-                expect(_.last(scope.films).id).toEqual(_.last(expectedFilms().movies).id);
             });
         });
 
