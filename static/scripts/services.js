@@ -4,12 +4,13 @@ angular.module('btp.services', [])
     .factory('Film', ['$resource',
         function ($resource) {
             /*jshint camelcase: false */
-            var defaultParams;
+            var defaultParams, Film;
             defaultParams = {
                 apikey: '6ynntf95p6h4pb8df3v73r7q',
                 callback: 'JSON_CALLBACK'
             };
-            return $resource('http://api.rottentomatoes.com/api/public/v1.0/movies/:id.json',
+            Film = $resource(
+                'http://api.rottentomatoes.com/api/public/v1.0/movies/:id.json',
                 defaultParams,
                 {
                     query: {
@@ -41,5 +42,7 @@ angular.module('btp.services', [])
                     }
                 }
             );
+
+            return Film;
         }
     ]);
