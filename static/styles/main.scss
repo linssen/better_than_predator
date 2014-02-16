@@ -35,6 +35,7 @@ body {
     font-family: $font_stack;
     font-size: 100%;
     line-height: em(16);
+    color: #fff;
 }
 #main {
     @include outer-container;
@@ -59,7 +60,6 @@ a {
 }
 %button {
     display: inline-block;
-    color: #fff;
     text-decoration: none;
     padding: em(8);
     line-height: 1em;

@@ -21,6 +21,6 @@ angular.module('btpApp', [
         controller: 'SearchCtrl'
     })
     .otherwise({
-        redirectTo: '/'
+        templateUrl: '../static/scripts/templates/404.tpl.html',
     });
 }]);
