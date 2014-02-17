@@ -263,6 +263,22 @@ hr {
         top: 3em;
     }
 }
+%star__rating {
+    width: 20%;
+    height: 1em;
+    display: block;
+    float: left;
+}
+.star__rating--on {
+    @extend %star__rating;
+
+    background: pink;
+}
+.star__rating--off {
+    @extend %star__rating;
+
+    background: black;
+}
 .icon__again {
     background-image: url('/static/images/arrow-left.svg');
 }

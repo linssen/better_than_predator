@@ -57,5 +57,23 @@ angular.module('btp.directives', ['btp.filters'])
                 element.bind('keyup', keyup);
             }
         };
+    })
+    .directive('ngStars', function () {
+        return {
+            restrict: 'A',
+            templateUrl: '../static/scripts/templates/film-stars.tpl.html',  // transclude: true,
+
+            scope: true,
+
+            link: function (scope, element, attrs) {
+                scope.stars = {on: 0, off: 0};
+                scope.$watch('film', function(newval, oldval) {
+                    if (newval.ratings) {
+                        scope.stars.on = (newval.ratings.combined / 10) * 100;
+                        scope.stars.off = 100 - scope.stars.on;
+                    }
+                }, true);
+            }
+        }
     }
 );
