@@ -65,13 +65,13 @@ a {
     padding: em(8);
     line-height: 1em;
     text-align: center;
-    background: #343739 no-repeat em(16, 24) 50%;
+    background: $color__contast;
     margin-bottom: em(24, 24);
-    padding: em(16, 24) em(24, 24) em(16, 24) em(61, 24);
+    padding: em(16, 24);
 
     &:hover,
     &:focus {
-        background-color: lighten(#343739, 5);
+        background-color: lighten($color__contast, 5);
     }
 }
 %icon {
@@ -151,7 +151,7 @@ hr {
     background: #fff url('/static/images/dots.gif') no-repeat 97% 50%;
 }
 .search__results {
-    background: transparentize(#343739, 0.6);
+    background: transparentize($color__contast, 0.6);
     clear: both;
 }
 .search__results__film {
@@ -164,7 +164,7 @@ hr {
 .search__results__film--active,
 .search__results__film:hover,
 .search__results__film:focus {
-    background: #343739;
+    background: $color__contast;
 }
 
 
@@ -186,24 +186,38 @@ hr {
 .versus__films__film {
     @include span-columns(3 of 6);
 
-    background: white;
     position: relative;
 
     @include media($small) {
         @include span-columns(2);
     }
 }
+.versus__films__poster,
+.versus__films__rating {
+    @include box-sizing(border-box);
+
+    padding: 8px;
+    background: white;
+}
 .versus__films__poster {
     width: 100%;
 }
 .versus__films__rating {
-    font-size: em(96);
+    font-size: em(64);
     line-height: 1;
     color: #506666;
     letter-spacing: -3px;
 
     @include media($small) {
         font-size: em(48);
+        width: 100%;
+        border: 8px solid #fff;
+        border-top: none;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: transparentize($color__contast, 0.1);
+        color: #fff;
     }
 
     small {
@@ -241,7 +255,6 @@ hr {
         left: 0;
         top: 0;
     }
-
 }
 .versus__info__button:nth-of-type(2) {
     @include omega;

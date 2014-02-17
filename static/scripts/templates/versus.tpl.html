@@ -6,11 +6,12 @@
 
 <div class="versus__films">
     <div ng-repeat="film in films" class="versus__films__film">
-        <h2>{{film.title}}</h2>
-
         <img ng-src="{{film.posters.original}}" class="versus__films__poster" width="300">
 
-        <div class="versus__films__rating">{{film.ratings.combined}}<small>/ 10</small></div>
+        <div class="versus__films__rating">
+            {{film.ratings.combined}}
+        </div>
+
     </div>
 </div>
 
