@@ -264,10 +264,17 @@ hr {
     }
 }
 %star__rating {
-    width: 20%;
     height: 1em;
     display: block;
     float: left;
+}
+.score__rating {
+    width: 20%;
+    float: left;
+}
+.star__rating {
+    width: 75%;
+    float: right;
 }
 .star__rating--on {
     @extend %star__rating;
