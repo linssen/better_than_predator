@@ -24,6 +24,7 @@
 
 $base_font: 16;
 $font_stack: 'Pathway Gothic One', sans-serif;
+$color__contast: #343739;
 // $visual_grid: true;
 
 /* BODY
@@ -72,6 +73,12 @@ a {
     &:focus {
         background-color: lighten(#343739, 5);
     }
+}
+%icon {
+    display: inline-block;
+    padding: em(16, 24);
+    margin: em(-16, 24) 0 em(-16, 24) em(-16, 24);
+    background: darken($color__contast, 0.5);
 }
 h1 {
     @include span-columns(6);
@@ -221,8 +228,7 @@ hr {
         font-size: em(16);
     }
 }
-.button__share,
-.button__again {
+.versus__info__button {
     @include span-columns(3 of 6);
     @extend %button;
 
@@ -237,16 +243,14 @@ hr {
     }
 
 }
-.button__share {
+.versus__info__button:nth-of-type(2) {
     @include omega;
-
-    background-image: url('/static/images/twitter.svg');
 
     @include media($small) {
         top: 3em;
     }
 }
-.button__again {
+.icon__again {
     background-image: url('/static/images/arrow-left.svg');
 }
 .versus__info__credit {

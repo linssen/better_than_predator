@@ -24,8 +24,12 @@
         and they thought you should be able to compare films to Predator. It is
         after all the ultimate benchmark.</p>
 
-    <a class="button__again" href="/">Again!</a>
-    <a class="button__share" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">Tweet this</a>
+    <a class="versus__info__button" href="/">
+        <span class="icon__again"></span> Again!
+    </a>
+    <a class="versus__info__button" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">
+        <span class="icon__tweet"></span> Tweet this
+    </a>
 
     <p class="versus__info__credit">Copyright &copy; {{now | date:'yyyy'}} <a href="http://linssen.me/">Wil Linssen</a>.</p>
 
