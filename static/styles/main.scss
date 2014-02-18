@@ -263,28 +263,19 @@ hr {
         top: 3em;
     }
 }
-%star__rating {
-    height: 1em;
+.rating__score {
+    width: 20%;
     display: block;
     float: left;
 }
-.score__rating {
-    width: 20%;
-    float: left;
-}
-.star__rating {
-    width: 75%;
+.rating__star {
+    width: 70%;
     float: right;
-}
-.star__rating--on {
-    @extend %star__rating;
 
-    background: pink;
-}
-.star__rating--off {
-    @extend %star__rating;
-
-    background: black;
+    svg {
+        width: 20%;
+        height: auto;
+    }
 }
 .icon__again {
     background-image: url('/static/images/arrow-left.svg');

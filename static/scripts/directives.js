@@ -61,19 +61,35 @@ angular.module('btp.directives', ['btp.filters'])
     .directive('ngStars', function () {
         return {
             restrict: 'A',
-            templateUrl: '../static/scripts/templates/film-stars.tpl.html',  // transclude: true,
-
+            templateUrl: '../static/scripts/templates/film-stars.tpl.html',
             scope: true,
 
             link: function (scope, element, attrs) {
-                scope.stars = {on: 0, off: 0};
-                scope.$watch('film', function(newval, oldval) {
-                    if (newval.ratings) {
-                        scope.stars.on = (newval.ratings.combined / 10) * 100;
-                        scope.stars.off = 100 - scope.stars.on;
+                var buildStars;
+
+                scope.stars = [];
+
+                buildStars = function (rating, filmID) {
+                    var i, integer, clip, star;
+                    i = 0;
+                    integer = Math.floor(rating);
+                    scope.clipPath = {id: 'clip' + filmID, width: rating - integer};
+                    for (i; i < 10; i += 1) {
+                        scope.stars.push({
+                            clip: i === integer ? true : false,
+                            active: i <= integer ? true : false
+                        });
                     }
+                };
+
+                scope.$watch('film', function(newval, oldval) {
+                    if (!newval.ratings) { return; }
+                    buildStars(newval.ratings.combined, newval.id);
                 }, true);
-            }
+
+            },
+
+
         }
     }
 );
