@@ -65,31 +65,48 @@ angular.module('btp.directives', ['btp.filters'])
             scope: true,
 
             link: function (scope, element, attrs) {
-                var buildStars;
+                var buildStars, height, setAttributes, width;
 
                 scope.stars = [];
+                scope.clipPath = {id: 0, width: 0};
+                width = attrs['star-width'] || 51;
+                height = attrs['star-height'] || 49;
 
                 buildStars = function (rating, filmID) {
-                    var i, integer, clip, star;
+                    var i, integer;
                     i = 0;
                     integer = Math.floor(rating);
                     scope.clipPath = {id: 'clip' + filmID, width: rating - integer};
+
                     for (i; i < 10; i += 1) {
                         scope.stars.push({
                             clip: i === integer ? true : false,
-                            active: i <= integer ? true : false
+                            active: i <= integer ? true : false,
+                            transform: 'translate(' +
+                                ((i % 5) * width) + ', ' +
+                                (Math.floor(i / 5) * height) +
+                            ')'
                         });
                     }
                 };
 
-                scope.$watch('film', function(newval, oldval) {
+                setAttributes = function () {
+                    var svg, viewBox;
+                    svg = element.find('svg').get(0);
+                    viewBox = {width: width * 5, height: height * 2};
+                    svg.setAttribute('width', viewBox.width);
+                    svg.setAttribute('height', viewBox.height);
+                    svg.setAttribute('viewBox', '0,0,' + viewBox.width + ',' + viewBox.height);
+                    return svg;
+                };
+
+                scope.$watch('film', function (newval) {
                     if (!newval.ratings) { return; }
+                    setAttributes();
                     buildStars(newval.ratings.combined, newval.id);
                 }, true);
 
             },
-
-
-        }
+        };
     }
 );
