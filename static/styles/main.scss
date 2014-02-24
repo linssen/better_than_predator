@@ -59,26 +59,34 @@ a {
         text-decoration: none;
     }
 }
-%button {
+.button {
     display: inline-block;
     text-decoration: none;
-    padding: em(8);
     line-height: 1em;
     text-align: center;
     background: $color__contast;
     margin-bottom: em(24, 24);
-    padding: em(16, 24);
+    padding: em(16, 24) em(8, 24);
+    padding-left: em(64, 24);
+    position: relative;
 
     &:hover,
     &:focus {
         background-color: lighten($color__contast, 5);
     }
-}
-%icon {
-    display: inline-block;
-    padding: em(16, 24);
-    margin: em(-16, 24) 0 em(-16, 24) em(-16, 24);
-    background: darken($color__contast, 0.5);
+    &:active {
+        background-color: darken($color__contast, 10);
+    }
+    &:after {
+        content: ' ';
+        width: em(56, 24);
+        height: 100%;
+        display: block;
+        background: darken($color__contast, 5) no-repeat 50% 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }
 h1 {
     @include span-columns(6);
@@ -207,6 +215,7 @@ hr {
     line-height: 1;
     color: #506666;
     letter-spacing: -3px;
+    overflow: hidden;
 
     @include media($small) {
         font-size: em(48);
@@ -242,22 +251,30 @@ hr {
         font-size: em(16);
     }
 }
-.versus__info__button {
+.button--again,
+.button--tweet {
     @include span-columns(3 of 6);
-    @extend %button;
 
     @include media($small) {
         @include fill-parent;
         @include omega;
         @include shift(2 of 2);
 
+        font-size: em(20, 16);
         position: absolute;
         left: 0;
         top: 0;
     }
 }
-.versus__info__button:nth-of-type(2) {
+.button--again:after {
+    background-image: url(/static/images/arrow-left.svg);
+}
+.button--tweet {
     @include omega;
+
+    &:after {
+        background-image: url(/static/images/twitter.svg);
+    }
 
     @include media($small) {
         top: 3em;
@@ -274,11 +291,12 @@ hr {
 
     svg {
         width: 100%;
-        height: auto;
+        height: 1em;
     }
 }
 .icon__again {
-    background-image: url('/static/images/arrow-left.svg');
+    @extend %icon;
+    // background-image: url('/static/images/arrow-left.svg');
 }
 .versus__info__credit {
     font-size: em(16, 24);
