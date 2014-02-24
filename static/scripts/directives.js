@@ -62,29 +62,36 @@ angular.module('btp.directives', ['btp.filters'])
         return {
             restrict: 'A',
             templateUrl: '../static/scripts/templates/film-stars.tpl.html',
-            scope: true,
+            scope: {
+                id: '@id',
+                rating: '@rating'
+            },
 
             link: function (scope, element, attrs) {
-                var buildStars, height, setAttributes, width;
+                var buildStars, height, outof, rows, rowMod,
+                    setAttributes, width;
 
                 scope.stars = [];
                 scope.clipPath = {id: 0, width: 0};
                 width = attrs['star-width'] || 51;
                 height = attrs['star-height'] || 49;
+                outof = attrs['out-of'] || 10;
+                rows = parseInt(attrs.rows) || 1;
+                rowMod = Math.floor(outof / rows);
 
-                buildStars = function (rating, filmID) {
+                buildStars = function (rating, id) {
                     var i, integer;
                     i = 0;
                     integer = Math.floor(rating);
-                    scope.clipPath = {id: 'clip' + filmID, width: rating - integer};
+                    scope.clipPath = {id: 'clip' + id, width: rating - integer};
 
-                    for (i; i < 10; i += 1) {
+                    for (i; i < outof; i += 1) {
                         scope.stars.push({
                             clip: i === integer ? true : false,
                             active: i <= integer ? true : false,
                             transform: 'translate(' +
-                                ((i % 5) * width) + ', ' +
-                                (Math.floor(i / 5) * height) +
+                                ((i % rowMod) * width) + ', ' +
+                                (Math.floor(i / rowMod) * height) +
                             ')'
                         });
                     }
@@ -93,17 +100,17 @@ angular.module('btp.directives', ['btp.filters'])
                 setAttributes = function () {
                     var svg, viewBox;
                     svg = element.find('svg').get(0);
-                    viewBox = {width: width * 5, height: height * 2};
+                    viewBox = {width: width * rowMod, height: height * rows};
                     svg.setAttribute('width', viewBox.width);
                     svg.setAttribute('height', viewBox.height);
                     svg.setAttribute('viewBox', '0,0,' + viewBox.width + ',' + viewBox.height);
                     return svg;
                 };
 
-                scope.$watch('film', function (newval) {
-                    if (!newval.ratings) { return; }
+                scope.$watch('rating', function (newval) {
+                    if (!newval) { return; }
                     setAttributes();
-                    buildStars(newval.ratings.combined, newval.id);
+                    buildStars(newval, scope.id);
                 }, true);
 
             },

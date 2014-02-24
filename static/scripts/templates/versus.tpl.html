@@ -10,7 +10,16 @@
 
         <div class="versus__films__rating">
             <div class="rating__score">{{film.ratings.combined}}</div>
-            <div class="rating__star" star-width="51" star-height="49" ng-stars></div>
+            <div
+                class="rating__star"
+                star-width="51"
+                star-height="49"
+                rows="2"
+                outof="10"
+                ng-attr-rating="{{film.ratings.combined}}"
+                ng-attr-id="{{film.id}}"
+                ng-stars>
+            </div>
 
         </div>
 
