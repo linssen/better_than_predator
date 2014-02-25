@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         concat: {
             scripts: {
                 src: [
-                    'static/bower_components/jquery/jquery.js',
+                    'static/bower_components/jquery/dist/jquery.js',
                     'static/bower_components/lodash/dist/lodash.js',
                     'static/bower_components/angular/angular.js',
                     'static/bower_components/angular-route/angular-route.js',

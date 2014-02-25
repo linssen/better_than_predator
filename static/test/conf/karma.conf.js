@@ -6,7 +6,7 @@ module.exports = function (config) {
 
         files : [
             'static/bower_components/es5-shim/es5-shim.js',
-            'static/bower_components/jquery/jquery.js',
+            'static/bower_components/jquery/dist/jquery.js',
             'static/bower_components/lodash/dist/lodash.js',
             'static/bower_components/angular/angular.js',
             'static/bower_components/angular-resource/angular-resource.js',
