@@ -50,7 +50,7 @@ module.exports = function (grunt) {
                 livereload: true
             },
             scripts: {
-                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js','static/scripts/templates/**/*.tpl.html'],
+                files: ['static/scripts/**/*.js', 'static/test/unit/**/*.js', 'static/scripts/templates/**/*.tpl.html'],
                 tasks: ['concurrent:angular', 'concat', 'karma:unit:run']
             },
             styles: {
@@ -129,7 +129,8 @@ module.exports = function (grunt) {
             test: {
                 tasks: ['karma:continuous', 'protractor']
             }
-        }
+        },
+        clean: ['static/dist', 'static/scripts/build']
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -142,8 +143,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('test', ['concurrent:angular', 'concurrent:dist', 'connect', 'concurrent:test']);
-    grunt.registerTask('default', ['concurrent:angular', 'concurrent:dist']);
+    grunt.registerTask('default', ['clean', 'concurrent:angular', 'concurrent:dist']);
 
 };
