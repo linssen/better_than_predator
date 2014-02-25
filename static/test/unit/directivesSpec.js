@@ -2,7 +2,7 @@
 
 describe('BTP controllers', function () {
     var API_BASE, element, expectedFilms, filmResource, httpBackend,
-        location, scope;
+        jQuery, location, scope;
 
     beforeEach(module('ngResource'));
     beforeEach(module('ngMock'));
@@ -21,8 +21,9 @@ describe('BTP controllers', function () {
         };
     };
 
-    beforeEach(inject(function ($compile, $injector, $rootScope, $location) {
+    beforeEach(inject(function ($compile, $injector, $rootScope, $location, $window) {
         httpBackend = $injector.get('$httpBackend');
+        jQuery = $window.jQuery;
         scope = $rootScope.$new();
         filmResource = $injector.get('Film');
         location = $location;
@@ -80,7 +81,7 @@ describe('BTP controllers', function () {
             expect(scope.activeIndex).toEqual(0);
             // Pressing enter navigates us to the versus page with our
             // selected film
-            element.trigger(evEnter)
+            element.trigger(evEnter);
             expect(location.path()).toEqual(expectedPath);
         });
     });
