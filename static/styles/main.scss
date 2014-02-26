@@ -293,6 +293,16 @@ hr {
         width: 100%;
         height: 1em;
     }
+    .outline {
+        stroke: #CCCCCC;
+
+        @include media($small) {
+            stroke: #555555;
+        }
+    }
+    .highlight {
+        stroke: #CD2E1B;
+    }
 }
 .icon__again {
     @extend %icon;

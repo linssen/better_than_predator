@@ -61,7 +61,7 @@ angular.module('btp.directives', ['btp.filters'])
     .directive('ngStars', function () {
         return {
             restrict: 'A',
-            templateUrl: '../static/scripts/templates/film-stars.tpl.html',
+            templateUrl: '../static/scripts/templates/star-rating.tpl.html',
             scope: {
                 id: '@id',
                 rating: '@rating'
