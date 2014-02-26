@@ -41,7 +41,7 @@
     <a class="button button--again" href="/">
         Again!
     </a>
-    <a class="button button--tweet" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">
+    <a class="button button--tweet" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title | truncate:40}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">
         Tweet this
     </a>
 
