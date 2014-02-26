@@ -9,8 +9,8 @@ angular.module('btp.controllers', [])
             $scope.title = '';
         }]
     )
-    .controller('VersusCtrl', ['PREDATOR', '$scope', '$routeParams', '$location', '$q', '$window', 'Film',
-        function (PREDATOR, $scope, $routeParams, $location, $q, $window, Film) {
+    .controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$q', '$window', 'Film',
+        function ($scope, $routeParams, $location, $q, $window, Film) {
             $q.all([
                 Film.get({id: PREDATOR}),
                 Film.get({id: $routeParams.id})

@@ -1,6 +1,8 @@
 /*global angular*/
 'use strict';
 
+var PREDATOR = '16751';
+
 angular.module('btpApp', [
     'ngRoute',
     'ngResource',
@@ -10,8 +12,6 @@ angular.module('btpApp', [
     'btp.filters',
     'templates-main'
 ])
-.constant('PREDATOR', '16751')
-.constant('API_KEY', '6ynntf95p6h4pb8df3v73r7q')
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/versus/:id/:title', {
         templateUrl: '../static/scripts/templates/versus.tpl.html',
