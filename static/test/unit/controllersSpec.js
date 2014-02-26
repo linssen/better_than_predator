@@ -23,7 +23,8 @@ describe('BTP controllers', function () {
                 release_dates: {
                     theater: '1987-06-12',
                     dvd: '2000-12-26'
-                }
+                },
+                posters: {original: ''}
             },
             honey: {
                 id: '10611',
@@ -35,7 +36,8 @@ describe('BTP controllers', function () {
                 release_dates: {
                     theater: '1989-06-23',
                     dvd: '2002-10-08'
-                }
+                },
+                posters: {original: ''}
             }
         };
     };
