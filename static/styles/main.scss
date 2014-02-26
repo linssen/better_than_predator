@@ -207,12 +207,14 @@ hr {
     padding: 8px;
     background: white;
 }
-.versus__films__poster img {
-    width: 100%;
-    @include prefixer(mask-box-image, url(/static/images/ticket.svg) 100 stretch, webkit moz o spec);
+.versus__films__poster {
+    img {
+        width: 100%;
+    }
 }
 .versus__films__rating {
     font-size: em(64);
+    padding-top: 0;
     line-height: 1;
     color: #506666;
     letter-spacing: -3px;
@@ -220,9 +222,7 @@ hr {
 
     @include media($small) {
         font-size: em(48);
-        width: 100%;
-        border: 8px solid #fff;
-        border-top: none;
+        margin: 8px;
         position: absolute;
         left: 0;
         bottom: 0;
@@ -282,12 +282,12 @@ hr {
     }
 }
 .rating__score {
-    width: 20%;
-    display: block;
-    float: left;
+    @include span-columns(1 of 3);
 }
 .rating__star {
-    width: 70%;
+    @include span-columns(2 of 3);
+    @include omega;
+
     float: right;
 
     svg {
