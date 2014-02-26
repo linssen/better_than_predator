@@ -30,6 +30,7 @@ angular.module('btp.services', [])
                         isArray: false,
                         transformResponse: function (data) {
                             var date;
+                            if ('' + data.id === PREDATOR) { data.posters.original = '/static/images/predator.jpg'; }
                             data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
                             data.ratings.combined = Math.round(data.ratings.combined) / 10;
                             date = data.release_dates.theater || data.release_dates.dvd || null;
