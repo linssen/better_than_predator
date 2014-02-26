@@ -10,4 +10,10 @@ angular.module('btp.filters', [])
                 .toLowerCase();
             return $window.encodeURIComponent(str);
         };
-    }]);
+    }])
+    .filter('truncate', function () {
+        return function (str, len) {
+            str = '' + str;
+            return str.length > len ? str.slice(0, len - 1) + '…' : str;
+        };
+    });

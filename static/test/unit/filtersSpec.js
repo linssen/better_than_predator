@@ -9,4 +9,10 @@ describe('BTP filters', function () {
             expect(urlizeFilter('Big %&#! Zombie')).toEqual('big-zombie');
         }));
     });
+
+    describe('truncate', function () {
+        it ('should truncate a long string', inject(function (truncateFilter) {
+            expect(truncateFilter('A very long name', 9)).toEqual('A very l…');
+        }));
+    });
 });

@@ -9,6 +9,7 @@ angular.module('btpApp', [
     'btp.controllers',
     'btp.services',
     'btp.directives',
+    'btp.filters',
     'templates-main'
 ])
 .config(['$routeProvider', function ($routeProvider) {
