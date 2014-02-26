@@ -207,8 +207,9 @@ hr {
     padding: 8px;
     background: white;
 }
-.versus__films__poster {
+.versus__films__poster img {
     width: 100%;
+    @include prefixer(mask-box-image, url(/static/images/ticket.svg) 100 stretch, webkit moz o spec);
 }
 .versus__films__rating {
     font-size: em(64);

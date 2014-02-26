@@ -6,7 +6,9 @@
 
 <div class="versus__films">
     <div ng-repeat="film in films" class="versus__films__film">
-        <img ng-src="{{film.posters.original}}" class="versus__films__poster" width="300">
+        <div class="versus__films__poster">
+            <img ng-src="{{film.posters.original}}" width="300">
+        </div>
 
         <div class="versus__films__rating">
             <div class="rating__score">{{film.ratings.combined}}</div>
