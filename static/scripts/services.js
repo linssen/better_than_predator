@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('btp.services', [])
-    .factory('Film', ['$resource',
-        function ($resource) {
+    .factory('Film', ['PREDATOR', 'API_KEY', '$resource',
+        function (PREDATOR, API_KEY, $resource) {
             /*jshint camelcase: false */
             var defaultParams, Film;
             defaultParams = {
-                apikey: '6ynntf95p6h4pb8df3v73r7q',
+                apikey: API_KEY,
                 callback: 'JSON_CALLBACK'
             };
             Film = $resource(
