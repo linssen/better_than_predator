@@ -11,7 +11,7 @@ describe('BTP filters', function () {
     });
 
     describe('truncate', function () {
-        it ('should truncate a long string', inject(function (truncateFilter) {
+        it('should truncate a long string', inject(function (truncateFilter) {
             expect(truncateFilter('A very long name', 9)).toEqual('A very l…');
         }));
     });
