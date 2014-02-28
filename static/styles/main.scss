@@ -305,10 +305,6 @@ hr {
         stroke: #CD2E1B;
     }
 }
-.icon__again {
-    @extend %icon;
-    // background-image: url('/static/images/arrow-left.svg');
-}
 .versus__info__credit {
     font-size: em(16, 24);
 }
