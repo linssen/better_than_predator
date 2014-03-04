@@ -243,6 +243,7 @@ input[type="search"] {
     @include media($small) {
         font-size: em(48);
         margin: 8px;
+        padding-top: 8px;
         position: absolute;
         left: 0;
         bottom: 0;
