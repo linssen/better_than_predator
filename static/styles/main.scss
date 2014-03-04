@@ -143,6 +143,16 @@ hr {
         display: none;
     }
 }
+input[type="search"] {
+    @include box-sizing(border-box);
+    @include border-top-radius(0);
+    @include border-left-radius(0);
+    @include border-bottom-radius(0);
+    @include border-right-radius(0);
+
+    -webkit-appearance: none;
+    display: block;
+}
 
 
 /* SEARCH
@@ -153,14 +163,13 @@ hr {
 
     font-size: em(24);
 }
+
 .search__query__input {
     @include fill-parent;
 
     font-family: $font_stack;
     padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
     border: none;
-    -webkit-appearance: textfield;
-    box-sizing: border-box;
     color: $color__contast;
 }
 .search__query__input--loading {
