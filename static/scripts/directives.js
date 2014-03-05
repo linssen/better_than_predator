@@ -11,7 +11,7 @@ angular.module('btp.directives', ['btp.filters'])
 
                 keys = {up: 38, down: 40, enter: 13};
                 scope.activeIndex = 0;
-                queryBoxSelector = 'search__query__input';
+                queryBoxSelector = 'search__query';
                 queryBox = element.find('.' + queryBoxSelector);
 
                 autocomplete = function (newValue) {

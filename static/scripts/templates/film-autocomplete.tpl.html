@@ -1,16 +1,16 @@
 <input
-    class="search__query__input"
+    class="search__query"
     type="search"
     ng-model="query"
     id="search_query"
     placeholder="Find a film...">
 
-<ul class="search__results">
+<ul class="search__result-list">
     <li ng-repeat="f in films" id="{{f.id}}">
         <a
             ng-href="#/versus/{{f.id}}/{{f.title | urlize}}"
-            class="search__results__film"
-            ng-class="{'search__results__film--active': $index === activeIndex}">
+            class="search__result-item"
+            ng-class="{'search__result-item--active': $index === activeIndex}">
             {{f.title}} ({{f.year}})
         </a>
     </li>
