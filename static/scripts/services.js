@@ -22,7 +22,9 @@ angular.module('btp.services', [])
                             page: 1
                         },
                         transformResponse: function (data) {
-                            return data.movies;
+                            return _.filter(data.movies, function (d) {
+                                return d.id !== PREDATOR && d.year !== '';
+                            });
                         }
                     },
                     get: {
