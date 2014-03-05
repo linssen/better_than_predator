@@ -33,8 +33,12 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 body {
-    background: url(/static/images/bigbg.jpg) no-repeat center center fixed #050D10;
+    background-image: url(/static/images/bigbg.jpg);
     @include prefixer(background-size, cover, webkit moz o);
+    background-repeat:  no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: #050D10;
     font-family: $font_stack;
     font-size: 100%;
     line-height: em(16);
