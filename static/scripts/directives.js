@@ -6,21 +6,33 @@ angular.module('btp.directives', ['btp.filters'])
             restrict: 'A',
             templateUrl: '../static/scripts/templates/film-autocomplete.tpl.html',
             link: function (scope, element) {
-                var autocomplete, choose, keys, keyup, queryBox,
+                var autocomplete, choose, choppah, easter, keys, keyup, queryBox,
                     queryBoxSelector, nav;
 
                 keys = {up: 38, down: 40, enter: 13};
                 scope.activeIndex = 0;
                 queryBoxSelector = 'search__query';
                 queryBox = element.find('.' + queryBoxSelector);
+                choppah = /^get to (the|da) chopp(ah|er|ar)/i;
 
                 autocomplete = function (newValue) {
                     if (!newValue || newValue.length < 2) { return; }
+                    if (choppah.test(newValue)) { easter(); }
                     queryBox.addClass(queryBoxSelector + '--loading');
                     scope.films = Film.query({q: newValue});
                     scope.films.$promise.then(function () {
                         queryBox.removeClass(queryBoxSelector + '--loading');
                     });
+                };
+                easter = function () {
+                    var tpl;
+                    tpl = $('<div class="easter">' +
+                        '<span class="easter__point"></span>' +
+                        '<span class="easter__point"></span>' +
+                        '<span class="easter__point"></span>' +
+                    '</div>');
+                    $('body').append(tpl);
+                    setTimeout(function () { tpl.remove(); }, 40100);
                 };
                 keyup = function (ev) {
                     switch (ev.which) {

@@ -343,3 +343,71 @@ input[type="search"] {
 .credit {
     font-size: em(16, 24);
 }
+
+
+/* RESULTS
+--------------------------------------------------------- */
+@include keyframes(target) {
+    0% {
+        @include transform(scale(0.4) rotate(5deg));
+        left: 100%;
+        top: 100%;
+    }
+    20% {
+        @include transform(scale(1) rotate(8deg));
+        left: 20%;
+        top: 4%;
+    }
+    30% {
+        @include transform(scale(0.6) rotate(15deg));
+        left: 27%;
+        top: 7%;
+    }
+    40% {
+        @include transform(scale(0.63) rotate(10deg));
+        left: 35%;
+        top: 6%;
+    }
+    50% {
+        @include transform(scale(0.62) rotate(20deg));
+        left: 42%;
+        top: 9%;
+    }
+    70% {
+        left: 10%;
+        top: 7%;
+    }
+    100% {
+        @include transform(scale(0.4) rotate(100deg));
+        left: 0%;
+        top: 100%;
+    }
+}
+.easter {
+    @include animation(target 40.0s ease-in-out);
+
+    width: 100px;
+    height: 100px;
+    top: 100%;
+    left: 100%;
+    position: absolute;
+}
+.easter__point {
+    border-radius: 50px;
+    box-shadow: 0 0 20px red;
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 0, 0, 0.7);
+
+    &:nth-child(1) {
+        left: 100%;
+    }
+    &:nth-child(2) {
+        left: 50%;
+        top: 100%;
+    }
+}
