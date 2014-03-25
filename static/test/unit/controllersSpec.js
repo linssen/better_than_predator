@@ -59,7 +59,6 @@ describe('BTP controllers', function () {
 
         it('should start with an empty set of films', function () {
             // Films should be empty to begin with
-            expect(scope.title).toEqual('');
             expect(scope.films).toEqual([]);
         });
     });
