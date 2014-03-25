@@ -84,6 +84,30 @@ describe('BTP controllers', function () {
             element.trigger(evEnter);
             expect(location.path()).toEqual(expectedPath);
         });
+
+        it('should show \'no results\' when there are no results', function () {
+            var expectedURL;
+            expectedURL = new RegExp(API_BASE + '\\/movies\\.json.*q=nothing$');
+
+            httpBackend.expectJSONP(expectedURL).respond(200, {movies: []});
+
+            // Set the model `query` to string 'honey'
+            scope.query = 'nothing';
+
+            // Fire off the digest for watch
+            element.scope().$apply();
+
+            // Wait for our debounce to finish
+            waits(101);
+
+            runs(function () {
+                // Fire off the mock JSONP request
+                httpBackend.flush(1);
+                // Are the films in the scope now?
+                expect(scope.films.length).toEqual(0);
+                expect(scope.noResults).toEqual(true);
+            });
+        });
     });
 
 });
