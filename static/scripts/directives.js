@@ -21,6 +21,7 @@ angular.module('btp.directives', ['btp.filters'])
                     queryBox.addClass(queryBoxSelector + '--loading');
                     scope.films = Film.query({q: newValue});
                     scope.films.$promise.then(function () {
+                        scope.noResults = scope.films.length === 0;
                         queryBox.removeClass(queryBoxSelector + '--loading');
                     });
                 };

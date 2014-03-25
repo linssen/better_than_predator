@@ -6,7 +6,7 @@ angular.module('btp.controllers', [])
             var watching;
             watching = true;
             $scope.films = [];
-            $scope.title = '';
+            $scope.noResults = false;
         }]
     )
     .controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$q', '$window', 'Film',
