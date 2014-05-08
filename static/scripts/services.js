@@ -36,8 +36,8 @@ angular.module('btp.services', [])
                             data.ratings.combined = (data.ratings.critics_score + data.ratings.audience_score) / 2;
                             data.ratings.combined = Math.round(data.ratings.combined) / 10;
                             date = data.release_dates.theater || data.release_dates.dvd || null;
-                            if (date) {
-                                data.release_dates.computed = new Date(date.split('-'));
+                            if (date !== null) {
+                                data.release_dates.computed = new Date(date);
                             }
 
                             return data;
