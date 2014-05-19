@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="top" ng-app="btpApp">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,6 +10,10 @@
 
         <!-- FAVICONS  -->
         <link rel="shortcut icon" href="/static/images/favicon.png" />
+
+        <script src="/static/scripts/react.js"></script>
+        <script src="/static/scripts/JSXTransformer.js"></script>
+        <script src="/static/scripts/jquery-1.11.1.js"></script>
 
         <link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
 
@@ -33,8 +37,9 @@
     </head>
     <body>
 
-        <div role="main" id="main" ng-view></div>
+        <div role="main" id="main"></div>
 
-        <script src="/static/dist/scripts/better_than_predator.js"></script>
+        <script type="text/jsx" src="/static/scripts/search.jsx"></script>
+
     </body>
 </html>
