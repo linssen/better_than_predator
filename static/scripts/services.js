@@ -6,7 +6,7 @@ angular.module('btp.services', [])
             /*jshint camelcase: false */
             var defaultParams, Film;
             defaultParams = {
-                apikey: '6ynntf95p6h4pb8df3v73r7q',
+                apikey: 'q57ex572922cc5js8wyj57c5',
                 callback: 'JSON_CALLBACK'
             };
             Film = $resource(
