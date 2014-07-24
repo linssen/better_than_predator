@@ -2,6 +2,8 @@
 
 exports.config = {
 
+    seleniumAddress: 'http://0.0.0.0:4444/wd/hub',
+
     capabilities: {
         'browserName': 'phantomjs',
         'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs'
