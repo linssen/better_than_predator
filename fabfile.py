@@ -63,7 +63,7 @@ def deploy(verbosity='normal', branch=None):
         hide_args = ['running', 'stdout']
     with hide(*hide_args):
         puts('Updating repository...')
-        execute(push)
+        execute(push, branch=branch)
         puts('Grunting...')
         execute(grunt)
 
