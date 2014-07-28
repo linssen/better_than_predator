@@ -65,7 +65,7 @@ angular.module('btp.directives', ['btp.filters'])
                 };
 
                 // Bindings etc.
-                scope.$watch('query', _.debounce(autocomplete, 100));
+                scope.$watch('query', _.debounce(autocomplete, 500));
                 element.bind('keyup', keyup);
             }
         };
