@@ -37,7 +37,7 @@ describe('BTP controllers', function () {
 
         it('should return films via xhr with a proper search term', function () {
             var expectedURL;
-            expectedURL = new RegExp(API_BASE + '/search/movie.*query=honey$');
+            expectedURL = new RegExp(API_BASE + '/search/movie\?.*query=honey');
 
             httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms());
 

@@ -29,7 +29,7 @@ describe('BTP services', function () {
 
     it('should respond to a valid query with multiple films', function () {
         var expectedURL, films;
-        expectedURL = new RegExp('^' + API_BASE + '/search/movie.*query=honey$');
+        expectedURL = new RegExp('^' + API_BASE + '/search/movie\?.*query=honey');
 
         httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms());
         films = filmResource.search.query({query: 'honey'});
