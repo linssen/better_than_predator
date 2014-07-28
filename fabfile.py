@@ -50,7 +50,7 @@ def push(branch=None):
         sudo('git checkout -f %s' % branch, user=env.web_user)
 
 @task
-def deploy(verbosity='normal'):
+def deploy(verbosity='normal', branch=None):
     """
     Full server deploy.
 
