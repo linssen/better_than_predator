@@ -10,13 +10,12 @@ describe('BTP controllers', function () {
     beforeEach(module('btp.directives'));
     beforeEach(module('templates-main'));
 
-    API_BASE = 'http://api\\.rottentomatoes\\.com/api/public/v1\\.0';
+    API_BASE = 'http://api\\.themoviedb\\.org/3';
     expectedFilms = function () {
-        /*jshint camelcase: false */
         return {
-            movies: [
-                {id: 10611, title: 'Honey, I Shrunk the Kids', url: 'honey-i-shrunk-the-kids'},
-                {id: 770882280, title: 'Honey', url: 'honey'}
+            results: [
+                {id: 106, title: 'Honey, I Shrunk the Kids', url: 'honey-i-shrunk-the-kids'},
+                {id: 9394, title: 'Honey', url: 'honey'}
             ]
         };
     };
@@ -38,7 +37,7 @@ describe('BTP controllers', function () {
 
         it('should return films via xhr with a proper search term', function () {
             var expectedURL;
-            expectedURL = new RegExp(API_BASE + '\\/movies\\.json.*q=honey$');
+            expectedURL = new RegExp(API_BASE + '/search/movie.*query=honey$');
 
             httpBackend.expectJSONP(expectedURL).respond(200, expectedFilms());
 
@@ -55,13 +54,13 @@ describe('BTP controllers', function () {
                 // Fire off the mock JSONP request
                 httpBackend.flush(1);
                 // Are the films in the scope now?
-                expect(scope.films.length).toEqual(expectedFilms().movies.length);
+                expect(scope.films.length).toEqual(expectedFilms().results.length);
             });
         });
 
         it('should let the user pick a film with the keyboard', function () {
             var evDown, evEnter, evUp, expectedPath;
-            scope.films = expectedFilms().movies;
+            scope.films = expectedFilms().results;
             expectedPath = '/versus/:id/:title'
                 .replace(':id', scope.films[0].id)
                 .replace(':title', scope.films[0].url);

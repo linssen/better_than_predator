@@ -1,7 +1,7 @@
 /*global angular*/
 'use strict';
 
-var PREDATOR = '16751';
+var PREDATOR = '106';
 
 angular.module('btpApp', [
     'ngRoute',

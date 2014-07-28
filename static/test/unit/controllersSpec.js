@@ -9,35 +9,22 @@ describe('BTP controllers', function () {
     beforeEach(module('btp.controllers'));
     beforeEach(module('btp.services'));
 
-    API_BASE = 'http://api\\.rottentomatoes\\.com/api/public/v1\\.0';
+    API_BASE = 'http://api\\.themoviedb\\.org/3';
     expectedFilms = function () {
-        /*jshint camelcase: false */
         return {
             predator: {
-                id: '16751',
+                id: 106,
                 title: 'Predator',
-                ratings: {
-                    critics_score: 78,
-                    audience_score: 87
-                },
-                release_dates: {
-                    theater: '1987-06-12',
-                    dvd: '2000-12-26'
-                },
-                posters: {original: ''}
+                rating: 6.8,
+                date: new Date('1987-06-12'),
+                poster_path: ''
             },
             honey: {
-                id: '10611',
+                id: 9354,
+                rating: 6,
                 title: 'Honey, I Shrunk The Kids',
-                ratings: {
-                    critics_score: 75,
-                    audience_score: 52
-                },
-                release_dates: {
-                    theater: '1989-06-23',
-                    dvd: '2002-10-08'
-                },
-                posters: {original: ''}
+                poster: '',
+                date: new Date('1989-06-23'),
             }
         };
     };
@@ -67,10 +54,10 @@ describe('BTP controllers', function () {
     describe('VersusCtrl', function () {
         var expectedURL, routeParams;
         beforeEach(inject(function ($injector, $routeParams) {
-            expectedURL = new RegExp(API_BASE + '/movies/\\d+\\.json.*callback=JSON_CALLBACK$');
+            expectedURL = new RegExp(API_BASE + '/movie/\\d+.*callback=JSON_CALLBACK$');
 
             routeParams = $routeParams;
-            routeParams.id = '10611';
+            routeParams.id = 9354;
 
             controller('VersusCtrl', {
                 $scope: scope,
