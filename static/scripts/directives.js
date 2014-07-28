@@ -19,7 +19,7 @@ angular.module('btp.directives', ['btp.filters'])
                     if (!newValue || newValue.length < 2) { return; }
                     if (choppah.test(newValue)) { easter(); }
                     queryBox.addClass(queryBoxSelector + '--loading');
-                    scope.films = Film.query({q: newValue});
+                    scope.films = Film.search.query({query: newValue});
                     scope.films.$promise.then(function () {
                         queryBox.removeClass(queryBoxSelector + '--loading');
                     });

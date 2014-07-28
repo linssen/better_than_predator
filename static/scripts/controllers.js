@@ -12,8 +12,8 @@ angular.module('btp.controllers', [])
     .controller('VersusCtrl', ['$scope', '$routeParams', '$location', '$q', '$window', 'Film',
         function ($scope, $routeParams, $location, $q, $window, Film) {
             $q.all([
-                Film.get({id: PREDATOR}),
-                Film.get({id: $routeParams.id})
+                Film.single.get({id: PREDATOR}),
+                Film.single.get({id: $routeParams.id})
             ]).then(function (result) {
                 $scope.films = [result[0], result[1]];
             });

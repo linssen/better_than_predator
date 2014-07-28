@@ -11,7 +11,7 @@
             ng-href="#/versus/{{f.id}}/{{f.title | urlize}}"
             class="search__result-item"
             ng-class="{'search__result-item--active': $index === activeIndex}">
-            {{f.title}} ({{f.year}})
+            {{f.title}} ({{f.release_date}})
         </a>
     </li>
 </ul>

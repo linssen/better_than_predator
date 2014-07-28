@@ -1,24 +1,24 @@
 <h1>
-    <span ng-if="films[0].ratings.combined > films[1].ratings.combined">Predator wins! (obviously)</span>
-    <span ng-if="films[0].ratings.combined < films[1].ratings.combined">{{films[1].title}} wins!</span>
-    <span ng-if="films[0].ratings.combined === films[1].ratings.combined">{{films[1].title}} is just as good as Predator.</span>
+    <span ng-if="films[0].vote_average > films[1].vote_average">Predator wins! (obviously)</span>
+    <span ng-if="films[0].vote_average < films[1].vote_average">{{films[1].title}} wins!</span>
+    <span ng-if="films[0].vote_average === films[1].vote_average">{{films[1].title}} is just as good as Predator.</span>
 </h1>
 
 <div class="film-results">
     <div ng-repeat="film in films" class="film-results__film">
         <div class="film-results__poster">
-            <img ng-src="{{film.posters.original}}" width="300">
+            <img ng-src="{{film.poster}}" width="300">
         </div>
 
         <div class="film-results__rating">
-            <div class="film-results__score">{{film.ratings.combined}}</div>
+            <div class="film-results__score">{{film.vote_average}}</div>
             <div
                 class="film-results__stars"
                 star-width="51"
                 star-height="49"
                 rows="2"
                 outof="10"
-                ng-attr-rating="{{film.ratings.combined}}"
+                ng-attr-rating="{{film.vote_average}}"
                 ng-attr-id="{{film.id}}"
                 ng-stars>
             </div>
@@ -41,7 +41,7 @@
     <a class="button button--again info__button" href="/">
         Again!
     </a>
-    <a class="button button--tweet info__button info__button--last" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title | truncate:40}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].ratings.combined > films[1].ratings.combined && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">
+    <a class="button button--tweet info__button info__button--last" target="_blank" href="https://twitter.com/share/?url={{shareUrl}}&via=linssen&text=I%20just%20found%20out%20that%20{{films[1].title | truncate:40}}%20({{films[1].release_dates.computed | date:'yyyy'}})%20is{{films[0].vote_average > films[1].vote_average && 'n\'t as good as' || ' better than'}}%20{{films[0].title}}%20({{films[0].release_dates.computed | date:'yyyy'}}).">
         Tweet this
     </a>
 

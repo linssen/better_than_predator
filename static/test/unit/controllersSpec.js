@@ -9,7 +9,7 @@ describe('BTP controllers', function () {
     beforeEach(module('btp.controllers'));
     beforeEach(module('btp.services'));
 
-    API_BASE = 'http://api\\.rottentomatoes\\.com/api/public/v1\\.0';
+    API_BASE = 'http://api\\.themoviedb\\.org/3';
     expectedFilms = function () {
         /*jshint camelcase: false */
         return {
