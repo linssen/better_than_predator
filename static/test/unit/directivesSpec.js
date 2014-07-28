@@ -48,7 +48,7 @@ describe('BTP controllers', function () {
             element.scope().$apply();
 
             // Wait for our debounce to finish
-            waits(101);
+            waits(501);
 
             runs(function () {
                 // Fire off the mock JSONP request
