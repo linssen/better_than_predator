@@ -50,7 +50,4 @@ Single run tests with `grunt test` or `grunt protractor` or
 `grunt karma:continuous`. Note you must have a webdriver running for Protractor
 so `webdriver-manager start` before running integration tests.
 
-Watch the project and launch a karma server with `grunt unit:start:watch watch`
-the tests will then run as the watched files change.
-
 ![predator](https://f.cloud.github.com/assets/67624/415163/75afa1ae-ac2c-11e2-8a16-cab25bf1a58e.png)
