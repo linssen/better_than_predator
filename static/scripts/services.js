@@ -31,7 +31,8 @@ angular.module('btp.services', [])
                         params: {
                             query: '@query',
                             page: 1,
-                            include_adult: false
+                            include_adult: false,
+                            search_type: 'ngram'
                         }
                     }
                 }),
