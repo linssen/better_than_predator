@@ -3,12 +3,21 @@
 angular.module('btp.services', [])
     .factory('Film', ['$resource',
         function ($resource) {
-            var base, paramDefaults;
+            var base, paramDefaults, transform;
 
             base = 'http://api.themoviedb.org/3/';
             paramDefaults = {
                 api_key: '7fde67af78a621923d00705787723896',
                 callback: 'JSON_CALLBACK'
+            };
+            transform = function (film) {
+                return {
+                    id: film.id,
+                    title: film.title,
+                    date: film.release_date === '' ? null : new Date(film.release_date),
+                    rating: film.vote_average,
+                    poster: 'http://image.tmdb.org/t/p/original' + film.poster_path
+                }
             };
 
             return {
@@ -17,8 +26,7 @@ angular.module('btp.services', [])
                         method: 'JSONP',
                         isArray: true,
                         transformResponse: function (data) {
-                            console.log(data.results[0]);
-                            return data.results;
+                            return data.results.map(transform);
                         },
                         params: {
                             query: '@query',
@@ -31,8 +39,7 @@ angular.module('btp.services', [])
                     get: {
                         method: 'JSONP',
                         transformResponse: function (data) {
-                            data.poster = 'http://image.tmdb.org/t/p/original' + data.poster_path;
-                            return data;
+                            return transform(data);
                         }
                     }
                 })
