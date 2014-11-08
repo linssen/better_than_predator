@@ -14,7 +14,7 @@ describe('BTP controllers', function () {
     expectedFilms = function () {
         return {
             results: [
-                {id: 106, title: 'Honey, I Shrunk the Kids', url: 'honey-i-shrunk-the-kids'},
+                {id: 9354, title: 'Honey, I Shrunk the Kids', url: 'honey-i-shrunk-the-kids'},
                 {id: 9394, title: 'Honey', url: 'honey'}
             ]
         };
@@ -55,6 +55,26 @@ describe('BTP controllers', function () {
                 httpBackend.flush(1);
                 // Are the films in the scope now?
                 expect(scope.films.length).toEqual(expectedFilms().results.length);
+            });
+        });
+
+        it('will removed Predator from the auto complete results', function () {
+            var expected;
+            expected = {
+                films: expectedFilms(),
+                url: new RegExp(API_BASE + '/search/movie\?.*query=honey')
+            };
+            expected.films.results.push({id: 106, title: 'Predator', url: 'predator'});
+            httpBackend.expectJSONP(expected.url).respond(200, expected.films);
+            scope.query = 'honey';
+            element.scope().$apply();
+            // Wait for our debounce to finish
+            waits(501);
+            runs(function () {
+                // Fire off the mock JSONP request
+                httpBackend.flush(1);
+                // Are the films in the scope now?
+                expect(scope.films.length).toEqual(expected.films.results.length - 1);
             });
         });
 
