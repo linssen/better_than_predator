@@ -2,6 +2,7 @@
   "name": "better_than_predator",
   "version": "0.0.0",
   "dependencies": {
+<<<<<<< a5d81d470625ec0d20fe6baba23c87b6868b965d
     "angular": "~1.2.11",
     "jquery": "~2.1.0",
     "angular-route": "~1.2.11",
@@ -11,6 +12,11 @@
     "es5-shim": "~2.3.0",
     "bourbon": "~4.2.7",
     "neat": "~1.7.4"
+=======
+    "react": "~0.13.3",
+    "bourbon": "~4.2.3",
+    "neat": "~1.7.2"
+>>>>>>> Beginning to refactor for React and ES6
   },
   "devDependencies": {
     "es5-shim": "~2.3.0"
