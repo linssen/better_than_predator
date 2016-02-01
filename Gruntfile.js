@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 options: {
                     report: 'min',
                     mangle: true,
-                    compress: true
+                    compress: {}
                 },
                 files: {
                     'static/dist/scripts/<%= pkg.name %>.js': [
@@ -135,7 +135,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-protractor-runner');
