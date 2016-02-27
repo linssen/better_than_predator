@@ -1,7 +1,7 @@
 @import 'normalize';
-@import './../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import 'vendor/bourbon/bourbon';
 @import 'grid-settings';
-@import './../bower_components/neat/app/assets/stylesheets/neat';
+@import 'vendor/neat/neat';
 
 /*
 
@@ -152,7 +152,7 @@ hr {
     }
 }
 input[type="search"] {
-    @include box-sizing(border-box);
+    box-sizing: border-box;
     @include border-top-radius(0);
     @include border-left-radius(0);
     @include border-bottom-radius(0);
@@ -240,7 +240,7 @@ input[type="search"] {
 }
 .film-results__poster,
 .film-results__rating {
-    @include box-sizing(border-box);
+    box-sizing: border-box;
 
     padding: 8px;
     background: white;
