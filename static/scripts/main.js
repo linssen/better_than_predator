@@ -2,29 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
 
+import Search from './modules/Search'
+import Results from './modules/Results'
+
 
 window.React = React;
-
-class Search extends React.Component {
-    render() {
-        return (
-            <div className="search">
-                <h1>Search</h1>
-                <Link to="/versus">Versus</Link>
-            </div>
-        )
-    }
-}
-
-class Results extends React.Component {
-    render() {
-        return (
-            <div className="results">
-                <h1>Results</h1>
-            </div>
-        )
-    }
-}
 
 ReactDOM.render((
   <Router history={browserHistory}>
