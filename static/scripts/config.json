@@ -1,0 +1,5 @@
+{
+    "apiUrl": "http://api.themoviedb.org/3/",
+    "apiKey": "7fde67af78a621923d00705787723896",
+    "posterUrl": "http://image.tmdb.org/t/p/original"
+}

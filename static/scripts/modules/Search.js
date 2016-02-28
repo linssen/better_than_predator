@@ -2,7 +2,14 @@
 
 import React from 'react';
 import { Link } from 'react-router';
+import $ from 'jquery'
 
+import APIUtils from '../utils/APIUtils'
+
+
+const API_BASE = 'http://api.themoviedb.org/3/';
+const API_KEY = '7fde67af78a621923d00705787723896';
+const POSTER_BASE = 'http://image.tmdb.org/t/p/original/';
 
 class Result extends React.Component {
     render() {
@@ -40,9 +47,36 @@ class TypeAhead extends React.Component {
     }
     handleQueryChange(e) {
         this.setState({query: e.target.value});
-        this.setState({results: [
-            {title: this.state.query, id: 1}
-        ]})
+        if (this.state.query.length > 2) {
+            this.search(this.state.query);
+        }
+    }
+    search(query) {
+        let url = `${API_BASE}search/movie/`;
+        let payload = {
+            api_key: API_KEY,
+            query: query,
+            page: 1,
+            include_adult: false,
+            search_type: 'ngram'
+        };
+        let $dfd = $.ajax({
+            url: url,
+            data: payload,
+            dataType: 'jsonp',
+        });
+        $dfd.done(this.processResults.bind(this));
+    }
+    processResults(data) {
+        this.setState({results: data.results.map((result) => {
+            return {
+                title: result.title,
+                id: result.id,
+                rating: result.vote_average,
+                date: result.release_date === '' ? null : new Date(result.release_date),
+                poster: `${POSTER_BASE}${result.poster_path}`
+            };
+        })});
     }
     render() {
         return (
