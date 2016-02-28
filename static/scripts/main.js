@@ -11,6 +11,6 @@ window.React = React;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Search}/>
-    <Route path="/versus" component={Results}/>
+    <Route path="/versus/:id/:slug/" component={Results}/>
   </Router>
 ), document.getElementById('main'))

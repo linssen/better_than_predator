@@ -2,21 +2,18 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import $ from 'jquery'
+import $ from 'jquery';
 
-import APIUtils from '../utils/APIUtils'
-
-
-const API_BASE = 'http://api.themoviedb.org/3/';
-const API_KEY = '7fde67af78a621923d00705787723896';
-const POSTER_BASE = 'http://image.tmdb.org/t/p/original/';
+import config from  '../config.json';
+import APIUtils from '../utils/APIUtils';
+import { slugify } from '../utils/StringUtils';
 
 class Result extends React.Component {
     render() {
         return (
             <li>
                 <Link
-                    to="/versus"
+                    to={`/versus/${this.props.id}/${this.props.slug}/`}
                     className="search__result-item"
                 >{this.props.title}</Link>
             </li>
@@ -28,7 +25,12 @@ class ResultList extends React.Component {
     render() {
         let resultList = this.props.results.map((result) => {
             return (
-                <Result title={result.title} key={result.id}></Result>
+                <Result
+                    title={result.title}
+                    key={result.id}
+                    id={result.id}
+                    slug={slugify(result.title)}
+                ></Result>
             )
         });
         return (
@@ -52,9 +54,9 @@ class TypeAhead extends React.Component {
         }
     }
     search(query) {
-        let url = `${API_BASE}search/movie/`;
+        let url = `${config.apiUrl}search/movie`;
         let payload = {
-            api_key: API_KEY,
+            api_key: config.apiKey,
             query: query,
             page: 1,
             include_adult: false,
@@ -74,7 +76,7 @@ class TypeAhead extends React.Component {
                 id: result.id,
                 rating: result.vote_average,
                 date: result.release_date === '' ? null : new Date(result.release_date),
-                poster: `${POSTER_BASE}${result.poster_path}`
+                poster: `${config.posterUrl}${result.poster_path}`
             };
         })});
     }
