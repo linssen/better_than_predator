@@ -89,6 +89,7 @@ class Results extends React.Component {
         this.setState({versus: versus, predator: predator, winner: winner});
     }
     render() {
+        let year = new Date().getFullYear();
         let filmNodes = [this.state.predator, this.state.versus].map((film) => {
             if (!this.state.versus || !this.state.predator) return null;
             return (
@@ -127,7 +128,7 @@ class Results extends React.Component {
                     </a>
 
                     <p className="credit">
-                        Copyright © YYYY <a href="http://linssen.me/">Wil Linssen</a>,
+                        Copyright © {year} <a href="http://linssen.me/">Wil Linssen</a>,
                         and all of the code is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.<br />
                         Powered by <a href="https://www.themoviedb.org/">themoviedb.org</a>.
                     </p>
