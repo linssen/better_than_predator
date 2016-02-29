@@ -85,7 +85,7 @@ class Results extends React.Component {
     processResults(versusResult, predatorResult) {
         let versus = this.processSingle(versusResult[0]);
         let predator = this.processSingle(predatorResult[0]);
-        let winner = [versus, predator].sort((result) => result.rating)[0];
+        let winner = [versus, predator].sort((a, b) => b.rating - a.rating)[0];
         this.setState({versus: versus, predator: predator, winner: winner});
     }
     render() {
