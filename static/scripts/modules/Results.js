@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
+import StarRating from './StarRating'
 
 
 class Film extends React.Component {
@@ -21,13 +22,14 @@ class Film extends React.Component {
                  </div>
                  <div className="film-results__rating">
                     <div className="film-results__score">{this.state.rating}</div>
-                    <div
-                        className="film-results__stars"
-                        star-width="51"
-                        star-height="49"
-                        rows="2"
-                        outof="10"
-                    ></div>
+                    <div className="film-results__stars">
+                        <StarRating
+                            width="51"
+                            height="49"
+                            rows="2"
+                            outof="10"
+                        />
+                    </div>
                 </div>
             </div>
         )
