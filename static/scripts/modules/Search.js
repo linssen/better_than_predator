@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
-import APIUtils from '../utils/APIUtils';
 import { slugify } from '../utils/StringUtils';
 
 class Result extends React.Component {
