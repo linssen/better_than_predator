@@ -7,14 +7,6 @@ import $ from 'jquery';
 import config from  '../config.json';
 
 
-const filmProps = {
-    title: null,
-    id: null,
-    rating: null,
-    date: null,
-    poster: null
-};
-
 class Film extends React.Component {
     constructor(props) {
         super(props);
