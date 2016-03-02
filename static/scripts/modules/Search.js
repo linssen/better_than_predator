@@ -7,7 +7,7 @@ import $ from 'jquery';
 import config from  '../config.json';
 import { slugify } from '../utils/StringUtils';
 
-class Result extends React.Component {
+export class Result extends React.Component {
     render() {
         return (
             <li>
@@ -20,7 +20,7 @@ class Result extends React.Component {
     }
 }
 
-class ResultList extends React.Component {
+export class ResultList extends React.Component {
     render() {
         let resultList = this.props.results.map((result) => {
             return (
@@ -40,7 +40,7 @@ class ResultList extends React.Component {
     }
 }
 
-class TypeAhead extends React.Component {
+export class TypeAhead extends React.Component {
     constructor(props) {
         super(props);
         this.state = {query: '', results: []};
@@ -94,7 +94,7 @@ class TypeAhead extends React.Component {
     }
 }
 
-class Search extends React.Component {
+export default class Search extends React.Component {
     render() {
         return (
             <div className="search">
@@ -103,5 +103,3 @@ class Search extends React.Component {
         );
     }
 }
-
-export default Search

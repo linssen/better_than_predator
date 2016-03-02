@@ -18,7 +18,7 @@
   "license": "Creative Commons 3",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "babel-jest": "^6.0.1",
+    "babel-jest": "^5.3.0",
     "jest-cli": "^0.8.2",
     "react-addons-test-utils": "^0.14.7"
   },
@@ -47,7 +47,7 @@
       "<rootDir>/node_modules/fbjs"
     ],
     "verbose": true,
-    "testPathDirs":  [
+    "testPathDirs": [
       "<rootDir>/static/scripts"
     ]
   }
