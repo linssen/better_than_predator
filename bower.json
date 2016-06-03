@@ -9,8 +9,8 @@
     "lodash": "~2.4.1",
     "angular-mocks": "~1.2.11",
     "es5-shim": "~2.3.0",
-    "bourbon": "~3.1.8",
-    "neat": "~1.5.0"
+    "bourbon": "~4.2.7",
+    "neat": "~1.7.4"
   },
   "devDependencies": {
     "es5-shim": "~2.3.0"
