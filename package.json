@@ -20,12 +20,17 @@
   "devDependencies": {
     "babel-jest": "^13.2.2",
     "babel-polyfill": "^6.9.1",
+    "concurrently": "^2.2.0",
     "jest-cli": "^13.2.3",
-    "react-addons-test-utils": "^15.2.1"
+    "react-addons-test-utils": "^15.2.1",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "build": "browserify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify",
+    "watch:scripts": "watchify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify -v",
     "css": "node-sass ./static/styles/main.scss -o ./static/dist/styles",
+    "watch:css": "node-sass ./static/styles/main.scss -o ./static/dist/styles -w",
+    "watch": "concurrently --kill-others 'npm run watch:css' 'npm run watch:scripts'",
     "test": "jest"
   },
   "dependencies": {
