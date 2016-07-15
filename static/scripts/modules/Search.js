@@ -67,6 +67,7 @@ export class TypeAhead extends React.Component {
             dataType: 'jsonp',
         });
         $dfd.done(this.processResults.bind(this));
+        return $dfd;
     }
     processResults(data) {
         this.setState({results: data.results.map((result) => {
