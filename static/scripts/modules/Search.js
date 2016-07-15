@@ -86,6 +86,7 @@ export class TypeAhead extends React.Component {
                 <input
                     className="search__query"
                     type="search"
+                    ref="input"
                     value={this.state.query}
                     onChange={this.handleQueryChange}
                 />

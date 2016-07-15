@@ -9,7 +9,7 @@ import { TypeAhead } from '../modules/Search';
 
 describe('Type ahead', () => {
     const $ = require('jquery');
-    const results = {
+    const resultData = {
         results: [
             {
                 title: 'Film one',
@@ -36,20 +36,26 @@ describe('Type ahead', () => {
     };
 
     it('fetches when you type', () => {
-        var typeAhead = new TypeAhead();
+        const typeAhead = TestUtils.renderIntoDocument(
+            <TypeAhead/>
+        );
+        const typeAheadNode = ReactDOM.findDOMNode(typeAhead);
+        const $mockDfd = { done: (callback) => callback(resultData) };
+        var searchInput = TestUtils.findRenderedDOMComponentWithTag(typeAhead, 'input');
         var $dfd;
 
-        $.ajax.mockReturnValue({
-            done: jest.fn().mockReturnValue(results)
-        });
+        $.ajax.mockReturnValue($mockDfd);
+        typeAhead.setState({query: payload.query});
+        TestUtils.Simulate.change(searchInput);
 
-        $dfd = typeAhead.search(payload.query);
-
+        expect(searchInput.value).toEqual(payload.query);
         expect($.ajax).toBeCalledWith({
             dataType: 'jsonp',
             url: `${config.apiUrl}search/movie`,
             data: payload
         });
+        expect(typeAhead.state.results.length).toBe(2);
+        expect(typeAhead.state.results[0].title).toBe(resultData.results[0].title);
 
     });
 });
