@@ -35,20 +35,25 @@ describe('Type ahead', () => {
         search_type: 'ngram'
     };
 
+    beforeEach(() => {
+        // Reset ajax mock, so our call counts are more legit
+        $.ajax = jest.fn();
+        $.ajax.mockReturnValue({
+            done: (callback) => callback(resultData)
+        });
+    });
+
     it('fetches when you type', () => {
-        const typeAhead = TestUtils.renderIntoDocument(
-            <TypeAhead/>
-        );
+        const typeAhead = TestUtils.renderIntoDocument(<TypeAhead/>);
         const typeAheadNode = ReactDOM.findDOMNode(typeAhead);
-        const $mockDfd = { done: (callback) => callback(resultData) };
         var searchInput = TestUtils.findRenderedDOMComponentWithTag(typeAhead, 'input');
         var $dfd;
 
-        $.ajax.mockReturnValue($mockDfd);
         typeAhead.setState({query: payload.query});
         TestUtils.Simulate.change(searchInput);
 
         expect(searchInput.value).toEqual(payload.query);
+        expect($.ajax.mock.calls.length).toBe(1);
         expect($.ajax).toBeCalledWith({
             dataType: 'jsonp',
             url: `${config.apiUrl}search/movie`,
@@ -56,6 +61,16 @@ describe('Type ahead', () => {
         });
         expect(typeAhead.state.results.length).toBe(2);
         expect(typeAhead.state.results[0].title).toBe(resultData.results[0].title);
+    });
 
+    it('doesn\'t fetch for queries under 3 chars', () => {
+        const typeAhead = TestUtils.renderIntoDocument(<TypeAhead/>);
+        const typeAheadNode = ReactDOM.findDOMNode(typeAhead);
+        var searchInput = TestUtils.findRenderedDOMComponentWithTag(typeAhead, 'input');
+
+        typeAhead.setState({query: '..'});
+        TestUtils.Simulate.change(searchInput);
+
+        expect($.ajax.mock.calls.length).toBe(0);
     });
 });
