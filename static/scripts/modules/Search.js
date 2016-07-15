@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import request from 'request-promise';
+import $ from 'jquery';
 
 import config from  '../config.json';
 import { slugify } from '../utils/StringUtils';
@@ -53,22 +53,21 @@ export class TypeAhead extends React.Component {
         }
     }
     search(query) {
-        var url = `${config.apiUrl}search/movie`;
-        var payload = {
+        let url = `${config.apiUrl}search/movie`;
+        let payload = {
             api_key: config.apiKey,
             query: query,
             page: 1,
             include_adult: false,
             search_type: 'ngram'
         };
-        var promise = request({
-            method: 'GET',
+        let $dfd = $.ajax({
             url: url,
-            qs: payload,
-            json: true
+            data: payload,
+            dataType: 'jsonp',
         });
-        promise.then(this.processResults.bind(this));
-        return promise;
+        $dfd.done(this.processResults.bind(this));
+        return $dfd;
     }
     processResults(data) {
         this.setState({results: data.results.map((result) => {

@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import request from 'request-promise';
-import Promise from 'bluebird';
+import $ from 'jquery';
 
 import config from  '../config.json';
 import StarRating from './StarRating'
@@ -49,25 +48,24 @@ class Results extends React.Component {
         this.fetch();
     }
     fetch() {
-        var payload = {
+        let payload = {
             api_key: config.apiKey
         };
-        var promise = Promise.all(
-            request({
-                uri: `${config.apiUrl}movie/${this.state.versusId}`,
+        let $dfd = $.when(
+            $.ajax({
+                url: `${config.apiUrl}movie/${this.state.versusId}`,
                 method: 'GET',
-                json: true,
-                qs: payload
+                dataType: 'jsonp',
+                data: payload
             }),
-            request({
-                uri: `${config.apiUrl}movie/${config.predatorId}`,
+            $.ajax({
+                url: `${config.apiUrl}movie/${config.predatorId}`,
                 method: 'GET',
-                json: true,
-                qs: payload
+                dataType: 'jsonp',
+                data: payload
             })
         );
-        promise.done(this.processResults.bind(this));
-        return promise;
+        $dfd.done(this.processResults.bind(this));
     }
     processSingle(result) {
         return {

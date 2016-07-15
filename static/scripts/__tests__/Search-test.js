@@ -8,7 +8,7 @@ import config from  '../config.json';
 import { TypeAhead } from '../modules/Search';
 
 describe('Type ahead', () => {
-    const request = require('request-promise');
+    const $ = require('jquery');
     const resultData = {
         results: [
             {
@@ -37,9 +37,9 @@ describe('Type ahead', () => {
 
     beforeEach(() => {
         // Reset ajax mock, so our call counts are more legit
-        // request = jest.fn();
-        request.mockReturnValue({
-            then: (callback) => callback(resultData)
+        $.ajax = jest.fn();
+        $.ajax.mockReturnValue({
+            done: (callback) => callback(resultData)
         });
     });
 
@@ -53,8 +53,8 @@ describe('Type ahead', () => {
         TestUtils.Simulate.change(searchInput);
 
         expect(searchInput.value).toEqual(payload.query);
-        expect(request.mock.calls.length).toBe(1);
-        expect(request).toBeCalledWith({
+        expect($.ajax.mock.calls.length).toBe(1);
+        expect($.ajax).toBeCalledWith({
             dataType: 'jsonp',
             url: `${config.apiUrl}search/movie`,
             data: payload
@@ -71,6 +71,6 @@ describe('Type ahead', () => {
         typeAhead.setState({query: '..'});
         TestUtils.Simulate.change(searchInput);
 
-        expect(request.mock.calls.length).toBe(0);
+        expect($.ajax.mock.calls.length).toBe(0);
     });
 });
