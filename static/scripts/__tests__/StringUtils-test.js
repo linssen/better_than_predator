@@ -1,10 +1,10 @@
-jest.dontMock('../utils/StringUtils');
+jest.unmock('../utils/StringUtils');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-const StringUtils = require('../utils/StringUtils');
+import * as StringUtils from '../utils/StringUtils';
 
 describe('slugify', () => {
     it('transforms a string neatly', () => {
