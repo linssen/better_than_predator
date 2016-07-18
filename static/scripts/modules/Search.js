@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
@@ -56,6 +56,9 @@ export class TypeAhead extends React.Component {
             this.search(this.state.query);
         }
     }
+    handleKeyDown(e) {
+        if ([40, 38].indexOf(e.keyCode) > -1) this.navigateList(e.keyCode);
+        if (e.keyCode === 13) this.chooseResult();
     }
     navigateList(keyCode) {
         var direction = 0;
@@ -69,6 +72,11 @@ export class TypeAhead extends React.Component {
         this.setState({selected: selected});
 
         return selected;
+    }
+    chooseResult() {
+        var result = this.state.results[this.state.selected] || null;
+        if (this.state.results.length === 0 || result === null) return;
+        browserHistory.push(`/#/versus/${result.id}/${result.slug}/`);
     }
     search(query) {
         var url = `${config.apiUrl}search/movie`;
