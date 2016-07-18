@@ -9,11 +9,13 @@ import { slugify } from '../utils/StringUtils';
 
 export class Result extends React.Component {
     render() {
+        var cssClass = 'search__result-item';
+        if (this.props.isSelected) cssClass += ' search__result-item--active';
         return (
             <li>
                 <Link
                     to={`/versus/${this.props.id}/${this.props.slug}/`}
-                    className="search__result-item"
+                    className={cssClass}
                 >{this.props.title}</Link>
             </li>
         )
@@ -22,13 +24,15 @@ export class Result extends React.Component {
 
 export class ResultList extends React.Component {
     render() {
-        let resultList = this.props.results.map((result) => {
+        var resultList = this.props.results.map((result, idx) => {
+            var isSelected = this.props.selected === idx;
             return (
                 <Result
                     title={result.title}
                     key={result.id}
                     id={result.id}
                     slug={slugify(result.title)}
+                    isSelected={isSelected}
                 ></Result>
             )
         });
@@ -43,25 +47,39 @@ export class ResultList extends React.Component {
 export class TypeAhead extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {query: '', results: []};
+        this.state = {query: '', results: [], selected: 0};
         this.handleQueryChange = this.handleQueryChange.bind(this);
     }
     handleQueryChange(e) {
-        this.setState({query: e.target.value});
+        this.setState({query: e.target.value, selected: 0});
         if (this.state.query.length > 2) {
             this.search(this.state.query);
         }
     }
+    }
+    navigateList(keyCode) {
+        var direction = 0;
+        var numResults = this.state.results.length;
+        var selected = this.state.selected;
+
+        if (numResults === 0) return;
+
+        if (keyCode === 40 && selected < numResults) selected +=1;
+        if (keyCode === 38 && selected > 0) selected -=1;
+        this.setState({selected: selected});
+
+        return selected;
+    }
     search(query) {
-        let url = `${config.apiUrl}search/movie`;
-        let payload = {
+        var url = `${config.apiUrl}search/movie`;
+        var payload = {
             api_key: config.apiKey,
             query: query,
             page: 1,
             include_adult: false,
             search_type: 'ngram'
         };
-        let $dfd = $.ajax({
+        var $dfd = $.ajax({
             url: url,
             data: payload,
             dataType: 'jsonp',
@@ -86,11 +104,11 @@ export class TypeAhead extends React.Component {
                 <input
                     className="search__query"
                     type="search"
-                    ref="input"
                     value={this.state.query}
                     onChange={this.handleQueryChange}
+                    onKeyDown={this.handleKeyDown.bind(this)}
                 />
-                <ResultList results={this.state.results} />
+                <ResultList results={this.state.results} selected={this.state.selected} />
             </div>
         );
     }
