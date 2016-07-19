@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
@@ -45,6 +45,9 @@ export class ResultList extends React.Component {
 }
 
 export class TypeAhead extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object
+    }
     constructor(props) {
         super(props);
         this.state = {query: '', results: [], selected: 0};
@@ -76,7 +79,7 @@ export class TypeAhead extends React.Component {
     chooseResult() {
         var result = this.state.results[this.state.selected] || null;
         if (this.state.results.length === 0 || result === null) return;
-        browserHistory.push(`/#/versus/${result.id}/${result.slug}/`);
+        this.context.router.push(`/versus/${result.id}/${slugify(result.title)}/`);
     }
     search(query) {
         var url = `${config.apiUrl}search/movie`;
