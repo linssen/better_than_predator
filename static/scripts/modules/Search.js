@@ -10,13 +10,14 @@ import { slugify } from '../utils/StringUtils';
 export class Result extends React.Component {
     render() {
         var cssClass = 'search__result-item';
+        var year = this.props.date ? ` (${this.props.date.getFullYear()})` : '';
         if (this.props.isSelected) cssClass += ' search__result-item--active';
         return (
             <li>
                 <Link
                     to={`/versus/${this.props.id}/${this.props.slug}/`}
                     className={cssClass}
-                >{this.props.title}</Link>
+                >{this.props.title}{year}</Link>
             </li>
         )
     }
@@ -32,6 +33,7 @@ export class ResultList extends React.Component {
                     key={result.id}
                     id={result.id}
                     slug={slugify(result.title)}
+                    date={result.date}
                     isSelected={isSelected}
                 ></Result>
             )
@@ -117,6 +119,7 @@ export class TypeAhead extends React.Component {
                     value={this.state.query}
                     onChange={this.handleQueryChange.bind(this)}
                     onKeyDown={this.handleKeyDown.bind(this)}
+                    placeholder="Find a film..."
                 />
                 <ResultList results={this.state.results} selected={this.state.selected} />
             </div>
