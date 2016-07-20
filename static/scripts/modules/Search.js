@@ -54,10 +54,9 @@ export class TypeAhead extends React.Component {
         this.handleQueryChange = this.handleQueryChange.bind(this);
     }
     handleQueryChange(e) {
-        this.setState({query: e.target.value, selected: 0});
-        if (this.state.query.length > 2) {
-            this.search(this.state.query);
-        }
+        var query = e.target.value;
+        this.setState({query: query, selected: 0});
+        if (query.length > 2) this.search(query);
     }
     handleKeyDown(e) {
         if ([40, 38].indexOf(e.keyCode) > -1) this.navigateList(e.keyCode);
@@ -116,7 +115,7 @@ export class TypeAhead extends React.Component {
                     className="search__query"
                     type="search"
                     value={this.state.query}
-                    onChange={this.handleQueryChange}
+                    onChange={this.handleQueryChange.bind(this)}
                     onKeyDown={this.handleKeyDown.bind(this)}
                 />
                 <ResultList results={this.state.results} selected={this.state.selected} />
