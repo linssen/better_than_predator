@@ -5,10 +5,11 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
-import StarRating from './StarRating'
+import Film from '../models/Film';
+import StarRating from './StarRating';
 
 
-class Film extends React.Component {
+class FilmResult extends React.Component {
     constructor(props) {
         super(props);
         this.state = props;
@@ -48,37 +49,12 @@ class Results extends React.Component {
         this.fetch();
     }
     fetch() {
-        let payload = {
-            api_key: config.apiKey
-        };
-        let $dfd = $.when(
-            $.ajax({
-                url: `${config.apiUrl}movie/${this.state.versusId}`,
-                method: 'GET',
-                dataType: 'jsonp',
-                data: payload
-            }),
-            $.ajax({
-                url: `${config.apiUrl}movie/${config.predatorId}`,
-                method: 'GET',
-                dataType: 'jsonp',
-                data: payload
-            })
-        );
-        $dfd.done(this.processResults.bind(this));
+        $.when(
+            Film.store.findOne(this.state.versusId),
+            Film.store.findOne(config.predatorId)
+        ).done(this.processResults.bind(this));
     }
-    processSingle(result) {
-        return {
-            title: result.title,
-            id: parseInt(result.id, 10),
-            rating: parseFloat(result.vote_average),
-            date: result.release_date === '' ? null : new Date(result.release_date),
-            poster: `${config.posterUrl}${result.poster_path}`
-        };
-    }
-    processResults(versusResult, predatorResult) {
-        let versus = this.processSingle(versusResult[0]);
-        let predator = this.processSingle(predatorResult[0]);
+    processResults(versus, predator) {
         let winner = [versus, predator].sort((a, b) => b.rating - a.rating)[0];
         this.setState({versus: versus, predator: predator, winner: winner});
     }
@@ -87,7 +63,7 @@ class Results extends React.Component {
         let filmNodes = [this.state.predator, this.state.versus].map((film) => {
             if (!this.state.versus || !this.state.predator) return null;
             return (
-                <Film
+                <FilmResult
                     title={film.title}
                     id={film.id}
                     key={film.id}

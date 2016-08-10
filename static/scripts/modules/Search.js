@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import config from  '../config.json';
-import { slugify } from '../utils/StringUtils';
+import Film from '../models/Film';
 
 export class Result extends React.Component {
     render() {
@@ -32,7 +32,7 @@ export class ResultList extends React.Component {
                     title={result.title}
                     key={result.id}
                     id={result.id}
-                    slug={slugify(result.title)}
+                    slug={result.slug}
                     date={result.date}
                     isSelected={isSelected}
                 ></Result>
@@ -80,35 +80,12 @@ export class TypeAhead extends React.Component {
     chooseResult() {
         var result = this.state.results[this.state.selected] || null;
         if (this.state.results.length === 0 || result === null) return;
-        this.context.router.push(`/versus/${result.id}/${slugify(result.title)}/`);
+        this.context.router.push(`/versus/${result.id}/${result.slug}/`);
     }
     search(query) {
-        var url = `${config.apiUrl}search/movie`;
-        var payload = {
-            api_key: config.apiKey,
-            query: query,
-            page: 1,
-            include_adult: false,
-            search_type: 'ngram'
-        };
-        var $dfd = $.ajax({
-            url: url,
-            data: payload,
-            dataType: 'jsonp',
+        return Film.store.find(query).then((films) => {
+            this.setState({results: films});
         });
-        $dfd.done(this.processResults.bind(this));
-        return $dfd;
-    }
-    processResults(data) {
-        this.setState({results: data.results.map((result) => {
-            return {
-                title: result.title,
-                id: result.id,
-                rating: result.vote_average,
-                date: result.release_date === '' ? null : new Date(result.release_date),
-                poster: `${config.posterUrl}${result.poster_path}`
-            };
-        })});
     }
     render() {
         return (
