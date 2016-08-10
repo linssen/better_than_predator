@@ -15,7 +15,7 @@
     }
   ],
   "author": "Wil Linssen",
-  "license": "Creative Commons 3",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
     "babel-jest": "^14.1.0",
