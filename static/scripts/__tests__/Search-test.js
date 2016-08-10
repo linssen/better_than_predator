@@ -6,40 +6,34 @@ import TestUtils from 'react-addons-test-utils';
 
 import config from  '../config.json';
 import { TypeAhead } from '../modules/Search';
+import Film from '../models/Film';
 
 describe('Type ahead', () => {
     const $ = require('jquery');
-    const resultData = {
-        results: [
-            {
-                title: 'Film one',
-                id: 1,
-                rating: 1.5,
-                date: 1468578092970,
-                poster_url: 'poster-one-url'
-            },
-            {
-                title: 'Film two',
-                id: 2,
-                rating: 2.5,
-                date: 1468578092970,
-                poster_url: 'poster-two-url'
-            }
-        ]
-    };
-    const payload = {
-        api_key: config.apiKey,
-        query: 'my query',
-        page: 1,
-        include_adult: false,
-        search_type: 'ngram'
-    };
+    const resultData = [
+        {
+            title: 'Film one',
+            id: 1,
+            rating: 1.5,
+            date: new Date(1468578092970),
+            poster_url: 'poster-one-url',
+            slug: 'film-one'
+        },
+        {
+            title: 'Film two',
+            id: 2,
+            rating: 2.5,
+            date: new Date(1468578092970),
+            poster_url: 'poster-two-url',
+            slug: 'film-two'
+        }
+    ]
 
     beforeEach(() => {
         // Reset ajax mock, so our call counts are more legit
-        $.ajax = jest.fn();
-        $.ajax.mockReturnValue({
-            done: (callback) => callback(resultData)
+        Film.store.find = jest.fn();
+        Film.store.find.mockReturnValue({
+            then: (callback) => callback(resultData)
         });
     });
 
@@ -47,20 +41,17 @@ describe('Type ahead', () => {
         const typeAhead = TestUtils.renderIntoDocument(<TypeAhead/>);
         const typeAheadNode = ReactDOM.findDOMNode(typeAhead);
         var searchInput = TestUtils.findRenderedDOMComponentWithTag(typeAhead, 'input');
+        var query = 'something;'
         var $dfd;
 
-        typeAhead.setState({query: payload.query});
+        typeAhead.setState({query: query});
         TestUtils.Simulate.change(searchInput);
 
-        expect(searchInput.value).toEqual(payload.query);
-        expect($.ajax.mock.calls.length).toBe(1);
-        expect($.ajax).toBeCalledWith({
-            dataType: 'jsonp',
-            url: `${config.apiUrl}search/movie`,
-            data: payload
-        });
+        expect(searchInput.value).toEqual(query);
+        expect(Film.store.find.mock.calls.length).toBe(1);
+        expect(Film.store.find).toBeCalledWith(query);
         expect(typeAhead.state.results.length).toBe(2);
-        expect(typeAhead.state.results[0].title).toBe(resultData.results[0].title);
+        expect(typeAhead.state.results[0].title).toBe(resultData[0].title);
     });
 
     it('doesn\'t fetch for queries under 3 chars', () => {
@@ -71,7 +62,7 @@ describe('Type ahead', () => {
         typeAhead.setState({query: '..'});
         TestUtils.Simulate.change(searchInput);
 
-        expect($.ajax.mock.calls.length).toBe(0);
+        expect(Film.store.find.mock.calls.length).toBe(0);
     });
 
     it('changes selected item with arrow keys', () => {
