@@ -69,32 +69,27 @@ describe('Type ahead', () => {
         var typeAhead = TestUtils.renderIntoDocument(<TypeAhead/>);
         var searchInput = TestUtils.findRenderedDOMComponentWithTag(typeAhead, 'input');
         var typeAheadNode = ReactDOM.findDOMNode(typeAhead);
-        var up = () => {
-            TestUtils.Simulate.keyDown(searchInput, {
-                key: 'ArrowUp', keyCode: 38, which: 38
-            });
-        }
-        var down = () => {
-            TestUtils.Simulate.keyDown(searchInput, {
-                key: 'ArrowDown', keyCode: 40, which: 40
-            });
-        }
+        var move = ({key='ArrowDown', count=1}) => {
+            var codes = {ArrowDown: 40, ArrowUp: 38};
+            for (var i=0; i<count; i++) {
+                TestUtils.Simulate.keyDown(searchInput, {
+                    key: key, keyCode: codes[key], which: codes[key]
+                });
+            }
+        };
 
         typeAhead.setState({query: '...'});
         TestUtils.Simulate.change(searchInput);
 
         expect(typeAhead.state.selected).toBe(0);
-        down();
+        move({key: 'ArrowDown'});
         expect(typeAhead.state.selected).toBe(1);
-        up();
+        move({key: 'ArrowUp'});
         expect(typeAhead.state.selected).toBe(0);
         // Now make sure we can't move past the limits
-        up();
-        up();
+        move({key: 'ArrowUp', count: 2});
         expect(typeAhead.state.selected).toBe(0);
-        down();
-        down();
-        down();
+        move({key: 'ArrowDown', count: 3});
         expect(typeAhead.state.selected).toBe(typeAhead.state.results.length);
     });
 });
