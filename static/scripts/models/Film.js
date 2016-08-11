@@ -18,7 +18,7 @@ export class FilmStore {
             data: payload,
             dataType: 'jsonp',
         }).then((data, textStatus, jqXHR) => {
-            return data.results.map(this.transformResult);
+            return data.results.map((d) => new Film(d));
         });
     }
 
@@ -32,32 +32,21 @@ export class FilmStore {
             dataType: 'jsonp',
             data: payload
         }).then((data) => {
-            return this.transformResult(data);
+            return new Film(data);
         });
-    }
-
-    static transformResult(data) {
-        return new Film({
-            title: data.title,
-            id: data.id,
-            rating: data.vote_average,
-            date: data.release_date === '' ? null : new Date(data.release_date),
-            poster: `${config.posterUrl}${data.poster_path}`,
-            slug: slugify(data.title),
-        })
     }
 }
 
 export default class Film {
     static store = FilmStore;
 
-    constructor(props) {
-        this.title = props.title;
-        this.id = props.id;
-        this.rating = props.rating;
-        this.date = props.date;
-        this.poster = props.poster;
-        this.slug = props.slug;
+    constructor({title, id, vote_average, release_date, poster_path}) {
+        this.title = title;
+        this.id = id;
+        this.rating = vote_average;
+        this.date = release_date === '' ? null : new Date(release_date);
+        this.poster = `${config.posterUrl}${poster_path}`;
+        this.slug = slugify(title);
     }
 
 }
