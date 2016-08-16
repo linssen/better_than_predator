@@ -32,7 +32,9 @@
     "css": "node-sass ./static/styles/main.scss -o ./static/dist/styles",
     "watch:css": "node-sass ./static/styles/main.scss -o ./static/dist/styles -w",
     "watch": "concurrently --kill-others 'npm run watch:css' 'npm run watch:scripts'",
-    "test": "jest"
+    "test": "snyk test && jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.13.2",
@@ -43,7 +45,8 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-router": "^2.6.1",
-    "reactify": "^1.1.1"
+    "reactify": "^1.1.1",
+    "snyk": "^1.18.0"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
@@ -57,5 +60,6 @@
     "testPathDirs": [
       "<rootDir>/static/scripts"
     ]
-  }
+  },
+  "snyk": true
 }

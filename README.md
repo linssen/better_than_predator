@@ -1,7 +1,8 @@
 Better than Predator
 ===============================================================================
 
-[ ![Codeship Status for linssen/better_than_predator](https://codeship.io/projects/401ec2e0-f560-0131-175b-225f727abe9a/status)](https://codeship.io/projects/28285)
+[![Build Status](https://travis-ci.org/linssen/better_than_predator.png?branch=master)](https://travis-ci.org/linssen/better_than_predator)
+[![Known Vulnerabilities](https://snyk.io/test/github/linssen/better_than_predator/badge.svg)](https://snyk.io/test/github/linssen/better_than_predator)
 
 Installation
 -------------------------------------------------------------------------------
