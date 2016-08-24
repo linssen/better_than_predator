@@ -42,7 +42,7 @@ class Results extends React.Component {
         super(props);
         this.state = {
             versusId: props.params.id,
-            winner: {title: ''},
+            winner: null,
             predator: null,
             versus: null
         };
@@ -59,8 +59,25 @@ class Results extends React.Component {
         this.setState({versus: versus, predator: predator, winner: winner});
     }
     render() {
-        let year = new Date().getFullYear();
-        let filmNodes = [this.state.predator, this.state.versus].map((film) => {
+        var year = new Date().getFullYear();
+        var conjoin;
+        var shareString;
+        var tweetUrl;
+        var thisUrl;
+        var filmNodes;
+
+        if (!this.state.winner) return null;
+
+        thisUrl = `http://www.betterthanpredator.com/#/versus/${this.state.versus.id}/${this.state.versus.slug}/`
+        conjoin = this.state.winner.id === this.state.predator.id
+            ? 'n’t as good as' : 'better than';
+        shareString = `I just found out that ${this.state.versus.title} ` +
+            `(${this.state.versus.date.getFullYear()}) is${conjoin} Predator.`
+        tweetUrl = `https://twitter.com/share/` +
+            `?url=${window.encodeURIComponent(thisUrl)}` +
+            `&via=linssen` +
+            `&text=${window.encodeURIComponent(shareString)}`;
+        filmNodes = [this.state.predator, this.state.versus].map((film) => {
             if (!this.state.versus || !this.state.predator) return null;
             return (
                 <FilmResult
@@ -93,7 +110,7 @@ class Results extends React.Component {
                         Again!
                     </Link>
 
-                    <a className="button button--tweet info__button info__button--last" target="_blank" href="">
+                    <a className="button button--tweet info__button info__button--last" target="_blank" href={tweetUrl}>
                         Tweet this
                     </a>
 
