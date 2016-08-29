@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="top" ng-app="btpApp">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,30 +11,17 @@
         <!-- FAVICONS  -->
         <link rel="shortcut icon" href="/static/images/favicon.png" />
 
-        <link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
+        <!-- <link href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'> -->
 
         <!-- STYLES -->
-        <link rel="stylesheet" href="/static/dist/styles/better_than_predator.css">
-
-        <!-- ANALYTICS -->
-        <script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-40422250-1']);
-          _gaq.push(['_trackPageview']);
-
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-
-        </script>
+        <link rel="stylesheet" href="/static/dist/styles/main.css">
 
     </head>
     <body>
 
-        <div role="main" id="main" ng-view></div>
+        <div role="main" id="main"></div>
 
-        <script src="/static/dist/scripts/better_than_predator.js"></script>
+        <script src="/static/dist/scripts/bundle.js"></script>
+
     </body>
 </html>

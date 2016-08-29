@@ -15,35 +15,51 @@
     }
   ],
   "author": "Wil Linssen",
-  "license": "Creative Commons 3",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-concurrent": "^0.4.3",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-concat": "^0.3.0",
-    "grunt-contrib-connect": "^0.6.0",
-    "grunt-sass": "^1.1.0",
-    "grunt-contrib-uglify": "^0.3.3",
-    "grunt-contrib-watch": "^0.5.3",
-    "grunt-html2js": "~0.2.4",
-    "grunt-karma": "^0.6.2",
-    "grunt-ngmin": "0.0.3",
-    "grunt-protractor-runner": "^0.2.5",
-    "karma": "^0.10.10",
-    "karma-chrome-launcher": "~0.1.2",
-    "karma-coffee-preprocessor": "^0.1.3",
-    "karma-firefox-launcher": "~0.1.3",
-    "karma-html2js-preprocessor": "~0.1.0",
-    "karma-jasmine": "^0.1.5",
-    "karma-phantomjs-launcher": "~0.1.2",
-    "karma-requirejs": "~0.2.1",
-    "karma-script-launcher": "~0.1.0",
-    "phantomjs": "~1.9.7-1",
-    "protractor": "^0.14.0",
-    "requirejs": "~2.1.10"
+    "babel-jest": "^14.1.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "concurrently": "^2.2.0",
+    "jest-cli": "^14.1.0",
+    "react-addons-test-utils": "^15.3.0",
+    "watchify": "^3.7.0"
   },
   "scripts": {
-    "test": "grunt test"
-  }
+    "build": "browserify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify",
+    "watch:scripts": "watchify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify -v",
+    "css": "node-sass ./static/styles/main.scss -o ./static/dist/styles",
+    "watch:css": "node-sass ./static/styles/main.scss -o ./static/dist/styles -w",
+    "watch": "concurrently --kill-others 'npm run watch:css' 'npm run watch:scripts'",
+    "test": "snyk test && jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "jquery": "^3.1.0",
+    "node-sass": "^3.8.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-router": "^2.6.1",
+    "reactify": "^1.1.1",
+    "snyk": "^1.18.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ],
+    "verbose": true,
+    "testPathDirs": [
+      "<rootDir>/static/scripts"
+    ]
+  },
+  "snyk": true
 }
