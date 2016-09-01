@@ -19,7 +19,7 @@ Install the requirements packages
 npm install
 ```
 
-Build the static files with Grunt
+Build the static files
 
 ```sh
 # Build the production ready files
