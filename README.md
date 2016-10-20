@@ -16,16 +16,16 @@ git clone https://github.com/linssen/better_than_predator
 Install the requirements packages
 
 ```sh
-npm install
+yarn install
 ```
 
 Build the static files
 
 ```sh
 # Build the production ready files
-npm build
+yarn build
 # Watch the files to automatically build them on change
-npm watch
+yarn watch
 ```
 
 Run a simple server with `python -m SimpleHTTPServer` or point a virtualhost
