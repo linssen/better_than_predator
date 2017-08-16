@@ -15,7 +15,7 @@
                 v-on:mouseenter="setIndex(index)"
                 class="search__result-item"
             >
-                <router-link :to="{name: 'result', params: {id: film.id, slug: 'hello'}}">
+                <router-link :to="{name: 'result', params: {id: film.id, slug: film.slug}}">
                     {{ film.title }}
                 </router-link>
             </li>
@@ -49,9 +49,16 @@ export default {
             if (newPos <= 0) newPos = 0;
             if (newPos >= maxVal) newPos = maxVal;
             this.selectedIndex = newPos;
+        },
         setIndex (index) {
             this.selectedIndex = index;
         },
+        selectFilm () {
+            var film = this.$store.films[this.selectedIndex];
+            this.$router.push({
+                path: 'result',
+                params: {id: film.id, slug: film.slug}
+            });
         }
     }
 }

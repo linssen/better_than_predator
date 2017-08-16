@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import film from '../api/film';
+import { slugify } from '../utils/string';
 
 Vue.use(Vuex);
 
@@ -45,7 +46,8 @@ export default new Vuex.Store({
                     id: film.id,
                     title: film.title,
                     releaseDate: film.release_date,
-                    voteAvg: film.vote_average
+                    voteAvg: film.vote_average,
+                    slug: slugify(film.title),
                 };
             });
         }
