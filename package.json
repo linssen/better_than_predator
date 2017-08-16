@@ -29,8 +29,8 @@
     "watchify": "^3.9.0"
   },
   "scripts": {
-    "build": "browserify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify -t vueify",
-    "watch:scripts": "watchify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify -t vueify -v",
+    "build": "browserify ./static/scripts/app.js -o ./static/dist/scripts/bundle.js -t babelify -t vueify",
+    "watch:scripts": "watchify ./static/scripts/app.js -o ./static/dist/scripts/bundle.js -t babelify -t vueify -v",
     "css": "node-sass ./static/styles/main.scss -o ./static/dist/styles",
     "watch:css": "node-sass ./static/styles/main.scss -o ./static/dist/styles -w",
     "watch": "concurrently --kill-others 'yarn run watch:css' 'yarn run watch:scripts'",
