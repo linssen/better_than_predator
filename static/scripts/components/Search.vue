@@ -6,7 +6,6 @@ import Typeahead from './Typeahead.vue';
 
 export default {
     name: 'search',
-    methods: {},
     components: { Typeahead }
 }
 

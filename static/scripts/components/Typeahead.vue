@@ -13,7 +13,9 @@
                 v-bind:class="{'search__result-item--active': index === selectedIndex}"
                 class="search__result-item"
             >
-                {{ film.title }}
+                <router-link :to="{name: 'result', params: {id: film.id, slug: 'hello'}}">
+                    {{ film.title }}
+                </router-link>
             </li>
         </ul>
     </div>
