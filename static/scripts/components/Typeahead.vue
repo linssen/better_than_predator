@@ -4,6 +4,7 @@
             v-model="query"
             v-on:keyup.down="navigateList(+1)"
             v-on:keyup.up="navigateList(-1)"
+            v-on:keyup.enter="selectFilm"
             v-bind:class="{'search__query--loading': isLoading}"
             class="search__query"
             type="search"
@@ -11,6 +12,7 @@
         <ul v-for="(film, index) in films">
             <li
                 v-bind:class="{'search__result-item--active': index === selectedIndex}"
+                v-on:mouseenter="setIndex(index)"
                 class="search__result-item"
             >
                 <router-link :to="{name: 'result', params: {id: film.id, slug: 'hello'}}">
@@ -47,6 +49,9 @@ export default {
             if (newPos <= 0) newPos = 0;
             if (newPos >= maxVal) newPos = maxVal;
             this.selectedIndex = newPos;
+        setIndex (index) {
+            this.selectedIndex = index;
+        },
         }
     }
 }
