@@ -34,7 +34,8 @@
     "watch": "concurrently --kill-others 'yarn run watch:css' 'yarn run watch:scripts'",
     "test": "jest",
     "snyk-protect": "snyk protect",
-    "prepublish": "yarn run snyk-protect"
+    "prepublish": "yarn run snyk-protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "babel-preset-es2015": "*",
@@ -46,7 +47,7 @@
     "react-dom": "*",
     "react-router": "*",
     "reactify": "*",
-    "snyk": "*"
+    "snyk": "^1.83.0"
   },
   "jest": {
     "transform": {
