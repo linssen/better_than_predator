@@ -14,7 +14,7 @@
       </p>
 
       <router-link
-        :to="{name: 'search'}"
+        :to="{name: 'Search'}"
         class="button button--again info__button"
       >
         Again!
