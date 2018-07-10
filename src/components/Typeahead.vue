@@ -18,7 +18,7 @@
         class="search__result-item"
         @mouseenter="setIndex(index)"
       >
-        <router-link :to="{name: 'result', params: {id: film.id, slug: film.slug}}">
+        <router-link :to="{name: 'Result', params: {id: film.id, slug: film.slug}}">
           {{ film.title }}
         </router-link>
       </li>
