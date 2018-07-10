@@ -10,3 +10,9 @@ export default {
   components: { Typeahead },
 };
 </script>
+
+<style lang="scss">
+
+@import '../bootstrap';
+
+</style>

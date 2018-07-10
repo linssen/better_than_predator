@@ -5,6 +5,7 @@
       :class="{'search__query--loading': isLoading}"
       class="search__query"
       type="search"
+      placeholder="Find a film..."
       @keyup.down="navigateList(+1)"
       @keyup.up="navigateList(-1)"
       @keyup.enter="selectFilm"
@@ -68,8 +69,45 @@ export default {
   },
 };
 </script>
-<style>
-    .search__result-item--active {
-        background: salmon;
-    }
+<style lang="scss">
+@import '../bootstrap';
+
+
+.search {
+    @include grid-column(8);
+    @include grid-shift(2);
+
+    font-size: em(24);
+}
+
+.search__query {
+    @include grid-collapse;
+
+    font-family: $font_stack;
+    padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
+    border: none;
+    color: $color__contast;
+}
+.search__query--loading {
+    background: #fff url('/static/images/dots.gif') no-repeat 97% 50%;
+}
+.search__result-list {
+    background: transparentize($color__contast, 0.6);
+    clear: both;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+.search__result-item {
+    padding: em(8, 20);
+    line-height: 1em;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+.search__result-item--active,
+.search__result-item:hover,
+.search__result-item:focus {
+    background: $color__contast;
+}
 </style>
