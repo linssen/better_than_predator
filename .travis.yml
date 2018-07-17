@@ -15,13 +15,14 @@ before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+script: yarn run build
 deploy:
   provider: pages
-  before_deploy: yarn build
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
   target-branch: test-pages
   local-dir: assets/dist
+  verbose: true
   on:
     branch: vuex
