@@ -11,14 +11,16 @@ export default {
     };
     return request.get({
       payload,
-      url: 'http://api.themoviedb.org/3/search/movie',
+      url: 'https://api.themoviedb.org/3/search/movie',
     });
   },
   findOne(id) {
     const payload = {
-      id,
-      api_key: '',
+      api_key: '7fde67af78a621923d00705787723896',
     };
-    return payload;
+    return request.get({
+      payload,
+      url: `https://api.themoviedb.org/3/movie/${id}`,
+    });
   },
 };

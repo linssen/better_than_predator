@@ -22,6 +22,14 @@ export default new Vuex.Store({
       film.find(context.state.query)
         .then(xhr => context.commit('searchReceived', xhr));
     },
+    find(context, params) {
+      context.commit('toggleIsLoading', true);
+      film.findOne(params.id)
+        .then(xhr => context.commit('found', xhr));
+    },
+    clearFilms(context) {
+      context.commit('clearFilms');
+    },
   },
   mutations: {
     toggleIsLoading(state, toggle) {
@@ -36,6 +44,10 @@ export default new Vuex.Store({
     clearFilms(state) {
       state.films = [];
     },
+    found(state, xhr) {
+      state.isLoading = false;
+      state.films.push(JSON.parse(xhr.responseText));
+    },
     searchReceived(state, xhr) {
       state.isLoading = false;
       state.films = JSON.parse(xhr.responseText).results.map(item => ({
@@ -45,6 +57,19 @@ export default new Vuex.Store({
         voteAvg: item.vote_average,
         slug: slugify(item.title),
       }));
+    },
+  },
+  getters: {
+    filmsByScore(state) {
+      return state.films
+        .slice()
+        .sort((a, b) => parseFloat(b.vote_average) - parseFloat(a.vote_average));
+    },
+    poster(state) {
+      return (id) => {
+        const item = state.films.find(f => f.id === id);
+        return `http://image.tmdb.org/t/p/original/${item.poster_path}`;
+      };
     },
   },
 });

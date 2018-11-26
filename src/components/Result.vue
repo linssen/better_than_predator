@@ -1,20 +1,37 @@
 <template>
-  <div>
+  <div v-if="winner">
     <h1>{{ winner.title }} wins!</h1>
-    <div class="film-results"/>
+    <div class="film-results">
+      <div
+        v-for="film in films"
+        :key="film.id"
+        class="film-results__film"
+      >
+        <div class="film-results__poster">
+          <img
+            :alt="film.title"
+            :src="poster(film.id)"
+            width="300"
+          >
+        </div>
+        <div class="film-results__rating">
+          <div class="film-results__score">{{ film.vote_average }}</div>
+          <div class="film-results__stars"></div>
+        </div>
+      </div>
+    </div>
     <div class="info">
       <hr>
       <h3>Why does this even exist?</h3>
       <p>
-        Because <a href="http://twitter.com/linssen">Wil</a>,
-        <a href="http://twitter.com/gregwood">Greg</a>,
-        and <a href="http://twitter.com/glenswinfield">Glen</a> were in a
-        pub once and they thought you should be able to compare films to
-        Predator. It is after all the ultimate benchmark.
+        Because <a href="https://www.linssen.me/">Wil</a>,
+        <a href="http://gregorywood.co.uk/">Greg</a>, and Glen were in a pub
+        once and they thought you should be able to compare films to Predator.
+        It is after all the ultimate benchmark.
       </p>
 
       <router-link
-        :to="{name: 'Search'}"
+        :to="{name: 'search'}"
         class="button button--again info__button"
       >
         Again!
@@ -28,7 +45,7 @@
         Tweet this
       </a>
 
-      <p className="credit">
+      <p class="credit">
         Copyright © {{ year }} <a href="http://linssen.me/">Wil Linssen</a>,
         and all of the code is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.<br>
         Powered by <a href="https://www.themoviedb.org/">themoviedb.org</a>.
@@ -38,25 +55,35 @@
 </template>
 
 <script>
+import { mapActions, mapState, mapGetters } from 'vuex';
+
+
 export default {
   name: 'Result',
   props: {
-    id: { type: Number, required: true },
+    id: { type: String, required: true },
     slug: { type: String, required: true },
   },
   data: () => ({
     year: new Date().getFullYear(),
   }),
   computed: {
-    films() {
-      return [];
-    },
+    ...mapState(['films']),
+    ...mapGetters(['filmsByScore', 'poster']),
     winner() {
-      return { title: this.id };
+      return this.filmsByScore[0];
     },
     tweetUrl() {
       return 'TWITTER';
     },
+  },
+  created() {
+    this.clearFilms();
+    this.find({ id: 106 });
+    this.find({ id: this.id });
+  },
+  methods: {
+    ...mapActions(['find', 'clearFilms']),
   },
 };
 </script>
@@ -67,7 +94,7 @@ export default {
 .film-results {
     @include grid-column(6);
 
-    margin-bottom: em(24);
+    margin-bottom: 1.5rem;
     position: absolute;
     left: 0;
 
@@ -99,7 +126,7 @@ export default {
     }
 }
 .film-results__rating {
-    font-size: em(64);
+    font-size: 4rem;
     padding-top: 0;
     line-height: 1;
     color: #506666;
@@ -107,7 +134,7 @@ export default {
     overflow: hidden;
 
     @include grid-media($small-grid) {
-        font-size: em(48);
+        font-size: 3rem;
         margin: 8px;
         padding-top: 8px;
         position: absolute;
@@ -118,7 +145,7 @@ export default {
     }
 
     small {
-        font-size: em(24, 96);
+        font-size: 1.5rem;
         letter-spacing: 0;
     }
 }
@@ -150,7 +177,7 @@ export default {
     @include grid-column(6);
     @include grid-shift(6);
 
-    font-size: em(24);
+    font-size: 1.5rem;
     color: white;
     line-height: 1.2;
     position: static;
@@ -160,7 +187,7 @@ export default {
         @include grid-shift(0);
 
         position: relative;
-        font-size: em(16);
+        font-size: 1rem;
     }
 
     h3 {
@@ -175,7 +202,7 @@ export default {
         // @include omega;
         @include grid-shift(2 of 2);
 
-        font-size: em(20, 16);
+        font-size: 1.25rem;
         position: absolute;
         left: 0;
         top: 0;
@@ -189,7 +216,7 @@ export default {
     }
 }
 .credit {
-    font-size: em(16, 24);
+    font-size: 1rem;
 }
 
 @keyframes dots {

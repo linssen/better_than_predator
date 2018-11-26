@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Typeahead from '@/components/Typeahead';
 
 describe('Typeahead.vue', () => {

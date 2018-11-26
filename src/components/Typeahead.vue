@@ -10,16 +10,17 @@
       @keyup.up="navigateList(-1)"
       @keyup.enter="selectFilm"
     >
-    <ul
-      v-for="(film, index) in films"
-      :key="index"
-    >
+    <ul class="search__result-list">
       <li
-        :class="{'search__result-item--active': index === selectedIndex}"
-        class="search__result-item"
+        v-for="(film, index) in films"
+        :key="index"
         @mouseenter="setIndex(index)"
       >
-        <router-link :to="{name: 'Result', params: {id: film.id, slug: film.slug}}">
+        <router-link
+          :to="{name: 'Result', params: {id: film.id, slug: film.slug}}"
+          :class="{'search__result-item--active': index === selectedIndex}"
+          class="search__result-item"
+        >
           {{ film.title }}
         </router-link>
       </li>
@@ -60,9 +61,10 @@ export default {
       this.selectedIndex = index;
     },
     selectFilm() {
-      const film = this.$store.films[this.selectedIndex];
+      const film = this.films[this.selectedIndex];
+      // router.push({ name: 'user', params: { userId: 123 }})
       this.$router.push({
-        path: 'result',
+        name: 'result',
         params: { id: film.id, slug: film.slug },
       });
     },
@@ -77,19 +79,19 @@ export default {
     @include grid-column(8);
     @include grid-shift(2);
 
-    font-size: em(24);
+    font-size: 1.5rem;
 }
 
 .search__query {
-    @include grid-collapse;
-
+    width: 100%;
     font-family: $font_stack;
-    padding: em(16, 24) em(40, 24) em(16, 24) em(16, 24);
+    padding: 1rem 2.5rem 1rem 1rem;
+    font-size: 1.5rem;
     border: none;
     color: $color__contast;
 }
 .search__query--loading {
-    background: #fff url('/static/images/dots.gif') no-repeat 97% 50%;
+    background: #fff url('../assets/dots.gif') no-repeat 97% 50%;
 }
 .search__result-list {
     background: transparentize($color__contast, 0.6);
@@ -99,8 +101,8 @@ export default {
     padding: 0;
 }
 .search__result-item {
-    padding: em(8, 20);
-    line-height: 1em;
+    padding: 0.5rem;
+    line-height: 1rem;
     color: white;
     text-decoration: none;
     display: block;

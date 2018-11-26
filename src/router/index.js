@@ -10,12 +10,12 @@ export default new Router({
     {
       path: '/',
       component: Search,
-      name: 'Search',
+      name: 'search',
     },
     {
       path: '/versus/:id/:slug',
       component: Result,
-      name: 'Result',
+      name: 'result',
       props: true,
     },
   ],
