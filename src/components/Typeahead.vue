@@ -17,7 +17,7 @@
         @mouseenter="setIndex(index)"
       >
         <router-link
-          :to="{name: 'Result', params: {id: film.id, slug: film.slug}}"
+          :to="{name: 'result', params: {id: film.id, slug: film.slug}}"
           :class="{'search__result-item--active': index === selectedIndex}"
           class="search__result-item"
         >
@@ -72,44 +72,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../bootstrap';
 
-
-.search {
-    @include grid-column(8);
-    @include grid-shift(2);
-
-    font-size: 1.5rem;
-}
-
-.search__query {
-    width: 100%;
-    font-family: $font_stack;
-    padding: 1rem 2.5rem 1rem 1rem;
-    font-size: 1.5rem;
-    border: none;
-    color: $color__contast;
-}
-.search__query--loading {
-    background: #fff url('../assets/dots.gif') no-repeat 97% 50%;
-}
-.search__result-list {
-    background: transparentize($color__contast, 0.6);
-    clear: both;
-    margin: 0;
-    list-style: none;
-    padding: 0;
-}
-.search__result-item {
-    padding: 0.5rem;
-    line-height: 1rem;
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-.search__result-item--active,
-.search__result-item:hover,
-.search__result-item:focus {
-    background: $color__contast;
-}
 </style>

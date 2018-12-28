@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Typeahead from '@/components/Typeahead';
+import Typeahead from '@/components/Typeahead.vue';
 
 export default {
   name: 'Search',
@@ -13,6 +13,5 @@ export default {
 
 <style lang="scss">
 
-@import '../bootstrap';
 
 </style>
