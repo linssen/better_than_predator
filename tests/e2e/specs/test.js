@@ -1,5 +1,3 @@
-// https://docs.cypress.io/api/introduction/api.html
-
 describe('My First Test', () => {
   it('Visits the app root url', () => {
     cy.server();
@@ -23,6 +21,7 @@ describe('My First Test', () => {
     cy.get('@search').should('have.attr', 'placeholder', 'Find a film...');
 
     cy.get('@search').type('Honey, I');
+    cy.wait(401).as('Debounce pause');
     cy.get('ul li').should('have.length', 1);
     cy.get('ul li:first').contains('Honey, I Shrunk the Kids');
   });
