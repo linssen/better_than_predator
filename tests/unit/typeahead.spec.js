@@ -27,6 +27,8 @@ describe('Typeahead.vue', () => {
     });
     expect(Typeahead.data()).to.eql({
       selectedIndex: 0,
+      debounceTimer: null,
+      localQuery: '',
     });
 
     expect(wrapper.contains('input[type="search"]')).to.be.true;
