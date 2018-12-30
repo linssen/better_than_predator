@@ -17,51 +17,35 @@
   "author": "Wil Linssen",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "devDependencies": {
-    "babel-jest": "*",
-    "babel-polyfill": "*",
-    "babel-preset-stage-0": "*",
-    "concurrently": "*",
-    "jest-cli": "*",
-    "react-addons-test-utils": "*",
-    "watchify": "*"
-  },
   "scripts": {
-    "build": "browserify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify",
-    "watch:scripts": "watchify ./static/scripts/main.js -o ./static/dist/scripts/bundle.js -t babelify -v",
-    "css": "node-sass ./static/styles/main.scss -o ./static/dist/styles",
-    "watch:css": "node-sass ./static/styles/main.scss -o ./static/dist/styles -w",
-    "watch": "concurrently --kill-others 'yarn run watch:css' 'yarn run watch:scripts'",
-    "test": "jest",
-    "snyk-protect": "snyk protect",
-    "prepublish": "yarn run snyk-protect"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "babel-preset-es2015": "*",
-    "babel-preset-react": "*",
-    "babelify": "*",
-    "jquery": "*",
-    "node-sass": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-router": "*",
-    "reactify": "*",
-    "snyk": "*"
+    "tailwindcss": "^0.7.3",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/fbjs"
-    ],
-    "verbose": true,
-    "testPathDirs": [
-      "<rootDir>/static/scripts"
-    ]
-  },
-  "snyk": true
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.2.0",
+    "@vue/cli-plugin-eslint": "^3.2.0",
+    "@vue/cli-plugin-unit-mocha": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "lodash.throttle": "^4.1.1",
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.1.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "node-sass": "^4.9.0",
+    "postcss-import": "^12.0.1",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.17"
+  }
 }
