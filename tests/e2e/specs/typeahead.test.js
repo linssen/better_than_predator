@@ -1,5 +1,5 @@
-describe('My First Test', () => {
-  it('Visits the app root url', () => {
+describe('TypeAhead', () => {
+  it('Searches on type, and clears on clear', () => {
     cy.server();
     cy.route({
       method: 'GET',
@@ -21,8 +21,15 @@ describe('My First Test', () => {
     cy.get('@search').should('have.attr', 'placeholder', 'Find a film...');
 
     cy.get('@search').type('Honey, I');
-    cy.wait(401).as('Debounce pause');
-    cy.get('ul li').should('have.length', 1);
-    cy.get('ul li:first').contains('Honey, I Shrunk the Kids');
+    cy.wait(401);
+
+    cy.get('ul li').as('results');
+    cy.get('@results').should('have.length', 1);
+    cy.get('@results').get(':first').should('contain', 'Honey, I Shrunk the Kids (1989)');
+    cy.get('@results').get(':first a').should('have.attr', 'href', '#/versus/9354/honey-i-shrunk-the-kids');
+
+    cy.get('@search').clear();
+    cy.wait(401);
+    cy.get('@results').should('have.length', 0);
   });
 });
