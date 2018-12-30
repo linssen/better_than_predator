@@ -5,6 +5,17 @@ import slugify from '@/utils/slugify';
 
 Vue.use(Vuex);
 
+function mapFilm(item) {
+  return {
+    id: parseInt(item.id, 10),
+    title: item.title,
+    releaseDate: new Date(item.release_date),
+    voteAvg: parseFloat(item.vote_average),
+    slug: slugify(item.title),
+    posterPath: item.poster_path,
+  };
+}
+
 export default new Vuex.Store({
   state: {
     isLoading: false,
@@ -14,7 +25,7 @@ export default new Vuex.Store({
   actions: {
     search(context, params) {
       context.commit('setQuery', { query: params.query });
-      if (context.state.query.length < 2) {
+      if (!context.state.query || context.state.query.length < 2) {
         context.commit('clearFilms');
         return;
       }
@@ -46,29 +57,23 @@ export default new Vuex.Store({
     },
     found(state, xhr) {
       state.isLoading = false;
-      state.films.push(JSON.parse(xhr.responseText));
+      state.films.push(mapFilm(JSON.parse(xhr.responseText)));
     },
     searchReceived(state, xhr) {
       state.isLoading = false;
-      state.films = JSON.parse(xhr.responseText).results.map(item => ({
-        id: item.id,
-        title: item.title,
-        releaseDate: item.release_date,
-        voteAvg: item.vote_average,
-        slug: slugify(item.title),
-      }));
+      state.films = JSON.parse(xhr.responseText).results.map(mapFilm);
     },
   },
   getters: {
     filmsByScore(state) {
       return state.films
         .slice()
-        .sort((a, b) => parseFloat(b.vote_average) - parseFloat(a.vote_average));
+        .sort((a, b) => parseFloat(b.voteAvg) - parseFloat(a.voteAvg));
     },
     poster(state) {
       return (id) => {
         const item = state.films.find(f => f.id === id);
-        return `http://image.tmdb.org/t/p/original/${item.poster_path}`;
+        return `http://image.tmdb.org/t/p/original/${item.posterPath}`;
       };
     },
   },
