@@ -1,5 +1,9 @@
 <template>
-  <div class="flex items-center justify-center flex-wrap w-full md:w-2/3 lg:w-1/2 p-4 mr-auto ml-auto">
+  <div class="
+    flex items-center justify-center flex-wrap
+    w-full md:w-2/3 lg:w-1/2
+    p-4 mr-auto ml-auto
+  ">
     <input
       v-model="localQuery"
       class="w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm"

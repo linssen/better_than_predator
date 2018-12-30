@@ -13,9 +13,9 @@ module.exports = {
     'no-param-reassign': [
       'error',
       {
-        'props': true, 'ignorePropertyModificationsFor': ['state']
-      }
-],
+        props: true, ignorePropertyModificationsFor: ['state'],
+      },
+    ],
   },
   parserOptions: {
     parser: 'babel-eslint',
