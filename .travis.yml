@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 11
 script:
-  - npm test:unit
+  - npm run test:unit
   - npm run build
 deploy:
   provider: pages
