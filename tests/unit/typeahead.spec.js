@@ -10,13 +10,16 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('Typeahead.vue', () => {
-  let actions;
   let store;
 
   beforeEach(() => {
     store = new Vuex.Store({
       state: {},
-      actions,
+      actions: {
+        search() {},
+        find() {},
+        clearFilms() {},
+      },
     });
   });
 
