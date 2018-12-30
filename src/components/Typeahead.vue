@@ -51,14 +51,14 @@ export default {
       if (this.debounceTimer) {
         window.clearTimeout(this.debounceTimer);
       }
-      this.debounceTimer = window.setTimeout(this.$store.dispatch, 400, 'search', { query: val });
+      this.debounceTimer = window.setTimeout(this.search, 400, { query: val });
     },
   },
   computed: {
     ...mapState(['films', 'isLoading']),
   },
   methods: {
-    ...mapActions(['clearFilms']),
+    ...mapActions(['clearFilms', 'search']),
     navigateList(moveBy) {
       let newPos = this.selectedIndex + moveBy;
       const maxVal = (this.films || []).length - 1;
