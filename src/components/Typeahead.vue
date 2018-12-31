@@ -6,7 +6,10 @@
   ">
     <input
       v-model="localQuery"
-      class="w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm"
+      class="
+        w-full bg-grey-lighter text-grey-darker text-3xl p-2
+        rounded-sm appearance-none focus:outline-none focus:shadow-outline
+      "
       :class="{'loading': isLoading}"
       type="search"
       placeholder="Find a film..."
