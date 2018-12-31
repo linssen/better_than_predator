@@ -13,6 +13,7 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: false
-  local-dir: 'dist'
+  local-dir: dist
+  fqdn: www.betterthanpredator.com
   on:
     branch: master
