@@ -24,7 +24,7 @@ describe('Film store', () => {
       responseText: JSON.stringify(searchResults.default),
     };
     mutations.searchReceived(state, xhr);
-    expect(state.films.length).to.equal(5);
+    expect(state.films.length).to.equal(4);
     expect(state.films[0]).to.eql({
       id: 9354,
       title: 'Honey, I Shrunk the Kids',
@@ -33,5 +33,34 @@ describe('Film store', () => {
       slug: 'honey-i-shrunk-the-kids',
       posterPath: '/f5eFxKYAd7hN1BxYzBg9qL1SDRe.jpg',
     });
+  });
+
+  it('removes films from the search with no score', () => {
+    const xhr = {
+      responseText: JSON.stringify({
+        results: [
+          {
+            id: 1,
+            title: 'Good Film',
+            release_date: '1999-12-31',
+            vote_avg: 6.5,
+            slug: 'good-film',
+            poster_path: '/good.jpg',
+            vote_count: 1999,
+          },
+          {
+            id: 2,
+            title: 'Bad Film',
+            release_date: '1999-12-31',
+            vote_avg: 0,
+            slug: 'good-film',
+            poster_path: '/good.jpg',
+            vote_count: 0,
+          },
+        ],
+      }),
+    };
+    mutations.searchReceived(state, xhr);
+    expect(state.films.length).to.equal(1);
   });
 });

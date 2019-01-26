@@ -70,7 +70,9 @@ export const mutations = {
   },
   searchReceived(state, xhr) {
     state.isLoading = false;
-    state.films = JSON.parse(xhr.responseText).results.map(mapFilm);
+    state.films = JSON.parse(xhr.responseText).results
+      .filter(f => f.vote_count > 0)
+      .map(mapFilm);
   },
 };
 
