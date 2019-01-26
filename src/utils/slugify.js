@@ -6,5 +6,5 @@ export default function slugify(str) {
     .replace(/\s{2,}/g, ' ')
     .replace(/\s/g, '-')
     .toLowerCase();
-  return window.encodeURIComponent(slug);
+  return encodeURIComponent(slug);
 }

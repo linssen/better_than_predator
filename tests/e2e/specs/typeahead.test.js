@@ -1,20 +1,11 @@
 describe('TypeAhead', () => {
   it('Searches on type, and clears on clear', () => {
+    cy.fixture('../../fixtures/filmSearch.json').as('filmSearchResults');
     cy.server();
     cy.route({
       method: 'GET',
       url: 'https://api.themoviedb.org/3/search/movie*',
-      response: {
-        results: [
-          {
-            id: 9354,
-            title: 'Honey, I Shrunk the Kids',
-            poster_path: '/f5eFxKYAd7hN1BxYzBg9qL1SDRe.jpg',
-            release_date: '1989-06-22',
-            vote_average: 6.2,
-          },
-        ],
-      },
+      response: '@filmSearchResults',
     });
     cy.visit('/');
     cy.get('input[type="search"]').as('search');
@@ -24,7 +15,7 @@ describe('TypeAhead', () => {
     cy.wait(401);
 
     cy.get('ul li').as('results');
-    cy.get('@results').should('have.length', 1);
+    cy.get('@results').should('have.length', 5);
     cy.get('@results').get(':first').should('contain', 'Honey, I Shrunk the Kids (1989)');
     cy.get('@results').get(':first a').should('have.attr', 'href', '#/versus/9354/honey-i-shrunk-the-kids');
 

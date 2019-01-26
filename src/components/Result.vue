@@ -100,9 +100,9 @@ export default {
       const shareString = `I just found out that ${this.versus.title} `
         + `(${this.versus.releaseDate.getFullYear()}) is${conjoin} Predator.`;
       return 'https://twitter.com/share/'
-            + `?url=${window.encodeURIComponent(thisUrl)}`
+            + `?url=${encodeURIComponent(thisUrl)}`
             + '&via=linssen'
-            + `&text=${window.encodeURIComponent(shareString)}`;
+            + `&text=${encodeURIComponent(shareString)}`;
     },
   },
   created() {
