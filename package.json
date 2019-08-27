@@ -22,7 +22,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "autoprefixer": "^9.4.3",
@@ -30,7 +32,8 @@
     "tailwindcss": "^0.7.3",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "snyk": "^1.192.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
@@ -48,5 +51,6 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
-  }
+  },
+  "snyk": true
 }
