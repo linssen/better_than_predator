@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from '../types';
 import { searchFilms } from '../utils/api';
+import './typeahead.css';
 
 function Typeahead():JSX.Element {
   const [localQuery, setLocalQuery] = useState<string>('');

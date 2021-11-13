@@ -3,6 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
 import { getFilm } from './utils/api';
 import Score from './components/Score';
+import { ReactComponent as TwitterIcon } from './assets/twitter.svg';
+import { ReactComponent as BackIcon } from './assets/back.svg';
+import './components/result.css';
 
 function Result(): JSX.Element {
   const { filmId } = useParams<'filmId'>();
@@ -74,15 +77,25 @@ function Result(): JSX.Element {
               It is after all the ultimate benchmark.
             </p>
 
-            <Link to="/" className="btn btn-back mr-4">Again!</Link>
+            <Link
+              to="/"
+              className="mr-4 inline-flex text-2xl text-white no-underline relative whitespace-nowrap"
+            >
+              <BackIcon
+                viewBox="0 0 191 191"
+                className="icon-twitter flex-1 h-10"
+              />
+              Again!
+            </Link>
 
             <a
               href="https://twitter.com/"
-              className="btn btn-tweet"
+              className="inline-flex text-2xl text-white no-underline relative whitespace-nowrap"
               target="_blank"
               rel="noreferrer"
             >
-              Tweet this
+              <TwitterIcon viewBox="0 0 236 192" className="icon-twitter flex-1 h-10" />
+              <span className="flex-1">Tweet this</span>
             </a>
 
             <p className="text-base">
