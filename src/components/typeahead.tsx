@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import slugify from '../utils/slugify';
 import { Film } from '../types';
-
-interface SearchParams {
-  query?: string
-}
+import { searchFilms } from '../utils/api';
 
 function Typeahead():JSX.Element {
   const [localQuery, setLocalQuery] = useState<string>('');
@@ -14,41 +10,10 @@ function Typeahead():JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [debounceTimer, setDebounceTimer] = useState<number | null>(null);
 
-  async function search(params: SearchParams): Promise<Film[]> {
-    if (!params.query || params.query.length < 2) {
-      setFilms([]);
-      return Promise.reject();
-    }
+  async function search(query: string) {
     setIsLoading(true);
-
-    const queryParams = Object.entries({
-      query: params.query,
-      api_key: '7fde67af78a621923d00705787723896',
-      page: 1,
-      include_adult: false,
-      search_type: 'ngram',
-    })
-      .map(([key, val]) => {
-        if (val !== undefined) {
-          return `${key}=${encodeURIComponent(val)}`;
-        }
-        return '';
-      })
-      .join('&');
-    const url = `https://api.themoviedb.org/3/search/movie?${queryParams}`;
-    const response = await fetch(url, {
-      method: 'GET',
-    });
-
-    const responseJson = await response.json();
-
-    setFilms(responseJson.results.map((film: Film) => ({
-      ...film,
-      slug: slugify(film.title),
-      release_date: new Date(film.release_date),
-    })));
-
-    return Promise.resolve(films);
+    setFilms(await searchFilms(query));
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -58,7 +23,7 @@ function Typeahead():JSX.Element {
     if (localQuery.length < 2) {
       return;
     }
-    setDebounceTimer(window.setTimeout(search, 1000, { query: localQuery }));
+    setDebounceTimer(window.setTimeout(search, 1000, localQuery));
   }, [localQuery]);
 
   function onKeyUp(event:React.KeyboardEvent): void {
@@ -97,7 +62,7 @@ function Typeahead():JSX.Element {
               className={`${index === selectedIndex ? 'bg-grey-darkest' : ''} block text-xl text-white no-underline p-2 w-full hover:bg-grey-darkest`}
             >
               {film.title}
-              {film.release_date.getFullYear()}
+              {film.releaseDate.getFullYear()}
             </Link>
           </li>
         ))}

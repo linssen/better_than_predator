@@ -1,41 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
-import slugify from './utils/slugify';
-
-interface FilmProps {
-  filmId?: string
-}
+import { getFilm } from './utils/api';
 
 function Result(): JSX.Element {
-  // @ts-ignore
-  const { filmId } = useParams<FilmProps>();
+  const { filmId } = useParams<'filmId'>();
   const predatorId = 106;
   const [films, setFilms] = useState<Array<Film>>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
 
-  useEffect(() => {
-    async function getFilm(id: number): Promise<Film> {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=7fde67af78a621923d00705787723896`;
-      const response = await fetch(url, { method: 'GET' });
-      const film = await response.json();
-      return {
-        ...film,
-        slug: slugify(film.title),
-        release_date: new Date(film.release_date),
-        vote_average: parseFloat(film.vote_average),
-        poster_path: `http://image.tmdb.org/t/p/original/${film.poster_path}`,
-      };
-    }
-    async function getFilms() {
-      setFilms(await Promise.all([predatorId, filmId].map(getFilm)));
-      setIsLoading(false);
-    }
+  async function getFilms() {
+    setIsLoading(true);
+    setFilms(await Promise.all([predatorId, filmId].map(getFilm)));
+    setIsLoading(false);
+  }
 
+  useEffect(() => {
     getFilms();
   }, []);
 
-  const winner = films.sort((a, b) => b.vote_average - a.vote_average)[0];
+  const winner = films.sort((a, b) => b.voteAverage - a.voteAverage)[0];
   const year = new Date().getFullYear();
 
   return (
@@ -60,12 +44,12 @@ function Result(): JSX.Element {
               >
                 <img
                   alt={film.title}
-                  src={film.poster_path}
+                  src={film.posterPath}
                   width="400"
                 />
                 <div className="flex items-center pt-4 justify-between">
                   <span className="score-text">
-                    {film.vote_average}
+                    {film.voteAverage}
                     <span className="text-grey text-4xl -ml-1 hidden sm:inline md:hidden lg:inline">/ 10</span>
                   </span>
                 </div>
@@ -89,9 +73,10 @@ function Result(): JSX.Element {
             <Link to="/" className="btn btn-back mr-4">Again!</Link>
 
             <a
-              href="tweetUrl"
+              href="https://twitter.com/"
               className="btn btn-tweet"
               target="_blank"
+              rel="noreferrer"
             >
               Tweet this
             </a>
