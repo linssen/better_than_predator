@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
 import { getFilm } from './utils/api';
+import Score from './components/Score';
 
 function Result(): JSX.Element {
   const { filmId } = useParams<'filmId'>();
@@ -52,6 +53,9 @@ function Result(): JSX.Element {
                     {film.voteAverage}
                     <span className="text-grey text-4xl -ml-1 hidden sm:inline md:hidden lg:inline">/ 10</span>
                   </span>
+                  <Score
+                    percent={film.voteAverage * 10}
+                  />
                 </div>
               </div>
             ))}
