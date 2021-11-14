@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
 import { getFilm } from './utils/api';
@@ -8,6 +9,7 @@ import { ReactComponent as BackIcon } from './assets/back.svg';
 import './components/result.css';
 
 function Result(): JSX.Element {
+  const { t } = useTranslation();
   const { filmId } = useParams<'filmId'>();
   const predatorId = 106;
   const [films, setFilms] = useState<Array<Film>>([]);
@@ -37,8 +39,7 @@ function Result(): JSX.Element {
             mb-6 pb-6
           "
           >
-            {winner.title}
-            wins!
+            {t('winnerAnnounce', '{{winner}} wins!', { winner: winner.title })}
           </h1>
           <div className="films w-full md:w-1/2 flex block md:float-left">
             {films.map((film) => (
@@ -66,15 +67,16 @@ function Result(): JSX.Element {
 
           <div className="blurb text-white w-full md:w-1/2 float-right">
             <hr />
-            <h3 className="text-3xl mb-6">Why does this even exist?</h3>
+            <h3 className="text-3xl mb-6">{t('whyExist', 'Why does this even exist?')}</h3>
             <p>
-              Because
-              <a href="https://www.linssen.me/">Wil</a>
-              ,
-              <a href="http://gregorywood.co.uk/">Greg</a>
-              , and Glen were in a pub
-              once and they thought you should be able to compare films to Predator.
-              It is after all the ultimate benchmark.
+              <Trans>
+                Because
+                <a href="https://www.linssen.me/">Wil</a>
+                ,
+                <a href="http://gregorywood.co.uk/">Greg</a>
+                , and Glen were in a pub once and they thought you should be able to compare films
+                to Predator. It is after all the ultimate benchmark.
+              </Trans>
             </p>
 
             <Link
@@ -85,7 +87,7 @@ function Result(): JSX.Element {
                 viewBox="0 0 191 191"
                 className="icon-twitter flex-1 h-10"
               />
-              Again!
+              {t('again!', 'Again!')}
             </Link>
 
             <a
@@ -95,21 +97,23 @@ function Result(): JSX.Element {
               rel="noreferrer"
             >
               <TwitterIcon viewBox="0 0 236 192" className="icon-twitter flex-1 h-10" />
-              <span className="flex-1">Tweet this</span>
+              <span className="flex-1">{t('tweetThis', 'Tweet this')}</span>
             </a>
 
             <p className="text-base">
-              Copyright ©
-              {year}
-              <a href="http://linssen.me/">Wil Linssen</a>
-              ,
-              and all of the code is
-              <a href="http://github.com/linssen/better_than_predator">on GitHub</a>
-              .
-              <br />
-              Powered by
-              <a href="https://www.themoviedb.org/">themoviedb.org</a>
-              .
+              <Trans>
+                Copyright ©
+                {year}
+                <a href="http://linssen.me/">Wil Linssen</a>
+                ,
+                and all of the code is
+                <a href="http://github.com/linssen/better_than_predator">on GitHub</a>
+                .
+                <br />
+                Powered by
+                <a href="https://www.themoviedb.org/">themoviedb.org</a>
+                .
+              </Trans>
             </p>
           </div>
         </div>
