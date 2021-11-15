@@ -18,7 +18,7 @@ describe('api tools', () => {
     id: 9354,
     posterPath: 'http://image.tmdb.org/t/p/original//omQOzahi2NIeiYznNxHFDvNbvo6.jpg',
     releaseDate: new Date('1989-06-23T00:00:00.000Z'),
-    slug: 'Honey-I-Shrunk-the-Kids',
+    slug: 'honey-i-shrunk-the-kids',
     title: 'Honey, I Shrunk the Kids',
     voteAverage: 6.3,
     voteCount: 2312,

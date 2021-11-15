@@ -86,7 +86,7 @@ export function mapFilm(receivedFilm: ReceivedSingleFilm | ReceivedMultiFilm): F
   return {
     id: receivedFilm.id,
     title: receivedFilm.title,
-    slug: slugify(receivedFilm.title),
+    slug: slugify(receivedFilm.title).toLocaleLowerCase(),
     releaseDate: new Date(receivedFilm.release_date),
     voteAverage: receivedFilm.vote_average,
     voteCount: receivedFilm.vote_count,
