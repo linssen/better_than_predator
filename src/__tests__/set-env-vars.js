@@ -1,1 +1,1 @@
-process.env.API_KEY = 'mysecretapikey';
+process.env.REACT_APP_API_KEY = 'mysecretapikey';

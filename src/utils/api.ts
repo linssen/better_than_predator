@@ -3,7 +3,7 @@ import { Film } from '../types';
 
 export const predatorId = 106;
 
-const apiKey:string = process.env.API_KEY!;
+const apiKey:string = process.env.REACT_APP_API_KEY!;
 
 export interface ReceivedSingleFilm {
   adult: boolean
