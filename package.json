@@ -20,7 +20,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "lint": "eslint",
     "translate": "i18next"
@@ -34,10 +34,12 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.14.2",
     "react-router-dom": "^6.0.1",
+    "slugify": "^1.6.2",
     "web-vitals": "^1.0.1"
   },
   "snyk": true,
   "devDependencies": {
+    "@craco/craco": "^6.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -49,7 +51,6 @@
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "autoprefixer": "^9.8.8",
-    "@craco/craco": "^6.4.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^15.0.0",
@@ -58,9 +59,11 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "i18next-parser": "^5.2.0",
+    "jest": "^27.3.1",
     "postcss": "^7.0.39",
     "react-scripts": "4.0.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.4.3"
   }
 }

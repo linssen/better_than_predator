@@ -1,13 +1,13 @@
+import slugify from 'slugify';
 import { Film } from '../types';
-import slugify from './slugify';
 
 export const predatorId = 106;
 
-const apiKey = '7fde67af78a621923d00705787723896';
+const apiKey:string = process.env.API_KEY!;
 
 export interface ReceivedSingleFilm {
   adult: boolean
-  backdrop_path: string
+  backdrop_path: string | null
   belongs_to_collection: object
   budget: number
   genres: Array<object>
@@ -27,6 +27,23 @@ export interface ReceivedSingleFilm {
   spoken_languages: Array<object>
   status: string
   tagline: string
+  title: string
+  video: boolean
+  vote_average: number
+  vote_count: number
+}
+
+export interface ReceivedMultiFilm {
+  adult: boolean
+  backdrop_path: string | null
+  genre_ids: Array<number>
+  id: number
+  original_language: string
+  original_title: string
+  overview: string
+  popularity: number
+  poster_path: string
+  release_date: string
   title: string
   video: boolean
   vote_average: number
@@ -65,7 +82,7 @@ export function searchUrl(query: string): string {
   return `https://api.themoviedb.org/3/search/movie?${urlParams}`;
 }
 
-export function mapFilm(receivedFilm: ReceivedSingleFilm): Film {
+export function mapFilm(receivedFilm: ReceivedSingleFilm | ReceivedMultiFilm): Film {
   return {
     id: receivedFilm.id,
     title: receivedFilm.title,
