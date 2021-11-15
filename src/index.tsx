@@ -8,7 +8,7 @@ import './assets/tailwind.css';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <div className="w-full max-w-5xl font-sans">
+      <div className="container font-sans pt-10">
         <App />
       </div>
     </Router>

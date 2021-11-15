@@ -6,7 +6,6 @@ import { getFilm } from './utils/api';
 import Score from './components/Score';
 import { ReactComponent as TwitterIcon } from './assets/twitter.svg';
 import { ReactComponent as BackIcon } from './assets/back.svg';
-import './components/result.css';
 
 function Result(): JSX.Element {
   const { t } = useTranslation();
@@ -17,7 +16,8 @@ function Result(): JSX.Element {
 
   async function getFilms() {
     setIsLoading(true);
-    setFilms(await Promise.all([predatorId, filmId].map(getFilm)));
+    const received = await Promise.all([predatorId, filmId].map(getFilm));
+    setFilms(received.sort((a) => (a.id === predatorId ? -1 : 1)));
     setIsLoading(false);
   }
 
