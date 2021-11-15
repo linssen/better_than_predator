@@ -96,7 +96,7 @@ export function mapFilm(receivedFilm: ReceivedSingleFilm | ReceivedMultiFilm): F
 
 export async function getFilm(filmId?: string | number): Promise<Film> {
   if (filmId === undefined) {
-    return Promise.reject();
+    return Promise.reject(new Error('Need a valid film ID'));
   }
   const response = await fetch(singleUrl(filmId), { method: 'GET' });
   const responseJson = await response.json();
