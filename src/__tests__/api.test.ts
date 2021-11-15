@@ -10,6 +10,7 @@ import {
 import filmSearchFixture from './fixtureFilmSearch.json';
 import filmSingleFixture from './fixtureFilmSingle.json';
 import { Film } from '../types';
+import { makeGetMock, makeSearchMock } from './utils';
 
 describe('api tools', () => {
   const apiKey = 'mysecretapikey';
@@ -52,22 +53,18 @@ describe('api tools', () => {
   });
 
   it('fetches a film and maps it to a Film', async () => {
-    const singleFetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve(filmSingleFixture),
-    })) as jest.Mock;
-    global.fetch = singleFetch;
+    const getMock = makeGetMock();
+    global.fetch = getMock;
     const film = await getFilm(9354);
-    expect(singleFetch).toHaveBeenCalled();
+    expect(getMock).toHaveBeenCalled();
     expect(film).toEqual(expectedMapFilm);
   });
 
   it('searches films and maps them to an array of Films', async () => {
-    const searchFetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve(filmSearchFixture),
-    })) as jest.Mock;
-    global.fetch = searchFetch;
+    const searchMock = makeSearchMock();
+    global.fetch = searchMock;
     const films = await searchFilms('Honey');
-    expect(searchFetch).toHaveBeenCalled();
+    expect(searchMock).toHaveBeenCalled();
     expect(films.length).toEqual(filmSearchFixture.results.length);
     expect(films[0]).toEqual(expectedMapFilm);
   });
