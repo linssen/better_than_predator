@@ -23,6 +23,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+                    
       - name: yarn ci
         run: |
+          yarn install
+          yarn build
           yarn test
