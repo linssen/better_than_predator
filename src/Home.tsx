@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Typeahead from './components/typeahead';
+import Typeahead from './components/Typeahead';
 import { ReactComponent as Arrow } from './assets/arrow.svg';
 
 function Home():JSX.Element {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './home';
-import Result from './result';
+import Home from './Home';
+import Result from './Result';
 import NotFound from './404';
 
 function App():JSX.Element {
