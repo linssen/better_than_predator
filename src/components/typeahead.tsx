@@ -62,8 +62,7 @@ function Typeahead():JSX.Element {
               to={`/versus/${film.id}/${film.slug}/`}
               className={`${index === selectedIndex ? 'bg-grey-darkest' : ''} block text-xl text-white no-underline p-2 w-full hover:bg-grey-darkest`}
             >
-              {film.title}
-              {film.releaseDate.getFullYear()}
+              {`${film.title} (${film.releaseDate.getFullYear()})`}
             </Link>
           </li>
         ))}

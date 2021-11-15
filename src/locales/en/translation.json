@@ -1,0 +1,15 @@
+{
+  "again!": "Again!",
+  "Because<1>Wil</1>,<3>Greg</3>, and Glen were in a pub once and they thought you should be able to compare films to Predator": {
+    " It is after all the ultimate benchmark": "Because<1>Wil</1>,<3>Greg</3>, and Glen were in a pub once and they thought you should be able to compare films to Predator. It is after all the ultimate benchmark."
+  },
+  "Copyright ©{year}<2>Wil Linssen</2>, and all of the code is<4>on GitHub</4>": {
+    "<6></6>Powered by<8>themoviedb": {
+      "org</8>": "Copyright ©{year}<2>Wil Linssen</2>, and all of the code is<4>on GitHub</4>.<6></6>Powered by<8>themoviedb.org</8>."
+    }
+  },
+  "searchInstruction": "Type any film, and find out if its better than Predator",
+  "tweetThis": "Tweet this",
+  "whyExist": "Why does this even exist?",
+  "winnerAnnounce": "{{winner}} wins!"
+}
