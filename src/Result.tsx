@@ -37,11 +37,12 @@ function Result(): JSX.Element {
             text-white text-5xl text-center
             block md:float-right
             mb-6 pb-6
+            border-b border-white border-dashed
           "
           >
             {t('winnerAnnounce', '{{winner}} wins!', { winner: winner.title })}
           </h1>
-          <div className="films w-full md:w-1/2 flex block md:float-left">
+          <div className="films w-full md:w-1/2 flex block md:float-left mb-8">
             {films.map((film) => (
               <div
                 key={film.id}
@@ -53,66 +54,62 @@ function Result(): JSX.Element {
                   width="400"
                 />
                 <div className="flex items-center pt-4 justify-between">
-                  <span className="score-text">
+                  <span className="text-6xl">
                     {film.voteAverage}
                     <span className="text-grey text-4xl -ml-1 hidden sm:inline md:hidden lg:inline">/ 10</span>
                   </span>
-                  <Score
-                    percent={film.voteAverage * 10}
-                  />
+                  <span className="h-14 w-14">
+                    <Score
+                      percent={film.voteAverage * 10}
+                    />
+                  </span>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="blurb text-white w-full md:w-1/2 float-right">
-            <hr />
-            <h3 className="text-3xl mb-6">{t('whyExist', 'Why does this even exist?')}</h3>
-            <p>
-              <Trans>
-                Because
-                <a href="https://www.linssen.me/">Wil</a>
-                ,
-                <a href="http://gregorywood.co.uk/">Greg</a>
-                , and Glen were in a pub once and they thought you should be able to compare films
-                to Predator. It is after all the ultimate benchmark.
+            <h3 className="text-3xl mb-6 text-4xl">{t('whyExist', 'Why does this even exist?')}</h3>
+            <p className="mb-6 text-2xl">
+              <Trans i18nKey="reasonAndCredit">
+                { /* eslint-disable react/jsx-one-expression-per-line */ }
+                Because <a href="https://www.linssen.me/">Wil</a>, <a href="http://gregorywood.co.uk/">Greg</a>, and Glen were in a pub once and they thought you should be able to compare films to Predator. It is after all the ultimate benchmark.
+                { /* eslint-enable react/jsx-one-expression-per-line */ }
               </Trans>
             </p>
 
             <Link
               to="/"
-              className="mr-4 inline-flex text-2xl text-white no-underline relative whitespace-nowrap"
+              className="inline-flex text-2xl text-white no-underline relative whitespace-nowrap bg-gray-600 mr-5"
             >
-              <BackIcon
-                viewBox="0 0 191 191"
-                className="icon-twitter flex-1 h-10"
-              />
-              {t('again!', 'Again!')}
+              <span className="p-2 pt-3 bg-black">
+                <BackIcon
+                  viewBox="0 0 191 191"
+                  className="icon-twitter flex-1 h-6 w-12"
+                />
+              </span>
+              <span className="py-2 px-6">{t('again!', 'Again!')}</span>
             </Link>
 
             <a
               href="https://twitter.com/"
-              className="inline-flex text-2xl text-white no-underline relative whitespace-nowrap"
+              className="inline-flex text-2xl text-white no-underline relative whitespace-nowrap bg-gray-600 mb-6"
               target="_blank"
               rel="noreferrer"
             >
-              <TwitterIcon viewBox="0 0 236 192" className="icon-twitter flex-1 h-10" />
-              <span className="flex-1">{t('tweetThis', 'Tweet this')}</span>
+              <span className="p-2 pt-3 bg-black">
+                <TwitterIcon viewBox="0 0 236 192" className="icon-twitter flex-1 h-6 w-12" />
+              </span>
+              <span className="py-2 px-6">{t('tweetThis', 'Tweet this')}</span>
             </a>
 
             <p className="text-base">
-              <Trans>
-                Copyright ©
-                {year}
-                <a href="http://linssen.me/">Wil Linssen</a>
-                ,
-                and all of the code is
-                <a href="http://github.com/linssen/better_than_predator">on GitHub</a>
-                .
+              <Trans i18nKey="copyright">
+                { /* eslint-disable react/jsx-one-expression-per-line */ }
+                Copyright © {{ year }} <a href="http://linssen.me/">Wil Linssen</a>, and all of the code is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.
                 <br />
-                Powered by
-                <a href="https://www.themoviedb.org/">themoviedb.org</a>
-                .
+                Powered by<a href="https://www.themoviedb.org/">themoviedb.org</a>.
+                { /* eslint-enable react/jsx-one-expression-per-line */ }
               </Trans>
             </p>
           </div>

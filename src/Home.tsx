@@ -6,7 +6,7 @@ import { ReactComponent as Arrow } from './assets/arrow.svg';
 function Home():JSX.Element {
   const { t } = useTranslation();
   return (
-    <div className="justify center">
+    <div className="justify center pt-10">
       <Typeahead />
       <div className="transform rotate-6 w-3/4 sm:w-1/2 md:w-1/3 mx-auto text-center">
         <div className="w-5 mx-auto mb-5">

@@ -8,7 +8,7 @@ import './assets/tailwind.css';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <div className="container font-sans pt-10">
+      <div className="container mx-auto font-sans">
         <App />
       </div>
     </Router>
