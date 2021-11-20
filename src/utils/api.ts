@@ -112,7 +112,10 @@ export async function searchFilms(query: string): Promise<Film[]> {
   const responseJson = await response.json();
   const films = (responseJson?.results || [])
     .map(mapFilm)
-    .filter((film: Film) => film.id !== predatorId);
+    .filter((film: Film) => (
+      film.id !== predatorId
+      && film.voteCount > 0
+    ));
 
   return Promise.resolve(films);
 }
