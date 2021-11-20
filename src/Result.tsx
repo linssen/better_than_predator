@@ -44,9 +44,12 @@ function Result(): JSX.Element {
           </h1>
           <div className="films w-full md:w-1/2 flex block md:float-left mb-8">
             {films.map((film) => (
-              <div
+              <a
                 key={film.id}
                 className="bg-white p-2 mr-4"
+                href={film.tmbdLink}
+                target="_blank"
+                rel="noreferrer"
               >
                 <img
                   alt={film.title}
@@ -64,7 +67,7 @@ function Result(): JSX.Element {
                     />
                   </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 

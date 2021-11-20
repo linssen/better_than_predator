@@ -83,14 +83,16 @@ export function searchUrl(query: string): string {
 }
 
 export function mapFilm(receivedFilm: ReceivedSingleFilm | ReceivedMultiFilm): Film {
+  const slug = slugify(receivedFilm.title).toLocaleLowerCase();
   return {
     id: receivedFilm.id,
     title: receivedFilm.title,
-    slug: slugify(receivedFilm.title).toLocaleLowerCase(),
+    slug,
     releaseDate: new Date(receivedFilm.release_date),
     voteAverage: receivedFilm.vote_average,
     voteCount: receivedFilm.vote_count,
     posterPath: `http://image.tmdb.org/t/p/original/${receivedFilm.poster_path}`,
+    tmbdLink: `https://www.themoviedb.org/movie/${receivedFilm.id}-${slug}`,
   };
 }
 

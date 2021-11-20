@@ -23,6 +23,7 @@ describe('api tools', () => {
     title: 'Honey, I Shrunk the Kids',
     voteAverage: 6.3,
     voteCount: 2312,
+    tmbdLink: 'https://www.themoviedb.org/movie/9354-honey-i-shrunk-the-kids',
   };
 
   it('builds a single search url', () => {
@@ -35,7 +36,6 @@ describe('api tools', () => {
   });
 
   describe('maps films', () => {
-
 
     it('singly to a Film', () => {
       const result:ReceivedSingleFilm = filmSingleFixture;

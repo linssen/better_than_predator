@@ -6,4 +6,5 @@ export interface Film {
   voteAverage: number
   voteCount: number
   slug: string
+  tmbdLink: string
 }
