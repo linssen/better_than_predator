@@ -27,11 +27,11 @@ jobs:
           yarn install
           yarn run build
           yarn test
+        env:
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
-        env:
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
