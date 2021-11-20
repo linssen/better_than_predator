@@ -108,7 +108,9 @@ export async function getFilm(filmId?: string | number): Promise<Film> {
 export async function searchFilms(query: string): Promise<Film[]> {
   const response = await fetch(searchUrl(query), { method: 'GET' });
   const responseJson = await response.json();
-  const films = (responseJson?.results || []).map(mapFilm);
+  const films = (responseJson?.results || [])
+    .map(mapFilm)
+    .filter((film: Film) => film.id !== predatorId);
 
   return Promise.resolve(films);
 }
