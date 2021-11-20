@@ -1,23 +1,33 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true,
-  },
-  extends: [
-    'plugin:vue/essential',
-    '@vue/airbnb',
-  ],
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-param-reassign': [
-      'error',
-      {
-        props: true, ignorePropertyModificationsFor: ['state'],
-      },
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "airbnb-typescript",
     ],
-  },
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
+    overrides: [
+      {
+        files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+        parserOptions: {
+          project: ['./tsconfig.json'], // Specify it only for TypeScript files
+        },
+      }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
 };

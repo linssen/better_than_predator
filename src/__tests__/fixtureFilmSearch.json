@@ -4,13 +4,13 @@
   "total_pages": 1,
   "results": [
     {
-      "vote_count": 1347,
+      "vote_count": 2312,
       "id": 9354,
       "video": false,
-      "vote_average": 6.2,
+      "vote_average": 6.3,
       "title": "Honey, I Shrunk the Kids",
       "popularity": 9.947,
-      "poster_path": "\/f5eFxKYAd7hN1BxYzBg9qL1SDRe.jpg",
+      "poster_path": "\/omQOzahi2NIeiYznNxHFDvNbvo6.jpg",
       "original_language": "en",
       "original_title": "Honey, I Shrunk the Kids",
       "genre_ids": [
@@ -22,7 +22,7 @@
       "backdrop_path": "\/5AhzhhWMD7VxjXjvr1Cx3BmPxyj.jpg",
       "adult": false,
       "overview": "The scientist father of a teenage girl and boy accidentally shrinks his and two other neighborhood teens to the size of insects. Now the teens must fight diminutive dangers as the father searches for them.",
-      "release_date": "1989-06-22"
+      "release_date": "1989-06-23"
     },
     {
       "vote_count": 14,

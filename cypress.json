@@ -1,5 +1,0 @@
-{
-  "pluginsFile": "tests/e2e/plugins/index.js",
-  "projectId": "er7qud",
-  "baseUrl": "http://localhost:8080"
-}
