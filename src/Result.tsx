@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
 import { getFilm } from './utils/api';
 import Score from './components/Score';
-import { ReactComponent as TwitterIcon } from './assets/twitter.svg';
 import { ReactComponent as BackIcon } from './assets/back.svg';
 
 function Result(): JSX.Element {
@@ -88,23 +87,11 @@ function Result(): JSX.Element {
               <span className="p-2 pt-3 bg-black">
                 <BackIcon
                   viewBox="0 0 191 191"
-                  className="icon-twitter flex-1 h-6 w-12"
+                  className="flex-1 h-6 w-12"
                 />
               </span>
               <span className="py-2 px-6">{t('again!', 'Again!')}</span>
             </Link>
-
-            <a
-              href="https://twitter.com/"
-              className="inline-flex text-2xl text-white no-underline relative whitespace-nowrap bg-gray-600 mb-6"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="p-2 pt-3 bg-black">
-                <TwitterIcon viewBox="0 0 236 192" className="icon-twitter flex-1 h-6 w-12" />
-              </span>
-              <span className="py-2 px-6">{t('tweetThis', 'Tweet this')}</span>
-            </a>
 
             <p className="text-base">
               <Trans i18nKey="copyright">
