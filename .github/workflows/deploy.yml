@@ -12,6 +12,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: github-pages
     strategy:
       matrix:
         node-version: [16.x]
