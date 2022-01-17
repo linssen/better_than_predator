@@ -10,7 +10,7 @@ import {
 import filmSearchFixture from './fixtureFilmSearch.json';
 import filmSingleFixture from './fixtureFilmSingle.json';
 import { Film } from '../types';
-import { makeGetMock, makeSearchMock } from './utils';
+import { makeApiResultMock } from './utils';
 
 describe('api tools', () => {
   const apiKey = 'mysecretapikey';
@@ -36,7 +36,6 @@ describe('api tools', () => {
   });
 
   describe('maps films', () => {
-
     it('singly to a Film', () => {
       const result:ReceivedSingleFilm = filmSingleFixture;
       expect(mapFilm(result)).toEqual(expectedMapFilm);
@@ -53,7 +52,7 @@ describe('api tools', () => {
   });
 
   it('fetches a film and maps it to a Film', async () => {
-    const getMock = makeGetMock();
+    const getMock = makeApiResultMock(filmSingleFixture);
     global.fetch = getMock;
     const film = await getFilm(9354);
     expect(getMock).toHaveBeenCalled();
@@ -61,7 +60,7 @@ describe('api tools', () => {
   });
 
   it('searches films and maps them to an array of Films', async () => {
-    const searchMock = makeSearchMock();
+    const searchMock = makeApiResultMock();
     global.fetch = searchMock;
     const films = await searchFilms('Honey');
     expect(searchMock).toHaveBeenCalled();
