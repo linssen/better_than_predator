@@ -22,7 +22,7 @@
     "build": "craco build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "lint": "eslint",
+    "lint": "eslint ./src",
     "translate": "i18next"
   },
   "dependencies": {
@@ -49,8 +49,8 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-helmet": "^6.1.3",
     "@types/react-router-dom": "^5.3.1",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
     "autoprefixer": "^9.8.8",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
