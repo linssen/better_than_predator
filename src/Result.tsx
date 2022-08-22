@@ -57,7 +57,7 @@ function Result(): JSX.Element {
                 />
                 <div className="flex items-center pt-4 justify-between">
                   <span className="text-6xl">
-                    {film.voteAverage}
+                    {film.voteAverage.toFixed(2)}
                     <span className="text-grey text-4xl -ml-1 hidden sm:inline md:hidden lg:inline">/ 10</span>
                   </span>
                   <span className="h-14 w-14">
