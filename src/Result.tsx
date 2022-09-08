@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
@@ -24,8 +24,12 @@ function Result(): JSX.Element {
     getFilms();
   }, []);
 
-  const winner = films.sort((a, b) => b.voteAverage - a.voteAverage)[0];
-  const year = new Date().getFullYear();
+  const winner = useMemo((): Film => {
+    const sorted = films.sort((a, b) => b.voteAverage - a.voteAverage);
+    return sorted[0];
+  }, [films]);
+
+  const year = useMemo((): number => new Date().getFullYear(), []);
 
   return (
     <>
