@@ -1,11 +1,8 @@
-
-Better than Predator
-===============================================================================
+# Better than Predator
 
 [![Test](https://github.com/linssen/better_than_predator/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/linssen/better_than_predator/actions/workflows/test.yml)
 
-Installation
--------------------------------------------------------------------------------
+## Installation
 
 Clone the repo
 

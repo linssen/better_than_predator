@@ -4,7 +4,7 @@ import Home from './Home';
 import Result from './Result';
 import NotFound from './404';
 
-function App():JSX.Element {
+function App(): JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

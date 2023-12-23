@@ -4,7 +4,7 @@ import { Film } from '../types';
 import { searchFilms } from '../utils/api';
 import './typeahead.css';
 
-function Typeahead():JSX.Element {
+function Typeahead(): JSX.Element {
   const [localQuery, setLocalQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [films, setFilms] = useState<Array<Film>>([]);
@@ -29,7 +29,7 @@ function Typeahead():JSX.Element {
     setDebounceTimer(window.setTimeout(search, 400, localQuery));
   }, [localQuery]);
 
-  function onKeyUp(event:React.KeyboardEvent): void {
+  function onKeyUp(event: React.KeyboardEvent): void {
     event.preventDefault();
     if (event.key === 'ArrowUp') {
       setSelectedIndex(Math.max(selectedIndex - 1, 0));
@@ -44,7 +44,8 @@ function Typeahead():JSX.Element {
   }
 
   return (
-    <div className="
+    <div
+      className="
       flex items-center justify-center flex-wrap
       w-full md:w-2/3 lg:w-1/2
       p-4 mr-auto ml-auto
@@ -57,18 +58,18 @@ function Typeahead():JSX.Element {
         onKeyUp={onKeyUp}
         type="search"
         placeholder="Find a film..."
-        className={`${isLoading && 'loading'} w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}
+        className={`${
+          isLoading && 'loading'
+        } w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}
       />
       <ul className="w-full list-reset bg-black absolute top-20 px-4">
-        {films.map((film:Film, index) => (
-          <li
-            className="block"
-            key={film.id}
-            onMouseEnter={() => setSelectedIndex(index)}
-          >
+        {films.map((film: Film, index) => (
+          <li className="block" key={film.id} onMouseEnter={() => setSelectedIndex(index)}>
             <Link
               to={`/versus/${film.id}/${film.slug}/`}
-              className={`${index === selectedIndex ? 'bg-gray-900' : ''} block text-xl text-white no-underline p-2 w-full hover:bg-gray-900`}
+              className={`${
+                index === selectedIndex ? 'bg-gray-900' : ''
+              } block text-xl text-white no-underline p-2 w-full hover:bg-gray-900`}
             >
               {`${film.title} (${film.releaseDate.getFullYear()})`}
             </Link>

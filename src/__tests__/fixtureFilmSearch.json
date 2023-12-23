@@ -10,16 +10,11 @@
       "vote_average": 6.3,
       "title": "Honey, I Shrunk the Kids",
       "popularity": 9.947,
-      "poster_path": "\/omQOzahi2NIeiYznNxHFDvNbvo6.jpg",
+      "poster_path": "/omQOzahi2NIeiYznNxHFDvNbvo6.jpg",
       "original_language": "en",
       "original_title": "Honey, I Shrunk the Kids",
-      "genre_ids": [
-        12,
-        35,
-        10751,
-        878
-      ],
-      "backdrop_path": "\/5AhzhhWMD7VxjXjvr1Cx3BmPxyj.jpg",
+      "genre_ids": [12, 35, 10751, 878],
+      "backdrop_path": "/5AhzhhWMD7VxjXjvr1Cx3BmPxyj.jpg",
       "adult": false,
       "overview": "The scientist father of a teenage girl and boy accidentally shrinks his and two other neighborhood teens to the size of insects. Now the teens must fight diminutive dangers as the father searches for them.",
       "release_date": "1989-06-23"
@@ -31,13 +26,10 @@
       "vote_average": 6.6,
       "title": "Honey, I Shrunk the Audience",
       "popularity": 0.796,
-      "poster_path": "\/ml0LGXKVoCXMN4uef9NXUYxyt34.jpg",
+      "poster_path": "/ml0LGXKVoCXMN4uef9NXUYxyt34.jpg",
       "original_language": "en",
       "original_title": "Honey, I Shrunk the Audience",
-      "genre_ids": [
-        878,
-        35
-      ],
+      "genre_ids": [878, 35],
       "backdrop_path": null,
       "adult": false,
       "overview": "Wayne Szalinski is receiving the Inventor of the Year Award for his shrink ray. When attempting to demonstrate it, it goes haywire and ends up shrinking you, the audience, instead.",
@@ -50,17 +42,11 @@
       "vote_average": 5.2,
       "title": "Honey, We Shrunk Ourselves",
       "popularity": 6.42,
-      "poster_path": "\/9QNAFB9apYxxGPa2F7BsiREMUA4.jpg",
+      "poster_path": "/9QNAFB9apYxxGPa2F7BsiREMUA4.jpg",
       "original_language": "en",
       "original_title": "Honey, We Shrunk Ourselves",
-      "genre_ids": [
-        12,
-        35,
-        10751,
-        878,
-        28
-      ],
-      "backdrop_path": "\/43gS2YVc4GLSfKiIpOTt8GChRHZ.jpg",
+      "genre_ids": [12, 35, 10751, 878, 28],
+      "backdrop_path": "/43gS2YVc4GLSfKiIpOTt8GChRHZ.jpg",
       "adult": false,
       "overview": "The joke's on absent-minded scientist Wayne Szalinski when his troublesome invention shrinks him, his brother and their wives so effectively that their children think they've completely disappeared. Of course, this gives the kids free rein to do anything they want, unaware that their parents are watching every move.",
       "release_date": "1997-03-18"
@@ -72,16 +58,11 @@
       "vote_average": 5,
       "title": "Honey I Blew Up the Kid",
       "popularity": 7.222,
-      "poster_path": "\/gwda8CnPAfHGwygclGiKddt60fX.jpg",
+      "poster_path": "/gwda8CnPAfHGwygclGiKddt60fX.jpg",
       "original_language": "en",
       "original_title": "Honey I Blew Up the Kid",
-      "genre_ids": [
-        12,
-        35,
-        10751,
-        878
-      ],
-      "backdrop_path": "\/ae2oJzjdGcGo14iECNnkcnLlUyI.jpg",
+      "genre_ids": [12, 35, 10751, 878],
+      "backdrop_path": "/ae2oJzjdGcGo14iECNnkcnLlUyI.jpg",
       "adult": false,
       "overview": "Wayne Szalinski is at it again. But instead of shrinking things, he tries to make a machine that can make things grow. As in the first one, his machine isn't quite accurate. But when he brings Nick & his toddler son Adam to see his invention, the machine unexpectedly starts working. And when Adam comes right up to the machine, he gets zapped along with his stuffed bunny.",
       "release_date": "1992-07-16"

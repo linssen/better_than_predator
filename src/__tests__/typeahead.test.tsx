@@ -5,11 +5,11 @@ import { screen } from '@testing-library/dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Typeahead from '../components/Typeahead';
-import { makeApiResultMock } from './utils';
+import makeApiResultMock from './utils';
 import filmSearchFixture from './fixtureFilmSearch.json';
 
 describe('Typeahead', () => {
-  let container:HTMLElement;
+  let container: HTMLElement;
 
   beforeEach(() => {
     // setup a DOM element as a render target
@@ -28,7 +28,12 @@ describe('Typeahead', () => {
     global.fetch = searchMock;
 
     act(() => {
-      render(<Router><Typeahead /></Router>, container);
+      render(
+        <Router>
+          <Typeahead />
+        </Router>,
+        container,
+      );
     });
 
     const input = await screen.getByPlaceholderText('Find a film...');
@@ -59,15 +64,17 @@ describe('Typeahead', () => {
     };
     const searchFixture = {
       ...filmSearchFixture,
-      results: [
-        ...filmSearchFixture.results,
-        fakePredator,
-      ],
+      results: [...filmSearchFixture.results, fakePredator],
     };
     global.fetch = makeApiResultMock(searchFixture);
 
     act(() => {
-      render(<Router><Typeahead /></Router>, container);
+      render(
+        <Router>
+          <Typeahead />
+        </Router>,
+        container,
+      );
     });
 
     const input = await screen.getByPlaceholderText('Find a film...');

@@ -10,12 +10,12 @@ import {
 import filmSearchFixture from './fixtureFilmSearch.json';
 import filmSingleFixture from './fixtureFilmSingle.json';
 import { Film } from '../types';
-import { makeApiResultMock } from './utils';
+import makeApiResultMock from './utils';
 
 describe('api tools', () => {
   const apiKey = 'mysecretapikey';
   const baseUrl = 'https://api.themoviedb.org/3';
-  const expectedMapFilm:Film = {
+  const expectedMapFilm: Film = {
     id: 9354,
     posterPath: 'http://image.tmdb.org/t/p/original//omQOzahi2NIeiYznNxHFDvNbvo6.jpg',
     releaseDate: new Date('1989-06-23T00:00:00.000Z'),
@@ -32,17 +32,19 @@ describe('api tools', () => {
 
   it('builds a search url with correct get params', () => {
     const extraParams = `api_key=${apiKey}&page=1&include_adult=false&search_type=ngram`;
-    expect(searchUrl('cool movie!')).toEqual(`${baseUrl}/search/movie?query=cool%20movie!&${extraParams}`);
+    expect(searchUrl('cool movie!')).toEqual(
+      `${baseUrl}/search/movie?query=cool%20movie!&${extraParams}`,
+    );
   });
 
   describe('maps films', () => {
     it('singly to a Film', () => {
-      const result:ReceivedSingleFilm = filmSingleFixture;
+      const result: ReceivedSingleFilm = filmSingleFixture;
       expect(mapFilm(result)).toEqual(expectedMapFilm);
     });
 
     it('from a search result list to a Film', () => {
-      const result:ReceivedMultiFilm = filmSearchFixture.results[0];
+      const result: ReceivedMultiFilm = filmSearchFixture.results[0];
       expect(mapFilm(result)).toEqual(expectedMapFilm);
     });
   });

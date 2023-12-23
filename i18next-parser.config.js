@@ -4,4 +4,4 @@ module.exports = {
   output: 'src/locales/$LOCALE/$NAMESPACE.json',
   input: ['src/**/*.{ts,tsx}'],
   sort: true,
-}
+};
