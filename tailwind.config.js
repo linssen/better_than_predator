@@ -7,16 +7,8 @@ module.exports = {
         black: '#22292f',
       },
       fontFamily: {
-        sans: [
-          'Pathway Gothic One',
-          'Helvetica Neue',
-          'sans-serif',
-        ],
-        cursive: [
-          'Shadows Into Light',
-          'cursive',
-          'serif',
-        ],
+        sans: ['Pathway Gothic One', 'Helvetica Neue', 'sans-serif'],
+        cursive: ['Shadows Into Light', 'cursive', 'serif'],
       },
       fill: {
         white: 'white',
@@ -27,4 +19,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

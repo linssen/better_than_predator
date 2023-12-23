@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Typeahead from './components/Typeahead';
 import { ReactComponent as Arrow } from './assets/arrow.svg';
 
-function Home():JSX.Element {
+function Home(): JSX.Element {
   const { t } = useTranslation();
   return (
     <div className="justify center pt-10">

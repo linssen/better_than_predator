@@ -11,11 +11,13 @@ i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
   // learn more: https://github.com/i18next/i18next-http-backend
   // want your translations to be loaded from a professional CDN? => https://github.com/locize/react-tutorial#step-2---use-the-locize-cdn
-  .use(resourcesToBackend((language, namespace, callback) => {
-    import(`./locales/${language}/${namespace}.json`)
-      .then((resources) => callback(null, resources))
-      .catch((error) => callback(error, null));
-  }))
+  .use(
+    resourcesToBackend((language, namespace, callback) => {
+      import(`./locales/${language}/${namespace}.json`)
+        .then((resources) => callback(null, resources))
+        .catch((error) => callback(error, null));
+    }),
+  )
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)

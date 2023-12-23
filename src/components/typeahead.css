@@ -1,7 +1,7 @@
 .loading {
-    @apply bg-no-repeat;
+  @apply bg-no-repeat;
 
-    background-position: right 0.5rem top 50%;
-    background-image: url('../assets/dots.gif');
-    background-size: auto 1.5rem;
+  background-position: right 0.5rem top 50%;
+  background-image: url('../assets/dots.gif');
+  background-size: auto 1.5rem;
 }
