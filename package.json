@@ -22,7 +22,8 @@
     "build": "craco build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --no-fix --max-warnings 0",
+    "pretty": "prettier --check ./src",
     "translate": "i18next"
   },
   "dependencies": {
