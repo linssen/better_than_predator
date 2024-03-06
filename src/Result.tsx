@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Film } from './types';
 import { getFilm } from './utils/api';
 import Score from './components/Score';
-import { ReactComponent as BackIcon } from './assets/back.svg';
+import BackIcon from './assets/back.svg';
 
 function Result(): JSX.Element {
   const { t } = useTranslation();
@@ -96,12 +96,10 @@ function Result(): JSX.Element {
 
             <p className="text-base">
               <Trans i18nKey="copyright">
-                {/* eslint-disable react/jsx-one-expression-per-line */}
                 Copyright © {{ year }} <a href="http://linssen.me/">Wil Linssen</a>, and all of the
                 code is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.
                 <br />
                 Powered by<a href="https://www.themoviedb.org/">themoviedb.org</a>.
-                {/* eslint-enable react/jsx-one-expression-per-line */}
               </Trans>
             </p>
           </div>

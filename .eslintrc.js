@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'airbnb-typescript', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:import/recommended'
+  ],
   overrides: [
     {
       files: ['*.ts', '*.tsx'], // Your TypeScript files extension
@@ -21,6 +27,10 @@ module.exports = {
     sourceType: 'module',
     project: ['tsconfig.json'],
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+  ],
   rules: {},
 };

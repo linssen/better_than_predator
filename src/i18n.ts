@@ -27,7 +27,7 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'en-GB',
-    debug: process.env.NODE_ENV !== 'production',
+    debug: import.meta.env.DEV,
     react: {
       useSuspense: true,
     },

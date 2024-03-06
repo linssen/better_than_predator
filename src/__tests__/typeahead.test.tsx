@@ -25,7 +25,7 @@ describe('Typeahead', () => {
 
   it('searches after 2 character', async () => {
     const searchMock = makeApiResultMock();
-    global.fetch = searchMock;
+    window.fetch = searchMock;
 
     act(() => {
       render(
@@ -66,7 +66,7 @@ describe('Typeahead', () => {
       ...filmSearchFixture,
       results: [...filmSearchFixture.results, fakePredator],
     };
-    global.fetch = makeApiResultMock(searchFixture);
+    window.fetch = makeApiResultMock(searchFixture);
 
     act(() => {
       render(

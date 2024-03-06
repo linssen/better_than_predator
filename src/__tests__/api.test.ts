@@ -55,7 +55,7 @@ describe('api tools', () => {
 
   it('fetches a film and maps it to a Film', async () => {
     const getMock = makeApiResultMock(filmSingleFixture);
-    global.fetch = getMock;
+    window.fetch = getMock;
     const film = await getFilm(9354);
     expect(getMock).toHaveBeenCalled();
     expect(film).toEqual(expectedMapFilm);
@@ -63,7 +63,7 @@ describe('api tools', () => {
 
   it('searches films and maps them to an array of Films', async () => {
     const searchMock = makeApiResultMock();
-    global.fetch = searchMock;
+    window.fetch = searchMock;
     const films = await searchFilms('Honey');
     expect(searchMock).toHaveBeenCalled();
     expect(films.length).toEqual(filmSearchFixture.results.length);
