@@ -16,7 +16,12 @@ function Result(): JSX.Element {
   async function getFilms() {
     setIsLoading(true);
     const received = await Promise.all([predatorId, filmId].map(getFilm));
-    setFilms(received.sort((a) => (a.id === predatorId ? -1 : 1)));
+    received.sort((a, b) => {
+      if (a.id === predatorId) return -1;
+      if (b.id === predatorId) return 1;
+      return 0;
+    });
+    setFilms(received);
     setIsLoading(false);
   }
 
