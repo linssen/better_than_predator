@@ -1,1 +1,3 @@
-process.env.REACT_APP_API_KEY = 'mysecretapikey';
+import { vi } from 'vitest';
+
+vi.stubEnv('VITE_API_KEY', 'mysecretapikey');

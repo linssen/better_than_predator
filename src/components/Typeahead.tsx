@@ -4,7 +4,7 @@ import { Film } from '../types';
 import { searchFilms } from '../utils/api';
 import './typeahead.css';
 
-function Typeahead(): JSX.Element {
+function Typeahead(): React.JSX.Element {
   const [localQuery, setLocalQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [films, setFilms] = useState<Array<Film>>([]);
