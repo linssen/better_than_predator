@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import { screen } from '@testing-library/dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Typeahead from '../components/Typeahead';
@@ -9,47 +7,27 @@ import makeApiResultMock from './utils';
 import filmSearchFixture from './fixtureFilmSearch.json';
 
 describe('Typeahead', () => {
-  let container: HTMLElement;
-
-  beforeEach(() => {
-    // setup a DOM element as a render target
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    // cleanup on exiting
-    unmountComponentAtNode(container);
-    container.remove();
-  });
-
   it('searches after 2 character', async () => {
     const searchMock = makeApiResultMock();
     global.fetch = searchMock;
+    const user = userEvent.setup();
 
-    act(() => {
-      render(
-        <Router>
-          <Typeahead />
-        </Router>,
-        container,
-      );
-    });
+    render(
+      <Router>
+        <Typeahead />
+      </Router>,
+    );
 
-    const input = await screen.getByPlaceholderText('Find a film...');
+    const input = screen.getByPlaceholderText('Find a film...');
 
-    await act(async () => {
-      await userEvent.type(input, 'Ho', { delay: 500 });
-    });
+    await user.type(input, 'Ho');
     // Not yet - we want 3 or more characters
     expect(searchMock).not.toHaveBeenCalled();
 
     // Add the rest
-    await act(async () => {
-      await userEvent.type(input, 'ney, I', { delay: 500 });
-    });
+    await user.type(input, 'ney, I');
 
-    expect(searchMock).toHaveBeenCalled();
+    await waitFor(() => expect(searchMock).toHaveBeenCalled());
     const films = await screen.findAllByRole('link');
     expect(films.length).toEqual(filmSearchFixture.results.length);
     expect(films[0].textContent).toBe('Honey, I Shrunk the Kids (1989)');
@@ -67,21 +45,17 @@ describe('Typeahead', () => {
       results: [...filmSearchFixture.results, fakePredator],
     };
     global.fetch = makeApiResultMock(searchFixture);
+    const user = userEvent.setup();
 
-    act(() => {
-      render(
-        <Router>
-          <Typeahead />
-        </Router>,
-        container,
-      );
-    });
+    render(
+      <Router>
+        <Typeahead />
+      </Router>,
+    );
 
-    const input = await screen.getByPlaceholderText('Find a film...');
+    const input = screen.getByPlaceholderText('Find a film...');
 
-    await act(async () => {
-      await userEvent.type(input, 'Predator', { delay: 500 });
-    });
+    await user.type(input, 'Predator');
 
     const films = await screen.findAllByRole('link');
     const titles = [...films].map((film) => film.textContent);

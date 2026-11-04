@@ -4,7 +4,7 @@ import { Film } from '../types';
 import { searchFilms } from '../utils/api';
 import './typeahead.css';
 
-function Typeahead(): JSX.Element {
+function Typeahead(): React.JSX.Element {
   const [localQuery, setLocalQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [films, setFilms] = useState<Array<Film>>([]);
@@ -52,30 +52,32 @@ function Typeahead(): JSX.Element {
       relative z-10
     "
     >
-      <input
-        value={localQuery}
-        onChange={(e) => setLocalQuery(e.target.value)}
-        onKeyUp={onKeyUp}
-        type="search"
-        placeholder="Find a film..."
-        className={`${
-          isLoading && 'loading'
-        } w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}
-      />
-      <ul className="w-full list-reset bg-black absolute top-20 px-4">
-        {films.map((film: Film, index) => (
-          <li className="block" key={film.id} onMouseEnter={() => setSelectedIndex(index)}>
-            <Link
-              to={`/versus/${film.id}/${film.slug}/`}
-              className={`${
-                index === selectedIndex ? 'bg-gray-900' : ''
-              } block text-xl text-white no-underline p-2 w-full hover:bg-gray-900`}
-            >
-              {`${film.title} (${film.releaseDate.getFullYear()})`}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="relative w-full">
+        <input
+          value={localQuery}
+          onChange={(e) => setLocalQuery(e.target.value)}
+          onKeyUp={onKeyUp}
+          type="search"
+          placeholder="Find a film..."
+          className={`${
+            isLoading && 'loading'
+          } w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}
+        />
+        <ul className="absolute left-0 top-full w-full list-reset bg-black px-4">
+          {films.map((film: Film, index) => (
+            <li className="block" key={film.id} onMouseEnter={() => setSelectedIndex(index)}>
+              <Link
+                to={`/versus/${film.id}/${film.slug}/`}
+                className={`${
+                  index === selectedIndex ? 'bg-gray-900' : ''
+                } block text-xl text-white no-underline p-2 w-full hover:bg-gray-900`}
+              >
+                {`${film.title} (${film.releaseDate.getFullYear()})`}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

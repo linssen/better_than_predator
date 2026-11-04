@@ -4,27 +4,48 @@
 
 ## Installation
 
-Clone the repo
+Clone the repository and install dependencies:
 
 ```sh
 git clone https://github.com/linssen/better_than_predator
-```
-
-Install the requirements packages
-
-```sh
+cd better_than_predator
 yarn install
 ```
 
-Build the static files
+Create `.env.local` in the project root and set your TMDB API key:
 
 ```sh
-# Build the production ready files
-yarn run build
-# Watch the files to automatically build them on change
-yarn run serve
-# Test
-yarn run test
+VITE_API_KEY=your_tmdb_api_key
 ```
+
+Vite embeds `VITE_` variables in the browser bundle. Do not put a private or
+restricted credential in this variable.
+
+## Development
+
+Start the local development server:
+
+```sh
+yarn dev
+```
+
+Build and preview the production site:
+
+```sh
+yarn build
+yarn preview
+```
+
+Run the test suite once or in watch mode:
+
+```sh
+yarn test
+yarn test:watch
+```
+
+The GitHub Pages workflow builds `dist/` and publishes it to the existing
+`www.betterthanpredator.com` domain. Configure the repository's
+`REACT_APP_API_KEY` Actions secret with the TMDB API key; the workflow supplies
+it to Vite as `VITE_API_KEY`.
 
 ![predator](https://f.cloud.github.com/assets/67624/415163/75afa1ae-ac2c-11e2-8a16-cab25bf1a58e.png)

@@ -1,11 +1,17 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { HashRouter as Router } from 'react-router-dom';
 import './i18n';
 import App from './App';
 import './assets/tailwind.css';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
+
+createRoot(rootElement).render(
   <React.StrictMode>
     <Suspense fallback={<>...</>}>
       <Router>
@@ -15,5 +21,4 @@ ReactDOM.render(
       </Router>
     </Suspense>
   </React.StrictMode>,
-  document.getElementById('root'),
 );
