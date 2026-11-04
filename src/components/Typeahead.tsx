@@ -62,7 +62,7 @@ function Typeahead(): React.JSX.Element {
           type="search"
           placeholder={t('searchFilmPlaceholder', 'Find a film...')}
           aria-busy={isLoading}
-          className="w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline"
+          className="typeahead-search w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline"
         />
         {isLoading && (
           <svg
