@@ -2,7 +2,7 @@ import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import Typeahead from '../components/Typeahead';
 import makeApiResultMock from './utils';
 import filmSearchFixture from './fixtureFilmSearch.json';
@@ -53,6 +53,44 @@ describe('Typeahead', () => {
     const films = await screen.findAllByRole('link');
     expect(films.length).toEqual(filmSearchFixture.results.length);
     expect(films[0].textContent).toBe('Honey, I Shrunk the Kids (1989)');
+  });
+
+  it('shows an animated SVG while a search is pending', async () => {
+    let resolveFetch: ((response: Response) => void) | undefined;
+    const searchMock = vi.fn(
+      () =>
+        new Promise<Response>((resolve) => {
+          resolveFetch = resolve;
+        }),
+    );
+    global.fetch = searchMock;
+    const user = userEvent.setup();
+
+    const { container } = render(
+      <Router>
+        <Typeahead />
+      </Router>,
+    );
+
+    const input = screen.getByPlaceholderText('Find a film...');
+    await user.type(input, 'Ho');
+    await act(async () => {
+      await new Promise((resolve) => {
+        window.setTimeout(resolve, 450);
+      });
+    });
+    expect(searchMock).toHaveBeenCalled();
+    const indicator = container.querySelector('svg.loading-indicator');
+    expect(indicator?.querySelectorAll('g.frame')).toHaveLength(9);
+    expect(indicator?.querySelector('g.frame')?.hasAttribute('fill')).toBe(false);
+    expect(input.getAttribute('aria-busy')).toBe('true');
+
+    expect(resolveFetch).toBeDefined();
+    await act(async () => {
+      resolveFetch?.(new Response(JSON.stringify(filmSearchFixture)));
+    });
+    expect(container.querySelector('svg.loading-indicator')).toBeNull();
+    expect(input.getAttribute('aria-busy')).toBe('false');
   });
 
   it('excludes Predator itself from the results', async () => {
