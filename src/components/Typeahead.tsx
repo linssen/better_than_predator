@@ -61,10 +61,166 @@ function Typeahead(): React.JSX.Element {
           onKeyUp={onKeyUp}
           type="search"
           placeholder={t('searchFilmPlaceholder', 'Find a film...')}
-          className={`${
-            isLoading && 'loading'
-          } w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}
+          aria-busy={isLoading}
+          className="typeahead-search w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline"
         />
+        {isLoading && (
+          <svg
+            aria-hidden="true"
+            className="loading-indicator"
+            viewBox="0 0 33 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path id="predator-loading-segment" d="M 0 0 L 1 1 L 6 1 L 7 0 L 6 -1 L 1 -1 L 0 0" />
+            </defs>
+            <g className="frame">
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 0.8) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(20 0.8) rotate(135) scale(1.3)"
+              />
+              <use href="#predator-loading-segment" transform="translate(24 8)" />
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(23 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 0.8) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(20 0.8) rotate(135) scale(1.3)"
+              />
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(23 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 0.8) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(20 0.8) rotate(135) scale(1.3)"
+              />
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 0.8) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(20 0.8) rotate(135) scale(1.3)"
+              />
+              <use href="#predator-loading-segment" transform="translate(24 3)" />
+              <use href="#predator-loading-segment" transform="translate(24 8)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use href="#predator-loading-segment" transform="translate(24 3)" />
+              <use href="#predator-loading-segment" transform="translate(24 8)" />
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(23 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use href="#predator-loading-segment" transform="translate(24 8)" />
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(23 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use href="#predator-loading-segment" transform="translate(9 10) rotate(180)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(4 19) rotate(-45) scale(1.3)"
+              />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(13 13) rotate(45) scale(1.3)"
+              />
+            </g>
+            <g className="frame">
+              <use href="#predator-loading-segment" transform="translate(24 3)" />
+              <use href="#predator-loading-segment" transform="translate(24 8)" />
+              <use
+                href="#predator-loading-segment"
+                transform="translate(23 19) rotate(-45) scale(1.3)"
+              />
+            </g>
+          </svg>
+        )}
         <ul className="absolute left-0 top-full w-full list-reset bg-black px-4">
           {films.map((film: Film, index) => (
             <li className="block" key={film.id} onMouseEnter={() => setSelectedIndex(index)}>
