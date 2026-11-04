@@ -1,12 +1,34 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { afterEach } from 'vitest';
 import Typeahead from '../components/Typeahead';
 import makeApiResultMock from './utils';
 import filmSearchFixture from './fixtureFilmSearch.json';
+import i18n from '../i18n';
 
 describe('Typeahead', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('en-GB');
+  });
+
+  it('translates the search placeholder into French', async () => {
+    await act(async () => {
+      await i18n.changeLanguage('fr-FR');
+    });
+
+    render(
+      <Router>
+        <Typeahead />
+      </Router>,
+    );
+
+    expect(screen.getByPlaceholderText('Rechercher un film...').getAttribute('placeholder')).toBe(
+      'Rechercher un film...',
+    );
+  });
+
   it('searches after 2 character', async () => {
     const searchMock = makeApiResultMock();
     global.fetch = searchMock;

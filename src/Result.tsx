@@ -83,6 +83,7 @@ function Result(): React.JSX.Element | null {
         <p className="mb-6 text-2xl">
           <Trans
             i18nKey="reasonAndCredit"
+            defaults="Because <wil>Wil</wil>, <greg>Greg</greg>, and Glen were in a pub once and they thought you should be able to compare films to Predator. It is after all the ultimate benchmark."
             components={{
               wil: <a href="https://www.linssen.me/">Wil</a>,
               greg: <a href="http://gregorywood.co.uk/">Greg</a>,

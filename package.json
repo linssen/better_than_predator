@@ -25,7 +25,8 @@
     "test:watch": "vitest",
     "lint": "eslint ./src --no-fix --max-warnings 0",
     "pretty": "prettier --check ./src",
-    "translate": "i18next"
+    "translate": "i18next",
+    "check:translations": "i18next --fail-on-update"
   },
   "dependencies": {
     "i18next": "^26.7.1",
