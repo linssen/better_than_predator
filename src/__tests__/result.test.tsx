@@ -47,5 +47,8 @@ describe('Result', () => {
     expect(screen.getByRole('heading', { level: 1 }).textContent).toContain(
       'Honey, I Shrunk the Kids wins!',
     );
+    expect(screen.getByRole('link', { name: 'Greg' }).getAttribute('href')).toBe(
+      'http://gregorywood.co.uk/',
+    );
   });
 });

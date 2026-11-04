@@ -81,14 +81,13 @@ function Result(): React.JSX.Element | null {
       <div className="blurb text-white w-full md:w-1/2 float-right">
         <h3 className="text-3xl mb-6 text-4xl">{t('whyExist', 'Why does this even exist?')}</h3>
         <p className="mb-6 text-2xl">
-          <Trans i18nKey="reasonAndCredit">
-            {/* eslint-disable react/jsx-one-expression-per-line */}
-            Because <a href="https://www.linssen.me/">Wil</a>,{' '}
-            <a href="http://gregorywood.co.uk/">Greg</a>, and Glen were in a pub once and they
-            thought you should be able to compare films to Predator. It is after all the ultimate
-            benchmark.
-            {/* eslint-enable react/jsx-one-expression-per-line */}
-          </Trans>
+          <Trans
+            i18nKey="reasonAndCredit"
+            components={{
+              wil: <a href="https://www.linssen.me/">Wil</a>,
+              greg: <a href="http://gregorywood.co.uk/">Greg</a>,
+            }}
+          />
         </p>
 
         <Link
