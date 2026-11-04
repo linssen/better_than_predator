@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function NotFound(): React.JSX.Element {
-  return <h1>Not found</h1>;
+  const { t } = useTranslation();
+  return <h1>{t('notFound', 'Not found')}</h1>;
 }
 
 export default NotFound;

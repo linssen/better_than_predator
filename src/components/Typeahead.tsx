@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { Film } from '../types';
 import { searchFilms } from '../utils/api';
 import './typeahead.css';
 
 function Typeahead(): React.JSX.Element {
+  const { t } = useTranslation();
   const [localQuery, setLocalQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [films, setFilms] = useState<Array<Film>>([]);
@@ -58,7 +60,7 @@ function Typeahead(): React.JSX.Element {
           onChange={(e) => setLocalQuery(e.target.value)}
           onKeyUp={onKeyUp}
           type="search"
-          placeholder="Find a film..."
+          placeholder={t('searchFilmPlaceholder', 'Find a film...')}
           className={`${
             isLoading && 'loading'
           } w-full bg-grey-lighter text-grey-darker text-3xl p-2 rounded-sm appearance-none focus:outline-none focus:shadow-outline`}

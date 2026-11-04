@@ -1,0 +1,12 @@
+{
+  "again!": "Outra vez!",
+  "copyright": "Copyright © {{year}} <3>Wil Linssen</3>, e todo o código está <5>no GitHub</5>.<7></7>Com tecnologia de <9>themoviedb.org</9>.",
+  "notFound": "Página não encontrada",
+  "pageDescription": "Introduza o título de qualquer filme para descobrir se é melhor do que Predator.",
+  "pageTitle": "Better Than Predator",
+  "reasonAndCredit": "Porque <wil>Wil</wil>, <greg>Greg</greg> e Glen estavam um dia num pub e acharam que devia poder comparar filmes com Predator. Afinal, é a referência máxima.",
+  "searchInstruction": "Introduza o título de qualquer filme para descobrir se é melhor do que Predator",
+  "searchFilmPlaceholder": "Procurar um filme...",
+  "whyExist": "Porque é que isto existe?",
+  "winnerAnnounce": "{{winner}} vence!"
+}
