@@ -30,7 +30,7 @@ function Result(): React.JSX.Element | null {
   }, []);
 
   const winner = useMemo((): Film => {
-    const sorted = films.sort((a, b) => b.voteAverage - a.voteAverage);
+    const sorted = [...films].sort((a, b) => b.voteAverage - a.voteAverage);
     return sorted[0];
   }, [films]);
 
