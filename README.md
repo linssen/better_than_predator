@@ -43,6 +43,17 @@ yarn test
 yarn test:watch
 ```
 
+Check translation catalogs for missing keys or source-copy changes:
+
+```sh
+yarn check:translations
+```
+
+The check extracts UI translation keys and English defaults from the source.
+When English copy changes, the parser preserves the previous translations in
+`_old` catalogs and resets the affected entries to English; update those
+translations before the check passes.
+
 The GitHub Pages workflow builds `dist/` and publishes it to the existing
 `www.betterthanpredator.com` domain. Configure the repository's
 `REACT_APP_API_KEY` Actions secret with the TMDB API key; the workflow supplies

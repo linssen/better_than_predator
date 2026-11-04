@@ -10,10 +10,13 @@ function App(): React.JSX.Element {
 
   useEffect(() => {
     document.documentElement.lang = i18n.resolvedLanguage ?? i18n.language;
-    document.title = t('pageTitle');
+    document.title = t('pageTitle', 'Better Than Predator');
     document
       .querySelector('meta[name="description"]')
-      ?.setAttribute('content', t('pageDescription'));
+      ?.setAttribute(
+        'content',
+        t('pageDescription', "Enter any film; find out if it's better than Predator."),
+      );
   }, [i18n.language, i18n.resolvedLanguage, t]);
 
   return (

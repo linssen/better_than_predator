@@ -5,8 +5,8 @@
   "pageDescription": "Saisissez le titre d’un film pour savoir s’il est meilleur que Predator.",
   "pageTitle": "Better Than Predator",
   "reasonAndCredit": "Parce que <wil>Wil</wil>, <greg>Greg</greg> et Glen étaient un jour dans un pub et ont pensé que vous devriez pouvoir comparer les films à Predator. Après tout, c’est la référence ultime.",
-  "searchInstruction": "Saisissez le titre d’un film pour savoir s’il est meilleur que Predator",
   "searchFilmPlaceholder": "Rechercher un film...",
+  "searchInstruction": "Saisissez le titre d’un film pour savoir s’il est meilleur que Predator",
   "whyExist": "Mais pourquoi ce site existe-t-il ?",
   "winnerAnnounce": "{{winner}} gagne !"
 }

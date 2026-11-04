@@ -83,6 +83,7 @@ function Result(): React.JSX.Element | null {
         <p className="mb-6 text-2xl">
           <Trans
             i18nKey="reasonAndCredit"
+            defaults="Because <wil>Wil</wil>, <greg>Greg</greg>, and Glen were in a pub once and they thought you should be able to compare films to Predator. It is after all the ultimate benchmark."
             components={{
               wil: <a href="https://www.linssen.me/">Wil</a>,
               greg: <a href="http://gregorywood.co.uk/">Greg</a>,
@@ -103,8 +104,8 @@ function Result(): React.JSX.Element | null {
         <p className="text-base">
           <Trans i18nKey="copyright">
             {/* eslint-disable react/jsx-one-expression-per-line */}
-            Copyright © {{ year }} <a href="http://linssen.me/">Wil Linssen</a>, and all of the
-            code is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.
+            Copyright © {{ year }} <a href="http://linssen.me/">Wil Linssen</a>, and all of the code
+            is <a href="http://github.com/linssen/better_than_predator">on GitHub</a>.
             <br />
             Powered by<a href="https://www.themoviedb.org/">themoviedb.org</a>.
             {/* eslint-enable react/jsx-one-expression-per-line */}
