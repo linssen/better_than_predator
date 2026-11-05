@@ -72,12 +72,7 @@ export function searchUrl(query: string): string {
   };
 
   const urlParams = Object.entries(queryParams)
-    .map(([key, val]) => {
-      if (val !== undefined) {
-        return `${key}=${encodeURIComponent(val)}`;
-      }
-      return '';
-    })
+    .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
     .join('&');
 
   return `https://api.themoviedb.org/3/search/movie?${urlParams}`;

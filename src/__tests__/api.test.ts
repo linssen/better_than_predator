@@ -69,4 +69,25 @@ describe('api tools', () => {
     expect(films.length).toEqual(filmSearchFixture.results.length);
     expect(films[0]).toEqual(expectedMapFilm);
   });
+
+  it('filters Predator and films without votes from search results', async () => {
+    const searchFixture = {
+      results: [
+        { ...filmSearchFixture.results[0], id: 106 },
+        { ...filmSearchFixture.results[1], vote_count: 0 },
+        filmSearchFixture.results[2],
+      ],
+    };
+    global.fetch = makeApiResultMock(searchFixture);
+
+    await expect(searchFilms('Honey')).resolves.toEqual([
+      expect.objectContaining({ id: filmSearchFixture.results[2].id }),
+    ]);
+  });
+
+  it('returns an empty list when the API response has no results', async () => {
+    global.fetch = makeApiResultMock({});
+
+    await expect(searchFilms('missing')).resolves.toEqual([]);
+  });
 });

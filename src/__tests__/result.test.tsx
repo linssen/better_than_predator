@@ -51,4 +51,47 @@ describe('Result', () => {
       'http://gregorywood.co.uk/',
     );
   });
+
+  it('handles a response that returns the same non-Predator for both requests', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response(JSON.stringify(filmSingleFixture))),
+    );
+
+    render(
+      <MemoryRouter initialEntries={['/versus/9354/honey-i-shrunk-the-kids/']}>
+        <Routes>
+          <Route path="/versus/:filmId/:filmSlug/" element={<Result />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect((await screen.findByRole('heading', { level: 1 })).textContent).toContain(
+      'Honey, I Shrunk the Kids wins!',
+    );
+  });
+
+  it('handles a comparison where both requests return Predator', async () => {
+    const predator = {
+      ...filmSingleFixture,
+      id: 106,
+      title: 'Predator',
+    };
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response(JSON.stringify(predator))),
+    );
+
+    render(
+      <MemoryRouter initialEntries={['/versus/106/predator/']}>
+        <Routes>
+          <Route path="/versus/:filmId/:filmSlug/" element={<Result />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect((await screen.findByRole('heading', { level: 1 })).textContent).toContain(
+      'Predator wins!',
+    );
+  });
 });
