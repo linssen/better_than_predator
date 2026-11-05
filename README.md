@@ -9,8 +9,11 @@ Clone the repository and install dependencies:
 ```sh
 git clone https://github.com/linssen/better_than_predator
 cd better_than_predator
+nvm install
 yarn install
 ```
+
+The repository's `.nvmrc` tracks the current Node.js LTS release.
 
 Create `.env.local` in the project root and set your TMDB API key:
 
