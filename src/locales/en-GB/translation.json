@@ -1,6 +1,6 @@
 {
   "again!": "Again!",
-  "copyright": "Copyright © {{year}} <3>Wil Linssen</3>, and all of the code is <5>on GitHub</5>.<7></7>Powered by<9>themoviedb.org</9>.",
+  "copyright": "Copyright © {{year}} <3>Wil Linssen</3>, and all of the code is <5>on GitHub</5>.<br/>Powered by<9>themoviedb.org</9>.",
   "notFound": "Not found",
   "pageDescription": "Enter any film; find out if it's better than Predator.",
   "pageTitle": "Better Than Predator",
