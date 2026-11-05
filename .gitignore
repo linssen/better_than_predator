@@ -2,6 +2,7 @@
 node_modules
 .yarn/install-state.gz
 /build
+/coverage
 /dist
 
 /tests/e2e/videos/

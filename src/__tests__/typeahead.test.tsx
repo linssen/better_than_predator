@@ -1,12 +1,17 @@
 import React from 'react';
-import { act, render, screen, waitFor } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter as Router, MemoryRouter, Route, Routes, useParams } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { afterEach, vi } from 'vitest';
 import Typeahead from '../components/Typeahead';
 import makeApiResultMock from './utils';
 import filmSearchFixture from './fixtureFilmSearch.json';
 import i18n from '../i18n';
+
+function SelectedFilmRoute(): React.JSX.Element {
+  const { filmId, filmSlug } = useParams();
+  return <h1>{`Selected ${filmId} ${filmSlug}`}</h1>;
+}
 
 describe('Typeahead', () => {
   afterEach(async () => {
@@ -122,5 +127,37 @@ describe('Typeahead', () => {
     expect(films.length).toEqual(searchFixture.results.length - 1);
     expect(titles.indexOf('Honey, I Shrunk the Kids (1989)')).toBe(0);
     expect(titles.indexOf('Predator (1987)')).toBe(-1);
+  });
+
+  it('moves through search results with the keyboard and selects the hovered result', async () => {
+    global.fetch = makeApiResultMock();
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Typeahead />} />
+          <Route path="/versus/:filmId/:filmSlug/" element={<SelectedFilmRoute />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const input = screen.getByPlaceholderText('Find a film...');
+    await user.type(input, 'Honey');
+    const films = await screen.findAllByRole('link');
+
+    fireEvent.mouseEnter(screen.getAllByRole('listitem')[1]);
+    expect(films[1].className).toContain('bg-gray-900');
+    fireEvent.keyUp(input, { key: 'ArrowUp' });
+    expect(films[0].className).toContain('bg-gray-900');
+    fireEvent.keyUp(input, { key: 'ArrowDown' });
+    expect(films[1].className).toContain('bg-gray-900');
+    fireEvent.keyUp(input, { key: 'Escape' });
+    fireEvent.keyUp(input, { key: 'Enter' });
+
+    expect(films.length).toBeGreaterThan(1);
+    expect(
+      await screen.findByRole('heading', { name: 'Selected 81936 honey-i-shrunk-the-audience' }),
+    ).toBeTruthy();
   });
 });

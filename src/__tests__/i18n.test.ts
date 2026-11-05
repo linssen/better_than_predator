@@ -28,6 +28,8 @@ describe('translations', () => {
     expect(getPreferredLanguage('pt-PT')).toBe('pt');
     expect(getPreferredLanguage('pt')).toBe('pt');
     expect(getPreferredLanguage('es-MX')).toBe('en-GB');
+    expect(getPreferredLanguage(undefined)).toBe('en-GB');
+    expect(getPreferredLanguage('fr-FR', [])).toBe('en-GB');
   });
 
   it('preserves proper nouns in both Portuguese translations', () => {
