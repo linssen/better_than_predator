@@ -7,5 +7,15 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/__tests__/set-env-vars.js',
+    coverage: {
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/__tests__/**'],
+      thresholds: {
+        branches: 100,
+        functions: 100,
+        lines: 100,
+        statements: 100,
+      },
+    },
   },
 });
