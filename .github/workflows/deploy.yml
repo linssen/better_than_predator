@@ -14,14 +14,18 @@ jobs:
     environment: github-pages
     steps:
       - uses: actions/checkout@v7
-      - name: Use current Node.js LTS
+      - name: Use Node.js 26.13.0
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-          cache: yarn
+
+      - name: Set up Yarn 4
+        run: |
+          npm install --global corepack@0.36.0
+          corepack enable
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: yarn install --immutable
 
       - name: Build and test
         run: |

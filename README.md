@@ -10,10 +10,13 @@ Clone the repository and install dependencies:
 git clone https://github.com/linssen/better_than_predator
 cd better_than_predator
 nvm install
+npm install --global corepack@0.36.0
+corepack enable
 yarn install
 ```
 
-The repository's `.nvmrc` tracks the current Node.js LTS release.
+The repository pins Node.js 26.13.0 in `.nvmrc` and Yarn 4.18.1 in
+`package.json`. Corepack selects the pinned Yarn version.
 
 Create `.env.local` in the project root and set your TMDB API key:
 
